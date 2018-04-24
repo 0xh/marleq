@@ -21,6 +21,7 @@
     "dependencies": {
         "buefy": "^0.6.5",
         "bulma": "^0.6.2",
+        "bulma-extensions": "^1.0.14",
         "font-awesome": "^4.7.0"
     }
 }

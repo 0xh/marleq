@@ -16,14 +16,11 @@
 <body>
     <div id="app">
         @include('_includes.navigation.main')
-        <section class="section">
-            <div class="container">
-                @yield('content')
-            </div>
-        </section>
+        @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>
