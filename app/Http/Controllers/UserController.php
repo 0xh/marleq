@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use Hash;
 use Session;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -75,7 +76,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::where('id', $id)->with('roles')->first();
-        return view('manage.users.show', compact('user'));
+        $pictureURL = Storage::url($user->picture);
+        $documentURL = Storage::url($user->document);
+
+        return view('manage.users.show', compact('user', 'pictureURL', 'documentURL'));
     }
 
     /**
@@ -87,8 +91,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::where('id', $id)->with('roles')->first();
+        $pictureURL = Storage::url($user->picture);
+        $documentURL = Storage::url($user->document);
         $roles = Role::all();
-        return view('manage.users.edit', compact('user', 'roles'));
+        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL'));
     }
 
     /**
@@ -108,6 +114,16 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->biography = $request->biography;
+
+        if(!empty($request->picture)) {
+            $file = $request->file('picture')->store('public/user-pictures');
+            $user->picture = $file;
+        }
+        if(!empty($request->document)) {
+            $file = $request->file('document')->store('public/user-documents');
+            $user->document = $file;
+        }
 
         if ($request->passwordOptions == 'auto') {
             $user->password = Hash::make($this->generatePassword());
