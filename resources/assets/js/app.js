@@ -6,12 +6,18 @@
  */
 
 require('./bootstrap');
+
+// Bulma Extensions - Carousel Module
 require('../../../node_modules/bulma-extensions/bulma-carousel/dist/bulma-carousel.js');
+
+// Croppie Module
+import VueCroppie from 'vue-croppie';
 
 window.Vue = require('vue');
 import Buefy from 'buefy';
 
 Vue.use(Buefy);
+Vue.use(VueCroppie);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

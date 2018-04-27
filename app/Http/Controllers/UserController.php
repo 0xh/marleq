@@ -8,6 +8,7 @@ use App\Role;
 use Hash;
 use Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\File;
 
 class UserController extends Controller
 {
@@ -76,7 +77,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::where('id', $id)->with('roles')->first();
-        $pictureURL = Storage::url($user->picture);
+        $pictureURL = Storage::url($user->picture_crop);
         $documentURL = Storage::url($user->document);
 
         return view('manage.users.show', compact('user', 'pictureURL', 'documentURL'));
@@ -92,9 +93,10 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->with('roles')->first();
         $pictureURL = Storage::url($user->picture);
+        $pictureCropURL = Storage::url($user->picture_crop);
         $documentURL = Storage::url($user->document);
         $roles = Role::all();
-        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL'));
+        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL', 'pictureCropURL'));
     }
 
     /**
@@ -116,10 +118,29 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->biography = $request->biography;
 
-        if(!empty($request->picture)) {
-            $file = $request->file('picture')->store('public/user-pictures');
-            $user->picture = $file;
+        // Cropped Image is important, without it the User can't upload a new photo
+        if(!empty($request->picture_crop)) {
+            // Original Image
+            if(!empty($request->picture)) {
+                if(Storage::disk('public')->exists(str_replace('public/', '', $user->picture))) {
+                    Storage::delete($user->picture);
+                }
+                $file = $request->file('picture')->store('public/user-pictures');
+                $user->picture = $file;
+            }
+
+            // Cropped Image
+            if(Storage::disk('public')->exists($user->picture_crop)) {
+                Storage::delete('public/' . $user->picture_crop);
+            }
+
+            $base64_str = substr($request->picture_crop, strpos($request->picture_crop, ",") + 1);
+            $image = base64_decode($base64_str);
+            $imageName = 'user-pictures/'. $user->id . '-' . time() . '.jpg';
+            Storage::disk('public')->put($imageName, $image);
+            $user->picture_crop = $imageName;
         }
+
         if(!empty($request->document)) {
             $file = $request->file('document')->store('public/user-documents');
             $user->document = $file;
@@ -128,6 +149,7 @@ class UserController extends Controller
         if ($request->passwordOptions == 'auto') {
             $user->password = Hash::make($this->generatePassword());
         }
+
         if ($request->passwordOptions == 'manual') {
             $user->password = Hash::make($request->password);
         }
