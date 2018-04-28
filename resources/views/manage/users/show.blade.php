@@ -47,6 +47,15 @@
                         {{ $user->biography }}
                     </p>
 
+                    <h3 class="subtitle">Specialties:</h3>
+                    <ul>
+                        @foreach($user->specialties as $specialty)
+                            <li>
+                                {{ $specialty->name }}
+                            </li>
+                        @endforeach
+                    </ul>
+
                     <h3 class="subtitle">Roles:</h3>
                     <ul>
                         @foreach($user->roles as $role)

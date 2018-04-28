@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Specialty;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use Hash;
 use Session;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\File;
+use DB;
 
 class UserController extends Controller
 {
@@ -96,7 +97,8 @@ class UserController extends Controller
         $pictureCropURL = Storage::url($user->picture_crop);
         $documentURL = Storage::url($user->document);
         $roles = Role::all();
-        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL', 'pictureCropURL'));
+        $specialties = Specialty::all();
+        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL', 'pictureCropURL', 'specialties'));
     }
 
     /**
@@ -155,7 +157,11 @@ class UserController extends Controller
         }
 
         if($user->save()) {
-            $user->syncRoles(explode(',', $request->roles));
+            DB::transaction(function () use ($user, $request) {
+                $user->syncRoles(explode(',', $request->roles));
+                $user->specialties()->sync(explode(',', $request->specialties));
+            }, 5);
+
             Session::flash('success', 'User has been successfully edited');
             return redirect()->route('users.show', $id);
         } else {

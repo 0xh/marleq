@@ -17,7 +17,7 @@
                         <div class="field">
                             <figure class="media-left">
                                 <p class="image" style="overflow: hidden; width: 193.7px;">
-                                    <img src="{{ URL::asset($pictureCropURL) }}" alt="">
+                                    <img src="{{ URL::asset($pictureCropURL) }}" alt="" style="image-rendering: crisp-edges;">
                                 </p>
                             </figure>
                         </div>
@@ -96,35 +96,48 @@
                                 </p>
                             @endif
                         </div>
+
                         <div class="field">
                             <div class="file has-name">
                                 <label class="file-label">
                                     <input class="file-input" type="file" ref="doc" name="document" @change="onDocumentChange">
                                     <span class="file-cta">
-                                    <span class="file-icon">
-                                        <i class="fa fa-upload"></i>
+                                        <span class="file-icon">
+                                            <i class="fa fa-upload"></i>
+                                        </span>
+                                        <span class="file-label">
+                                            Choose a document…
+                                        </span>
                                     </span>
-                                    <span class="file-label">
-                                        Choose a document…
-                                    </span>
-                                </span>
                                     <span class="file-name" v-if="document" v-text="document"></span>
                                     <span class="file-name" v-if="!document">
-                                    <small>
-                                        <a href="{{ URL::asset($documentURL) }}" target="_blank">
-                                            <span class="icon">
-                                                <i class="fa fa-file"></i>
-                                            </span>
-                                            <span>View CV</span>
-                                            <span class="icon">
-                                                <i class="fa fa-angle-double-right"></i>
-                                            </span>
-                                        </a>
-                                    </small>
-                                </span>
+                                        <small>
+                                            <a href="{{ URL::asset($documentURL) }}" target="_blank">
+                                                <span class="icon">
+                                                    <i class="fa fa-file"></i>
+                                                </span>
+                                                <span>View CV</span>
+                                                <span class="icon">
+                                                    <i class="fa fa-angle-double-right"></i>
+                                                </span>
+                                            </a>
+                                        </small>
+                                    </span>
                                 </label>
                             </div>
                         </div>
+
+                        <div class="field">
+                            <label class="label"><small>Specialties:</small></label>
+                            <ul class="specialty-col">
+                                @foreach($specialties as $specialty)
+                                    <li><b-checkbox class="m-r-10" native-value="{{ $specialty->id }}" v-model="specialties">{{ $specialty->name }}</b-checkbox></li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                        <input type="hidden" name="specialties" :value="specialties">
+
                     </div>
 
                     <div class="column is-half">
@@ -146,7 +159,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <div class="field">
                     <label class="label"><small>Password:</small></label>
@@ -187,7 +199,7 @@
 
                 <div class="field m-t-30">
                     <p class="control">
-                        <button type="submit" class="button is-primary">
+                        <button type="submit" class="button is-info">
                             <span class="icon">
                                 <i class="fa fa-edit"></i>
                             </span>
@@ -220,6 +232,7 @@
                 document: '',
                 passwordOptions: 'keep',
                 roles: {!! $user->roles->pluck('id') !!},
+                specialties: {!!$user->specialties->pluck('id')!!},
                 cropped: null,
                 isCropped: false,
                 isTooltip: false,
