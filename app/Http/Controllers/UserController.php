@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Service;
 use App\Specialty;
 use Illuminate\Http\Request;
 use App\User;
@@ -98,7 +99,9 @@ class UserController extends Controller
         $documentURL = Storage::url($user->document);
         $roles = Role::all();
         $specialties = Specialty::all();
-        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL', 'pictureCropURL', 'specialties'));
+        $services = Service::all();
+
+        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL', 'pictureCropURL', 'specialties', 'services'));
     }
 
     /**
@@ -160,6 +163,7 @@ class UserController extends Controller
             DB::transaction(function () use ($user, $request) {
                 $user->syncRoles(explode(',', $request->roles));
                 $user->specialties()->sync(explode(',', $request->specialties));
+                $user->services()->sync(explode(',', $request->services));
             }, 5);
 
             Session::flash('success', 'User has been successfully edited');

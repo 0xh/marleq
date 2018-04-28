@@ -56,6 +56,15 @@
                         @endforeach
                     </ul>
 
+                    <h3 class="subtitle">Services:</h3>
+                    <ul>
+                        @foreach($user->services as $service)
+                            <li>
+                                {{ $service->name }}
+                            </li>
+                        @endforeach
+                    </ul>
+
                     <h3 class="subtitle">Roles:</h3>
                     <ul>
                         @foreach($user->roles as $role)

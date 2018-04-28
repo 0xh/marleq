@@ -128,7 +128,18 @@
                         </div>
 
                         <div class="field">
-                            <label class="label"><small>Specialties:</small></label>
+                            <h1 class="subtitle m-t-20 m-b-10">Services:</h1>
+                            <ul class="specialty-col">
+                                @foreach($services as $service)
+                                    <li><b-checkbox class="m-r-10" native-value="{{ $service->id }}" v-model="services">{{ $service->name }}</b-checkbox></li>
+                                @endforeach
+                            </ul>
+                        </div>
+
+                        <input type="hidden" name="services" :value="services">
+
+                        <div class="field">
+                            <h1 class="subtitle m-t-20 m-b-10">Specialties:</h1>
                             <ul class="specialty-col">
                                 @foreach($specialties as $specialty)
                                     <li><b-checkbox class="m-r-10" native-value="{{ $specialty->id }}" v-model="specialties">{{ $specialty->name }}</b-checkbox></li>
@@ -161,7 +172,7 @@
                 </div>
 
                 <div class="field">
-                    <label class="label"><small>Password:</small></label>
+                    <h1 class="subtitle m-t-20 m-b-10">Password:</h1>
                     <div class="field">
                         <b-radio name="passwordOptions" native-value="keep" v-model="passwordOptions">Do Not Change Password</b-radio>
                     </div>
@@ -195,6 +206,7 @@
                         </li>
                     @endforeach
                 </ul>
+
                 <input type="hidden" name="roles" :value="roles">
 
                 <div class="field m-t-30">
@@ -233,6 +245,7 @@
                 passwordOptions: 'keep',
                 roles: {!! $user->roles->pluck('id') !!},
                 specialties: {!!$user->specialties->pluck('id')!!},
+                services: {!!$user->services->pluck('id')!!},
                 cropped: null,
                 isCropped: false,
                 isTooltip: false,
