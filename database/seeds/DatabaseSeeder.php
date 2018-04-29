@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             LaratrustSeeder::class,
             SpecialtySeeder::class,
-            ServiceSeeder::class
+            ServiceSeeder::class,
+            CountrySeeder::class
         ]);
     }
 }

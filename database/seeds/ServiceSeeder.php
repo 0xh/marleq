@@ -11,7 +11,7 @@ class ServiceSeeder extends Seeder
      */
     public function run()
     {
-        // Add Specialties
+        // Add Services
 
         DB::table('services')->insert([
             ['name' => 'CV Review', 'featured' => 1, 'description' => 'Work with a resume review coach to turn your existing resume into an eye-catching, ATS-beating doc that clearly tells hiring managers why they should bring you in for an interview.'],

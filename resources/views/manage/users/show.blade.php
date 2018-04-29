@@ -65,6 +65,14 @@
                         @endforeach
                     </ul>
 
+                    <h3 class="subtitle">Countries:</h3>
+                    <ul>
+                        @foreach($user->countries as $country)
+                            <li>
+                                {{ $country->name }}
+                            </li>
+                        @endforeach
+                    </ul>
                     <h3 class="subtitle">Roles:</h3>
                     <ul>
                         @foreach($user->roles as $role)

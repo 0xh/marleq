@@ -128,6 +128,25 @@
                         </div>
 
                         <div class="field">
+                            <h1 class="subtitle m-t-20 m-b-10">Countries:</h1>
+                                <b-field>
+                                    <b-taginput
+                                            v-model="tags"
+                                            :data="filteredTags"
+                                            autocomplete
+                                            :allow-new="allownew"
+                                            field="name"
+                                            placeholder="Add a tag"
+                                            @typing="getFilteredTags"
+                                            @add="addTagId"
+                                            @remove="removeTagId">
+                                    </b-taginput>
+                                </b-field>
+                        </div>
+
+                        <input type="hidden" name="countries" :value="countries">
+
+                        <div class="field">
                             <h1 class="subtitle m-t-20 m-b-10">Services:</h1>
                             <ul class="specialty-col">
                                 @foreach($services as $service)
@@ -227,6 +246,7 @@
 
 @section('scripts')
     <script>
+        const data = {!! $countries !!};
         const app = new Vue({
             el: "#app",
             mounted() {
@@ -250,9 +270,29 @@
                 isCropped: false,
                 isTooltip: false,
                 tooltipType: 'is-info',
-                showCroppie: false
+                showCroppie: false,
+                filteredTags: data,
+                isSelectOnly: false,
+                tags: {!! $user->countries !!},
+                countries: {!! $user->countries->pluck('id') !!},
+                allownew: false
             },
             methods: {
+                getFilteredTags(text) {
+                    this.filteredTags = data.filter((option) => {
+                        return option.name
+                                .toString()
+                                .toLowerCase()
+                                .indexOf(text.toLowerCase()) >= 0
+                    })
+                },
+                addTagId(option) {
+                    this.countries.push(option.id);
+                },
+                removeTagId(option) {
+                    let index = this.countries.indexOf(option.id);
+                    this.countries.splice(index, 1);
+                },
                 success() {
                     this.$toast.open({
                         duration: 3000,

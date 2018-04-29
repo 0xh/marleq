@@ -38,4 +38,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Service');
     }
+
+    public function countries()
+    {
+        return $this->belongsToMany('App\Country');
+    }
 }

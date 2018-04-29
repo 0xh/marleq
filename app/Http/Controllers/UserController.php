@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Service;
 use App\Specialty;
 use Illuminate\Http\Request;
@@ -100,8 +101,9 @@ class UserController extends Controller
         $roles = Role::all();
         $specialties = Specialty::all();
         $services = Service::all();
+        $countries = Country::select('id', 'name')->get();
 
-        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL', 'pictureCropURL', 'specialties', 'services'));
+        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL', 'pictureCropURL', 'specialties', 'services', 'countries'));
     }
 
     /**
@@ -164,6 +166,7 @@ class UserController extends Controller
                 $user->syncRoles(explode(',', $request->roles));
                 $user->specialties()->sync(explode(',', $request->specialties));
                 $user->services()->sync(explode(',', $request->services));
+                $user->countries()->sync(explode(',', $request->countries));
             }, 5);
 
             Session::flash('success', 'User has been successfully edited');
