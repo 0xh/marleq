@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Service;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $coaches = User::whereRoleIs('administrator')->get();
+        $featuredServices = Service::where('featured', 1)->get();
+        $services = Service::where('featured', '!=', 1)->get();
+//        dd($featuredServices);
+        return view('welcome', compact('coaches', 'services', 'featuredServices'));
     }
 }

@@ -9,10 +9,10 @@
             <div class="columns is-centered">
                 <div class="column is-three-quarters has-text-centered">
                     <h1 class="title m-b-50 has-text-weight-light">
-                        FIND AND BOOK YOUR CAREER COACH, AND BUILD LOCAL OR INTERNATIONAL CAREER FASTER AND EASIER
+                        FIND YOUR CAREER COACH, AND BUILD A SUCCESSFUL CAREER
                     </h1>
                     <h2 class="subtitle">
-                        Are you facing a career challenge? You have come to the right place. We are team of professionals fully dedicated to your career progress.
+                        We are team of professionals fully dedicated to your career progress.<br />
                         Our experienced career coaches will help you gain new knowledge and skills, and land a dream job.
                     </h2>
                     <p class="m-t-50">
@@ -38,23 +38,35 @@
                     CHECK YOUR CV FOR FREE!
                 </h1>
                 <h2 class="subtitle">
-                    Upload your CV, and our experienced career coach will quickly review your CV. <br />You will receive useful tips which parts of your CV to improve, free of charge.
+                    Upload CV and our experienced career coach will quickly review it.<br />
+                    You will receive an insightful feedback in order to improve in your CV.
                 </h2>
-                <h2 class="subtitle">
-                    <a href="{{ route('register')}}">
-                    <span class="icon">
-                        <i class="fa fa-user"></i>
-                    </span>
-                        <span class="has-text-weight-bold has-text-co">Sign Up Now</span>
-                    </a>
-                    <span> or</span>
-                    <a href="{{ route('login')}}">
-                        <span class="has-text-weight-bold has-text-co">Login</span>
+                @if (Auth::user())
+                    @if (Auth::user()->hasRole('administrator'))
+                        <p class="m-t-35">
+                            <a class="button is-marleq is-medium is-inverted is-rounded" href="#">
+                                <span>Let's Start!</span>
+
+                            </a>
+                        </p>
+                    @endif
+                @else
+                    <h2 class="subtitle">
+                        <a href="{{ route('register')}}">
                         <span class="icon">
-                        <i class="fa fa-angle-double-right"></i>
-                    </span>
-                    </a>
-                </h2>
+                            <i class="fa fa-user"></i>
+                        </span>
+                            <span class="has-text-weight-bold has-text-co">Sign Up Now</span>
+                        </a>
+                        <span> or</span>
+                        <a href="{{ route('login')}}">
+                            <span class="has-text-weight-bold has-text-co">Login</span>
+                            <span class="icon">
+                            <i class="fa fa-angle-double-right"></i>
+                        </span>
+                        </a>
+                    </h2>
+                @endif
             </div>
         </div>
     </section>
@@ -92,54 +104,30 @@
                     <h1>Our Services</h1>
                 </div>
                 <div class="columns is-multiline is-narrow has-text-centered">
-                    <div class="column is-one-quarter">
-                        <span>CV Review</span>
-                    </div>
-                    <div class="column is-one-quarter">
-                        <span>LinkedIn Review</span>
-                    </div>
-                    <div class="column is-one-quarter">
-                        <span>Cover Letter Review</span>
-                    </div>
-                    <div class="column is-one-quarter">
-                        <span>New Job Search Strategy</span>
-                    </div>
+                    @foreach($featuredServices as $service)
+                        <div class="column is-one-quarter has-text-centered">
+                            <div class="content">
+                                <img src="{{ $service->image }}" style="width:120px;">
+                                <h3>{{ $service->name }}</h3>
+                                <p>{{ $service->description }}</p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
                 <div class="has-text-centered">
                     <b-collapse :open="false">
                         <div class="columns is-multiline is-narrow m-t-20">
-                            <div class="column is-one-quarter">
-                                <span>Interview Coaching</span>
-                            </div>
-                            <div class="column is-one-quarter">
-                                <span>Negotiation Coaching</span>
-                            </div>
-                            <div class="column is-one-quarter">
-                                <span>Leadership Coaching</span>
-                            </div>
-                            <div class="column is-one-quarter">
-                                <span>Networking Coaching</span>
-                            </div>
-                            <div class="column is-one-quarter">
-                                <span>New Position Coaching</span>
-                            </div>
-                            <div class="column is-one-quarter">
-                                <span>HRM Coaching</span>
-                            </div>
-                            <div class="column is-one-quarter">
-                                <span>Grow in my current role</span>
-                            </div>
-                            <div class="column is-one-quarter">
-                                <span>Explore future career options</span>
-                            </div>
-                            <div class="column is-one-quarter">
-                                <span>Return to work after an absence</span>
-                            </div>
-                            <div class="column is-one-quarter">
-                                <span>Career Q&A</span>
-                            </div>
+                            @foreach($services as $service)
+                                <div class="column is-one-fifth">
+                                    <div class="content">
+                                        <img src="{{ $service->image }}" style="width:120px;">
+                                        <h4 class="m-t-20">{{ $service->name }}</h4>
+                                        <p>{{ $service->description }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        <a class="button is-text" slot="trigger" style="text-decoration: inherit; color: #209cee;">
+                        <a class="button is-text is-medium" slot="trigger" style="text-decoration: inherit;">
                             <span>Additional Coaching Services</span>
                             <span class="icon">
                                 <i class="fa fa-angle-double-down"></i>
@@ -155,62 +143,24 @@
 
     <section class="section">
         <div class="container">
-            <div class='carousel is-3 carousel-animated carousel-animate-slide' data-autoplay="true" data-delay="4000">
+            <div class="content has-text-centered">
+                <h1>Our Coaches</h1>
+            </div>
+            <div class='carousel is-4 carousel-animated carousel-animate-slide' data-autoplay="true" data-delay="5000">
                 <div class='carousel-container'>
-                    <div class='carousel-item is-active'>
-                        <figure class="image is-square"><img class="is-circle" src="http://marleq.com/wp-content/uploads/2018/03/igor-maric.jpg"></figure>
-                        <div class="content has-text-centered m-t-20">
-                            <h2 class="has-text-weight-bold">Igor</h2>
-                            <p>12+ years of experience in design, and still getting inspired by the world and innovation.</p>
-                            <p>Born, raised and educated as a designer, and (co)founded several design-related firms.</p>
-                            <p>MSc in Digital Media Design in Germany</p>
+                    @foreach($coaches as $coach)
+                        @if($loop->first)
+                            <div class='carousel-item is-active'>
+                        @else
+                            <div class='carousel-item'>
+                        @endif
+                            <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset('storage/'. $coach->picture_crop) }}" style="border-radius: 8px;"></figure>
+                            <div class="content has-text-centered m-t-20">
+                                <h2 class="has-text-weight-bold">{{ $coach->name }}</h2>
+                                <p>{{ $coach->biography }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class='carousel-item'>
-                        <figure class="image is-square is-rounded"><img class="is-rounded" src="http://marleq.com/wp-content/uploads/2018/03/milo-radulovic.jpg"></figure>
-                        <div class="content has-text-centered m-t-20">
-                            <h2 class="has-text-weight-bold">Milo</h2>
-                            <p>10+ years of experience in 15 organisations: from startups, consulting firms to NPO/NGO</p>
-                            <p>Professional accomplishments: Montenegro, Lithuania, Slovenia and Sweden</p>
-                            <p>MSc in Business Administration (Sweden)</p>
-                        </div>
-                    </div>
-                    <div class='carousel-item'>
-                        <figure class="image is-square"><img class="is-circle" src="https://cdn.comatch.com/wp-content/uploads/2017/04/Pascale-289x289.jpg"></figure>
-                        <div class="content has-text-centered m-t-20">
-                            <h2 class="has-text-weight-bold">Pascale</h2>
-                            <p>Commercial due diligence for PE comapnies and strategy projects</p>
-                            <p>6 years at Bain & Company</p>
-                            <p>Business Administration, University of St. Gallen and HEC Paris and an MBA from Columbia Business School</p>
-                        </div>
-                    </div>
-                    <div class='carousel-item'>
-                        <figure class="image is-square"><img class="is-circle" src="http://marleq.com/wp-content/uploads/2018/03/jovana-minic.jpg"></figure>
-                        <div class="content has-text-centered m-t-20">
-                            <h2 class="has-text-weight-bold">Jovana</h2>
-                            <p>10+ years of experience in 15 organisations: from startups, consulting firms to NPO/NGO</p>
-                            <p>Professional accomplishments: Montenegro, Lithuania, Slovenia and Sweden</p>
-                            <p>MSc in Business Administration (Sweden)</p>
-                        </div>
-                    </div>
-                    <div class='carousel-item'>
-                        <figure class="image is-square"><img class="is-circle" src="http://marleq.com/wp-content/uploads/2018/03/tina-radojkovic.jpg"></figure>
-                        <div class="content has-text-centered m-t-20">
-                            <h2 class="has-text-weight-bold">Tina</h2>
-                            <p>Commercial due diligence for PE comapnies and strategy projects</p>
-                            <p>6 years at Bain & Company</p>
-                            <p>Business Administration, University of St. Gallen and HEC Paris and an MBA from Columbia Business School</p>
-                        </div>
-                    </div>
-                    <div class='carousel-item'>
-                        <figure class="image is-square"><img class="is-circle" src="http://marleq.com/wp-content/uploads/2018/03/doruntine-jakupi.jpg"></figure>
-                        <div class="content has-text-centered m-t-20">
-                            <h2 class="has-text-weight-bold">Doruntine</h2>
-                            <p>12+ years of experience in design, and still getting inspired by the world and innovation.</p>
-                            <p>Born, raised and educated as a designer, and (co)founded several design-related firms.</p>
-                            <p>MSc in Digital Media Design in Germany</p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="carousel-navigation is-centered">
                     <div class="carousel-nav-left">
