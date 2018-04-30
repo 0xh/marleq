@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             LaratrustSeeder::class,
             SpecialtySeeder::class,
             ServiceSeeder::class,
-            CountrySeeder::class
+            CountrySeeder::class,
+            CategorySeeder::class
         ]);
     }
 }
