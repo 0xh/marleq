@@ -1,0 +1,40 @@
+// Import Bulma's core
+@import "node_modules/bulma/sass/utilities/_all.sass";
+
+// Set custom colors
+$primary: #00a7e1;
+$primary-invert: findColorInvert($primary);
+
+// Import the initial variables
+@import "node_modules/bulma/sass/utilities/initial-variables";
+@import "node_modules/bulma/sass/utilities/functions";
+
+// Set custom initial variables
+// Update link
+$link: #00a7e1;
+
+// Add pink and its invert
+//$pink: #ffb3b3;
+//$pink-invert: #fff;
+// Add a serif family
+//$family-serif: "Merriweather", "Georgia", serif;
+
+// Set the derived variables
+// Use the new pink as the primary color
+//$primary: $pink;
+//$primary-invert: $pink-invert;
+// Use the existing orange as the danger color
+//$danger: $orange;
+// Use the new serif family
+//$family-primary: $family-serif;
+
+// 4. Setup your Custom Colors
+$marleq: #00a7e1;
+$marleq-invert: findColorInvert($marleq);
+
+// Add new color variables to the color map.
+@import "node_modules/bulma/sass/utilities/derived-variables";
+$addColors: (
+        "marleq":($marleq, $marleq-invert)
+);
+$colors: map-merge($colors, $addColors);

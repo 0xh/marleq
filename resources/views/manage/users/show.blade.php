@@ -10,7 +10,7 @@
         <!-- Right side -->
         <div class="level-right">
             <div class="level-item">
-                <a class="button is-info" href="{{route('users.edit', $user->id)}}">
+                <a class="button is-marleq" href="{{route('users.edit', $user->id)}}">
                     <span class="icon">
                         <i class="fa fa-edit"></i>
                     </span>

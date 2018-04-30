@@ -133,9 +133,11 @@
                                     <b-taginput
                                             v-model="tags"
                                             :data="filteredTags"
+                                            maxtags="10"
                                             autocomplete
                                             :allow-new="allownew"
                                             field="name"
+                                            type="is-marleq"
                                             placeholder="Add a tag"
                                             @typing="getFilteredTags"
                                             @add="addTagId"
@@ -178,7 +180,7 @@
                             <div class="column is-full has-text-centered">
                                 {{--<img :src="cropped" alt="" class="rounded mx-auto d-block img-thumbnail">--}}
                                 <b-tooltip :type="tooltipType" label="Please Crop the Image before Updating the Profile!" animated :always="isTooltip">
-                                    <a class="button" @click="isCropped = true; crop()" :class="{ 'is-success': isCropped, 'is-info': !isCropped }" :disabled="isCropped">
+                                    <a class="button" @click="isCropped = true; crop()" :class="{ 'is-success': isCropped, 'is-marleq': !isCropped }" :disabled="isCropped">
                                         <span class="icon">
                                             <i class="fa fa-crop"></i>
                                         </span>
@@ -193,13 +195,13 @@
                 <div class="field">
                     <h1 class="subtitle m-t-20 m-b-10">Password:</h1>
                     <div class="field">
-                        <b-radio name="passwordOptions" native-value="keep" v-model="passwordOptions">Do Not Change Password</b-radio>
+                        <b-radio name="passwordOptions" type="is-marleq" native-value="keep" v-model="passwordOptions">Do Not Change Password</b-radio>
                     </div>
                     <div class="field">
-                        <b-radio name="passwordOptions" native-value="auto" v-model="passwordOptions">Auto-Generate Password</b-radio>
+                        <b-radio name="passwordOptions" type="is-marleq" native-value="auto" v-model="passwordOptions">Auto-Generate Password</b-radio>
                     </div>
                     <div class="field">
-                        <b-radio name="passwordOptions" native-value="manual" v-model="passwordOptions">Manually Set New Password</b-radio>
+                        <b-radio name="passwordOptions" type="is-marleq" native-value="manual" v-model="passwordOptions">Manually Set New Password</b-radio>
                     </div>
                 </div>
 
@@ -221,7 +223,7 @@
                 <ul class="m-b-30">
                     @foreach($roles as $role)
                         <li class="m-b-10">
-                            <b-checkbox class="m-r-10" native-value="{{ $role->id }}" v-model="roles">{{ $role->display_name }} <em class="m-l-15"><small>{{ $role->description }}</small></em></b-checkbox>
+                            <b-checkbox class="m-r-10" type="is-marleq" native-value="{{ $role->id }}" v-model="roles">{{ $role->display_name }} <em class="m-l-15"><small>{{ $role->description }}</small></em></b-checkbox>
                         </li>
                     @endforeach
                 </ul>
@@ -230,7 +232,7 @@
 
                 <div class="field m-t-30">
                     <p class="control">
-                        <button type="submit" class="button is-info">
+                        <button type="submit" class="button is-marleq">
                             <span class="icon">
                                 <i class="fa fa-edit"></i>
                             </span>
@@ -269,7 +271,7 @@
                 cropped: null,
                 isCropped: false,
                 isTooltip: false,
-                tooltipType: 'is-info',
+                tooltipType: 'is-marleq',
                 showCroppie: false,
                 filteredTags: data,
                 isSelectOnly: false,
@@ -341,14 +343,14 @@
                     // used to display the result above.
                     let options = {
                         format: 'jpeg'
-                    }
+                    };
                     this.$refs.croppieref.result(options, (output) => {
                         this.cropped = output;
                     });
                     if(this.isCropped === true) {
                         this.success();
                         this.isTooltip = false;
-                        this.tooltipType = 'is-info';
+                        this.tooltipType = 'is-marleq';
                     }
                 },
                 result(output) {

@@ -8,6 +8,11 @@
 // Bootstrap
 // @import '~bootstrap/scss/bootstrap';
 
+// Custom SASS Pages
+@import "overrides";
+@import "helpers";
+@import "styles";
+
 // Bulma
 @import "node_modules/bulma/bulma";
 @import "node_modules/bulma-extensions/bulma-carousel/dist/bulma-carousel";
@@ -18,8 +23,3 @@
 
 // Bulma Vue Modules
 @import "node_modules/buefy/src/scss/buefy";
-
-// Custom SASS Pages
-@import "overrides";
-@import "helpers";
-@import "styles";

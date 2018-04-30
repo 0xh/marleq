@@ -4,7 +4,7 @@
 
     {{--MARLEQ INTRO--}}
 
-    <section class="hero is-info is-medium">
+    <section class="hero is-marleq is-medium">
         <div class="hero-body">
             <div class="columns is-centered">
                 <div class="column is-three-quarters has-text-centered">
@@ -16,7 +16,7 @@
                         Our experienced career coaches will help you gain new knowledge and skills, and land a dream job.
                     </h2>
                     <p class="m-t-50">
-                        <button class="button is-info is-medium is-inverted is-rounded"
+                        <button class="button is-marleq is-medium is-inverted is-rounded"
                                 @click="isVideoModalActive = true">
                             <span class="icon">
                                 <i class="fa fa-play-circle"></i>
@@ -226,7 +226,7 @@
 
     {{--FIND A COACH--}}
 
-    <section class="hero is-narrow is-info">
+    <section class="hero is-narrow is-marleq">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <h1 class="title m-b-40 has-text-weight-light">
@@ -236,7 +236,7 @@
                     Our experienced and skilled career coaches and professionals can help you to improve your job search, CV, LinkedIn, and cover letter. <br />
                     They will prepare you for your next job interview, negotiation round, and answer all your career related questions. We are all here to help you land a dream job.
                 </h2>
-                <button class="button is-info is-medium is-inverted is-rounded"
+                <button class="button is-marleq is-medium is-inverted is-rounded"
                         @click="isVideoModalActive = true">
                     <span class="icon">
                         <i class="fa fa-search"></i>

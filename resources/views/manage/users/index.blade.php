@@ -51,7 +51,7 @@
                 <td><small>{{$user->email}}</small></td>
                 <td><small>{{$user->created_at->format('j. M, Y. H:i:s')}}</small></td>
                 <td>
-                    <a href="{{route('users.edit', $user->id)}}" class="button is-info is-small">
+                    <a href="{{route('users.edit', $user->id)}}" class="button is-marleq is-small">
                         <span class="icon">
                             <i class="fa fa-edit"></i>
                         </span>
