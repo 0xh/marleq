@@ -80,10 +80,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::where('id', $id)->with('roles')->first();
-        $pictureURL = Storage::url($user->picture_crop);
-        $documentURL = Storage::url($user->document);
-
-        return view('manage.users.show', compact('user', 'pictureURL', 'documentURL'));
+        return view('manage.users.show', compact('user'));
     }
 
     /**
@@ -95,15 +92,12 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::where('id', $id)->with('roles')->first();
-        $pictureURL = Storage::url($user->picture);
-        $pictureCropURL = Storage::url($user->picture_crop);
-        $documentURL = Storage::url($user->document);
         $roles = Role::all();
         $specialties = Specialty::all();
         $services = Service::all();
         $countries = Country::select('id', 'name')->get();
 
-        return view('manage.users.edit', compact('user', 'roles', 'pictureURL', 'documentURL', 'pictureCropURL', 'specialties', 'services', 'countries'));
+        return view('manage.users.edit', compact('user', 'roles', 'specialties', 'services', 'countries'));
     }
 
     /**
@@ -129,28 +123,31 @@ class UserController extends Controller
         if(!empty($request->picture_crop)) {
             // Original Image
             if(!empty($request->picture)) {
-                if(Storage::disk('public')->exists(str_replace('public/', '', $user->picture))) {
-                    Storage::delete($user->picture);
+                if(Storage::disk('public')->exists(str_replace('/storage/', '', $user->picture))) {
+                    Storage::delete(str_replace('/storage/', 'public/', $user->picture));
                 }
                 $file = $request->file('picture')->store('public/user-pictures');
-                $user->picture = $file;
+                $user->picture = Storage::url($file);
             }
 
             // Cropped Image
-            if(Storage::disk('public')->exists($user->picture_crop)) {
-                Storage::delete('public/' . $user->picture_crop);
+            if(Storage::disk('public')->exists(str_replace('/storage/', '', $user->picture_crop))) {
+                Storage::delete(str_replace('/storage/', 'public/', $user->picture_crop));
             }
 
             $base64_str = substr($request->picture_crop, strpos($request->picture_crop, ",") + 1);
             $image = base64_decode($base64_str);
             $imageName = 'user-pictures/'. $user->id . '-' . time() . '.jpg';
             Storage::disk('public')->put($imageName, $image);
-            $user->picture_crop = $imageName;
+            $user->picture_crop = '/storage/' . $imageName;
         }
 
         if(!empty($request->document)) {
+            if(Storage::disk('public')->exists(str_replace('/storage/', '', $user->document))) {
+                Storage::delete(str_replace('/storage/', 'public/', $user->document));
+            }
             $file = $request->file('document')->store('public/user-documents');
-            $user->document = $file;
+            $user->document = Storage::url($file);
         }
 
         if ($request->passwordOptions == 'auto') {

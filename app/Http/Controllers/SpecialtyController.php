@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Specialty;
 use Illuminate\Http\Request;
+use Session;
 
 class SpecialtyController extends Controller
 {
@@ -13,7 +15,8 @@ class SpecialtyController extends Controller
      */
     public function index()
     {
-        //
+        $specialties = Specialty::orderBy('id', 'asc')->paginate(15);
+        return view('manage.specialties.index', compact('specialties'));
     }
 
     /**
@@ -23,7 +26,7 @@ class SpecialtyController extends Controller
      */
     public function create()
     {
-        //
+        return view('manage.specialties.create');
     }
 
     /**
@@ -34,7 +37,20 @@ class SpecialtyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255'
+        ]);
+
+        $specialty = new Specialty();
+        $specialty->name = $request->name;
+
+        if($specialty->save()) {
+            Session::flash('success', 'Specialty has been successfully created');
+            return redirect()->route('specialties.show', $specialty->id);
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while creating this specialty.');
+            return redirect()->route('specialties.create');
+        }
     }
 
     /**
@@ -45,7 +61,8 @@ class SpecialtyController extends Controller
      */
     public function show($id)
     {
-        //
+        $specialty = Specialty::findOrFail($id);
+        return view('manage.specialties.show', compact('specialty'));
     }
 
     /**
@@ -56,7 +73,8 @@ class SpecialtyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $specialty = Specialty::findOrFail($id);
+        return view('manage.specialties.edit', compact('specialty'));
     }
 
     /**
@@ -68,7 +86,20 @@ class SpecialtyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255'
+        ]);
+
+        $specialty = Specialty::findOrFail($id);
+        $specialty->name = $request->name;
+
+        if($specialty->save()) {
+            Session::flash('success', 'Specialty has been successfully updated');
+            return redirect()->route('specialties.show', $specialty->id);
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while updating this specialty.');
+            return redirect()->route('specialties.edit', $specialty->id);
+        }
     }
 
     /**
@@ -79,6 +110,6 @@ class SpecialtyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Specialty::destroy($id);
     }
 }

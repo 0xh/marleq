@@ -154,7 +154,7 @@
                         @else
                             <div class='carousel-item'>
                         @endif
-                            <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset('storage/'. $coach->picture_crop) }}" style="border-radius: 8px;"></figure>
+                            <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 8px;"></figure>
                             <div class="content has-text-centered m-t-20">
                                 <h2 class="has-text-weight-bold">{{ $coach->name }}</h2>
                                 <p>{{ $coach->biography }}</p>
@@ -205,69 +205,29 @@
                 <h1>MARLEQ Inspiration</h1>
             </div>
             <div class="columns is-narrow m-t-40">
-                <div class="column">
-                    <div class="card is-shadowless">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://cdn.comatch.com/wp-content/uploads/2018/02/hands-people-woman-working-680x460.jpg" alt="">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="content">
-                                <p class="title is-4">Using Design Thinking to develop the products and services that clients really want</p>
-                                <p>Customer demands can require innovative solutions. This is done through creative trial and error and quick assumption review using a…</p>
-                                <a href="#">
-                                    <span>Read more</span>
-                                    <span class="icon">
-                                        <i class="fa fa-angle-double-right"></i>
-                                    </span>
-                                </a>
+                @foreach($inspiration->posts as $post)
+                    <div class="column">
+                        <div class="card is-shadowless">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="{{ URL::asset($post->intro_image) }}" alt="">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    <p class="title is-4">{{ $post->title }}</p>
+                                    <p>{{ $post->content }}</p>
+                                    <a href="#">
+                                        <span>Read more</span>
+                                        <span class="icon">
+                                            <i class="fa fa-angle-double-right"></i>
+                                        </span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="column">
-                    <div class="card is-shadowless">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://cdn.comatch.com/wp-content/uploads/2018/02/hands-people-woman-working-680x460.jpg" alt="">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="content">
-                                <p class="title is-4">Using Design Thinking to develop the products and services that clients really want</p>
-                                <p>Customer demands can require innovative solutions. This is done through creative trial and error and quick assumption review using a…</p>
-                                <a href="#">
-                                    <span>Read more</span>
-                                    <span class="icon">
-                                        <i class="fa fa-angle-double-right"></i>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="card is-shadowless">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://cdn.comatch.com/wp-content/uploads/2018/01/iStock-586694292-680x460.jpg" alt="">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="content">
-                                <p class="title is-4">Component identification for 3D printing – make or buy?</p>
-                                <p>A food company wanted to reduce its maintenance costs for beverage bottlers by introducing additively manufactured replacement parts and fittings.…</p>
-                                <a href="#">
-                                    <span>Read more</span>
-                                    <span class="icon">
-                                        <i class="fa fa-angle-double-right"></i>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -291,6 +251,41 @@
                         Instagram
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    {{--MARLEQ EVENTS--}}
+
+    <section class="section">
+        <div class="container">
+            <div class="content has-text-centered">
+                <h1>MARLEQ Inspiration</h1>
+            </div>
+            <div class="columns is-narrow m-t-40">
+                @foreach($events->posts as $post)
+                    <div class="column">
+                        <div class="card is-shadowless">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="{{ URL::asset($post->intro_image) }}" alt="">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    <p class="title is-4">{{ $post->title }}</p>
+                                    <p>{{ $post->content }}</p>
+                                    <a href="#">
+                                        <span>Read more</span>
+                                        <span class="icon">
+                                            <i class="fa fa-angle-double-right"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

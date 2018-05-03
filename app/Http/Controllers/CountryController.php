@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Country;
 use Illuminate\Http\Request;
+use Session;
 
 class CountryController extends Controller
 {
@@ -14,7 +15,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $countries = Country::orderBy('id', 'asc')->paginate(15);
+        return view('manage.countries.index', compact('countries'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('manage.countries.create');
     }
 
     /**
@@ -35,51 +37,79 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255'
+        ]);
+
+        $country = new Country();
+        $country->name = $request->name;
+
+        if($country->save()) {
+            Session::flash('success', 'Country has been successfully created');
+            return redirect()->route('countries.show', $country->id);
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while creating this country.');
+            return redirect()->route('countries.create');
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Country  $country
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Country $country)
+    public function show($id)
     {
-        //
+        $country = Country::findOrFail($id);
+        return view('manage.countries.show', compact('country'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Country  $country
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Country $country)
+    public function edit($id)
     {
-        //
+        $country = Country::findOrFail($id);
+        return view('manage.countries.edit', compact('country'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Country  $country
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255'
+        ]);
+
+        $country = Country::findOrFail($id);
+        $country->name = $request->name;
+
+        if($country->save()) {
+            Session::flash('success', 'Country has been successfully updated');
+            return redirect()->route('countries.show', $country->id);
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while updating this country.');
+            return redirect()->route('countries.edit', $country->id);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Country  $country
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Country $country)
+    public function destroy($id)
     {
-        //
+        Country::destroy($id);
     }
 }

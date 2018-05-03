@@ -24,7 +24,7 @@
         <article class="media">
             <figure class="media-left m-l-5">
                 <p class="image is-128x128" style="overflow: hidden;">
-                    <img src="{{ URL::asset($pictureURL) }}" alt="">
+                    <img src="{{ URL::asset($user->picture_crop) }}" alt="">
                 </p>
             </figure>
             <div class="media-content">
@@ -32,7 +32,7 @@
                     <span class="title"><small>{{ $user->name }}</small></span> <small>{{ $user->email }}</small>
                     <p>
                         <small>
-                            <a href="{{ URL::asset($documentURL) }}" target="_blank">
+                            <a href="{{ URL::asset($user->document) }}" target="_blank">
                                 <span class="icon">
                                     <i class="fa fa-file"></i>
                                 </span>

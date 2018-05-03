@@ -133,6 +133,7 @@ class CountrySeeder extends Seeder
             ['name' => 'Kiribati'],
             ['name' => 'Korea, Democratic People\'s Republic of'],
             ['name' => 'Korea, Republic of'],
+            ['name' => 'Kosovo'],
             ['name' => 'Kuwait'],
             ['name' => 'Kyrgyzstan'],
             ['name' => 'Lao People\'s Democratic Republic'],

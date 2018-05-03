@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::orderBy('id', 'asc')->paginate(15);
+        return view('manage.categories.index', compact('categories'));
     }
 
     /**
@@ -23,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('manage.categories.create');
     }
 
     /**
@@ -34,7 +37,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255'
+        ]);
+
+        $category = new Category();
+        $category->name = $request->name;
+
+        if($category->save()) {
+            Session::flash('success', 'Category has been successfully created');
+            return redirect()->route('categories.show', $category->id);
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while creating this category.');
+            return redirect()->route('categories.create');
+        }
     }
 
     /**
@@ -45,7 +61,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('manage.categories.show', compact('category'));
     }
 
     /**
@@ -56,7 +73,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('manage.categories.edit', compact('category'));
     }
 
     /**
@@ -68,7 +86,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255'
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->name = $request->name;
+
+        if($category->save()) {
+            Session::flash('success', 'Category has been successfully updated');
+            return redirect()->route('categories.show', $category->id);
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while updating this category.');
+            return redirect()->route('categories.edit', $category->id);
+        }
     }
 
     /**
@@ -79,6 +110,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::destroy($id);
     }
 }

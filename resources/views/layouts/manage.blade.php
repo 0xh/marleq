@@ -19,10 +19,10 @@
         <section class="section">
             <div class="container">
                 <div class="columns">
-                    <div class="column is-one-quarter">
+                    <div class="column is-one-fifth">
                         @include('_includes.navigation.manage')
                     </div>
-                    <div class="column is-three-quarters">
+                    <div class="column">
                         @yield('content')
                     </div>
                 </div>

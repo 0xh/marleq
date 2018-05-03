@@ -17,7 +17,7 @@
                         <div class="field">
                             <figure class="media-left">
                                 <p class="image" style="overflow: hidden; width: 193.7px;">
-                                    <img src="{{ URL::asset($pictureCropURL) }}" alt="" style="image-rendering: crisp-edges;">
+                                    <img src="{{ URL::asset($user->picture_crop) }}" alt="" style="image-rendering: crisp-edges;">
                                 </p>
                             </figure>
                         </div>
@@ -112,7 +112,7 @@
                                     <span class="file-name" v-if="document" v-text="document"></span>
                                     <span class="file-name" v-if="!document">
                                         <small>
-                                            <a href="{{ URL::asset($documentURL) }}" target="_blank">
+                                            <a href="{{ URL::asset($user->document) }}" target="_blank">
                                                 <span class="icon">
                                                     <i class="fa fa-file"></i>
                                                 </span>
@@ -255,7 +255,7 @@
                 // Upon mounting of the component, we accessed the .bind({...})
                 // function to put an initial image on the canvas.
                 this.$refs.croppieref.bind({
-                    url: '{!! URL::asset($pictureURL) !!}',
+                    url: '{!! URL::asset($user->picture) !!}',
                 });
                 setTimeout(() => {
                     this.crop();

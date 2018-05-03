@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use Illuminate\Http\Request;
+use Session;
 
 class TagController extends Controller
 {
@@ -13,7 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::orderBy('id', 'asc')->paginate(15);
+        return view('manage.tags.index', compact('tags'));
     }
 
     /**
@@ -23,7 +26,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('manage.tags.create');
     }
 
     /**
@@ -34,7 +37,20 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255'
+        ]);
+
+        $tag = new Tag();
+        $tag->name = $request->name;
+
+        if($tag->save()) {
+            Session::flash('success', 'Tag has been successfully created');
+            return redirect()->route('tags.show', $tag->id);
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while creating this tag.');
+            return redirect()->route('tags.create');
+        }
     }
 
     /**
@@ -45,7 +61,8 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        return view('manage.tags.show', compact('tag'));
     }
 
     /**
@@ -56,7 +73,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        return view('manage.tags.edit', compact('tag'));
     }
 
     /**
@@ -68,7 +86,20 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255'
+        ]);
+
+        $tag = Tag::findOrFail($id);
+        $tag->name = $request->name;
+
+        if($tag->save()) {
+            Session::flash('success', 'Tag has been successfully updated');
+            return redirect()->route('tags.show', $tag->id);
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while updating this tag.');
+            return redirect()->route('tags.edit', $tag->id);
+        }
     }
 
     /**
@@ -79,6 +110,6 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tag::destroy($id);
     }
 }

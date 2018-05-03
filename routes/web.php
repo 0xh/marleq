@@ -14,6 +14,7 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
@@ -22,8 +23,16 @@ Auth::routes();
 Route::group(['prefix' => '/manage', 'middleware' => 'role:superadministrator|administrator'], function () {
     Route::get('/', ['as' => 'manage', 'uses' => 'ManageController@index']);
     Route::get('/dashboard', ['as' => 'manage.dashboard', 'uses' => 'ManageController@dashboard']);
+
+    Route::resource('/services', 'ServiceController');
+
+    Route::resource('/posts', 'PostController');
+    Route::resource('/categories', 'CategoryController');
+    Route::resource('/tags', 'TagController');
+
     Route::resource('/users', 'UserController');
+    Route::resource('/specialties', 'SpecialtyController');
+    Route::resource('/countries', 'CountryController');
     Route::resource('/roles', 'RoleController', ['except' => 'destroy']);
     Route::resource('/permissions', 'PermissionController', ['except' => 'destroy']);
 });
-Route::get('/home', 'HomeController@index')->name('home');
