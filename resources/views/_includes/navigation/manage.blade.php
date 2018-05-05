@@ -9,7 +9,8 @@
                     <i class="fa fa-table"></i>
                 </span>
                 <span>Dashboard</span>
-            </a></li>
+            </a>
+            </li>
         </ul>
         <p class="menu-label">
             Users
@@ -20,31 +21,43 @@
                         <i class="fa fa-users"></i>
                     </span>
                     <span>Manage Users</span>
-                </a></li>
+                </a>
+            </li>
+            <li><a href="{{route('testimonials.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-comment"></i>
+                    </span>
+                    <span>Testimonials</span>
+                </a>
+            </li>
             <li><a href="{{route('specialties.index')}}">
                     <span class="icon">
                         <i class="fa fa-user-secret"></i>
                     </span>
                     <span>Specialties</span>
-                </a></li>
+                </a>
+            </li>
             <li><a href="{{route('countries.index')}}">
                     <span class="icon">
                         <i class="fa fa-globe"></i>
                     </span>
                     <span>Countries</span>
-                </a></li>
+                </a>
+            </li>
             <li><a href="{{route('roles.index')}}">
                     <span class="icon">
                         <i class="fa fa-user-md"></i>
                     </span>
                     <span>Roles</span>
-                </a></li>
+                </a>
+            </li>
             <li><a href="{{route('permissions.index')}}">
                     <span class="icon">
                         <i class="fa fa-shield"></i>
                     </span>
                     <span>Permissions</span>
-                </a></li>
+                </a>
+            </li>
         </ul>
         <p class="menu-label">
             Posts
@@ -55,19 +68,22 @@
                         <i class="fa fa-file"></i>
                     </span>
                     <span>Manage Posts</span>
-                </a></li>
+                </a>
+            </li>
             <li><a href="{{route('categories.index')}}">
                     <span class="icon">
                         <i class="fa fa-folder"></i>
                     </span>
                     <span>Categories</span>
-                </a></li>
+                </a>
+            </li>
             <li><a href="{{route('tags.index')}}">
                     <span class="icon">
                         <i class="fa fa-tags"></i>
                     </span>
                     <span>Tags</span>
-                </a></li>
+                </a>
+            </li>
         </ul>
         <p class="menu-label">
             Services
@@ -78,7 +94,8 @@
                         <i class="fa fa-space-shuttle"></i>
                     </span>
                     <span>Manage Services</span>
-                </a></li>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>

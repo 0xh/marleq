@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+use App\Testimonial;
 use App\User;
 use App\Category;
 use Illuminate\Http\Request;
@@ -35,7 +36,8 @@ class HomeController extends Controller
         $events = Category::where('name', 'Events')->with(['posts' => function($query){
             return $query->where('status', '==', 0)->take(3);
         }])->first();
+        $testimonials = Testimonial::where('featured', 1)->get();
 
-        return view('welcome', compact('coaches', 'services', 'featuredServices', 'inspiration', 'events'));
+        return view('welcome', compact('coaches', 'services', 'featuredServices', 'inspiration', 'events', 'testimonials'));
     }
 }

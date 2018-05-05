@@ -111,7 +111,7 @@
                                     <img src="{{ URL::asset($service->image) }}" style="width:120px;">
                                 @endif
                                 <h3>{{ $service->name }}</h3>
-                                <p>{{ $service->description }}</p>
+                                {!! $service->description !!}
                             </div>
                         </div>
                     @endforeach
@@ -126,7 +126,7 @@
                                             <img src="{{ URL::asset($service->image) }}" style="width:120px;">
                                         @endif
                                         <h4 class="m-t-20">{{ $service->name }}</h4>
-                                        <p>{{ $service->description }}</p>
+                                        {!! $service->description !!}
                                     </div>
                                 </div>
                             @endforeach
@@ -153,17 +153,13 @@
             <div class='carousel is-4 carousel-animated carousel-animate-slide' data-autoplay="true" data-delay="5000">
                 <div class='carousel-container'>
                     @foreach($coaches as $coach)
-                        @if($loop->first)
-                            <div class='carousel-item is-active'>
-                        @else
-                            <div class='carousel-item'>
-                        @endif
+                        <div class='carousel-item @if($loop->first) is-active @endif'>
                             @if($coach->picture_crop)
                                 <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 8px;"></figure>
                             @endif
                             <div class="content has-text-centered m-t-20">
                                 <h2 class="has-text-weight-bold">{{ $coach->name }}</h2>
-                                <p>{{ $coach->biography }}</p>
+                                <p>{!! $coach->biography !!}</p>
                             </div>
                         </div>
                     @endforeach
@@ -224,13 +220,15 @@
                             <div class="card-content">
                                 <div class="content">
                                     <p class="title is-4">{{ $post->title }}</p>
-                                    <p>{{ $post->content }}</p>
-                                    <a href="#">
-                                        <span>Read more</span>
-                                        <span class="icon">
-                                            <i class="fa fa-angle-double-right"></i>
-                                        </span>
-                                    </a>
+                                    {!! $post->content !!}
+                                    <p>
+                                        <a href="#">
+                                            <span>Read more</span>
+                                            <span class="icon">
+                                                <i class="fa fa-angle-double-right"></i>
+                                            </span>
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -282,18 +280,53 @@
                             <div class="card-content">
                                 <div class="content">
                                     <p class="title is-4">{{ $post->title }}</p>
-                                    <p>{{ $post->content }}</p>
-                                    <a href="#">
-                                        <span>Read more</span>
-                                        <span class="icon">
-                                            <i class="fa fa-angle-double-right"></i>
-                                        </span>
-                                    </a>
+                                    {!! $post->content !!}
+                                    <p>
+                                        <a href="#">
+                                            <span>Read more</span>
+                                            <span class="icon">
+                                                <i class="fa fa-angle-double-right"></i>
+                                            </span>
+                                        </a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{--TESTIMONIALS--}}
+
+    <section class="section">
+        <div class="container">
+            <div class="content has-text-centered">
+                <h1>Testimonials</h1>
+            </div>
+            <div class='carousel is-4 carousel-animated carousel-animate-slide' data-autoplay="false" data-delay="5000">
+                <div class='carousel-container'>
+                    @foreach($testimonials as $testimonial)
+                        <div class='carousel-item @if($loop->first) is-active @endif has-text-centered'>
+                            <div class="content has-text-centered m-t-20">
+                                @if($testimonial->user->picture_crop)
+                                    <img class="" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 10px; width:44px;">
+                                @endif
+                                <h5>{{ $testimonial->user->name }}</h5>
+                                <p>{!! $testimonial->content !!}</p>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <div class="carousel-navigation is-centered">
+                    <div class="carousel-nav-left">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </div>
+                    <div class="carousel-nav-right">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
