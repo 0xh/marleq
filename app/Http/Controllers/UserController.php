@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Level;
 use App\Service;
 use App\Specialty;
 use Illuminate\Http\Request;
@@ -96,8 +97,9 @@ class UserController extends Controller
         $specialties = Specialty::all();
         $services = Service::all();
         $countries = Country::select('id', 'name')->get();
+        $levels = Level::all();
 
-        return view('manage.users.edit', compact('user', 'roles', 'specialties', 'services', 'countries'));
+        return view('manage.users.edit', compact('user', 'roles', 'specialties', 'services', 'countries', 'levels'));
     }
 
     /**
@@ -118,6 +120,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->biography = $request->biography;
+        $user->level_id = $request->level;
 
         // Cropped Image is important, without it the User can't upload a new photo
         if(!empty($request->picture_crop)) {

@@ -195,6 +195,27 @@
                 </div>
 
                 <div class="field">
+                    <label class="label"><small>Category:</small></label>
+                    <div class="control has-icons-left">
+                        <div class="select">
+                            <select name="level" required autofocus>
+                                @foreach($levels as $level)
+                                    <option value="{{ $level->id }}" {{ $user->level_id == $level->id ? 'selected' : '' }}>{{ $level->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <span class="icon is-left">
+                            <i class="fa fa-bars"></i>
+                        </span>
+                    </div>
+                    @if ($errors->has('level'))
+                        <p class="help is-danger">
+                            <strong>{{ $errors->first('level') }}</strong>
+                        </p>
+                    @endif
+                </div>
+
+                <div class="field">
                     <h1 class="subtitle m-t-20 m-b-10">Password:</h1>
                     <div class="field">
                         <b-radio name="passwordOptions" type="is-marleq" native-value="keep" v-model="passwordOptions">Do Not Change Password</b-radio>

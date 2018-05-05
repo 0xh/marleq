@@ -29,7 +29,7 @@
             </figure>
             <div class="media-content">
                 <div class="content">
-                    <span class="title"><small>{{ $user->name }}</small></span> <small>{{ $user->email }}</small>
+                    <span class="title"><small>{{ $user->name }}</small></span> <small>({{ $user->level->name }})</small> <small>{{ $user->email }}</small>
                     <p>
                         <small>
                             <a href="{{ URL::asset($user->document) }}" target="_blank">

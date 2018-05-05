@@ -37,6 +37,7 @@
         <thead>
         <tr>
             <th>Id</th>
+            <th>Level</th>
             <th>Name</th>
             <th>Email</th>
             <th>Date created</th>
@@ -46,10 +47,11 @@
         <tbody>
         @foreach($users as $user)
             <tr>
-                <td><small>{{$user->id}}</small></td>
-                <td><small><strong><a href="{{ route('users.show', $user->id) }}">{{$user->name}}</a></strong></small></td>
-                <td><small>{{$user->email}}</small></td>
-                <td><small>{{$user->created_at->format('j. M, Y. H:i:s')}}</small></td>
+                <td><small>{{ $user->id }}</small></td>
+                <td><small>@if($user->level) {{ $user->level->name }} @endif</small></td>
+                <td><small><strong><a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a></strong></small></td>
+                <td><small>{{ $user->email }}</small></td>
+                <td><small>{{ $user->created_at->format('j. M, Y. H:i:s') }}</small></td>
                 <td>
                     <a href="{{route('users.edit', $user->id)}}" class="button is-marleq is-small">
                         <span class="icon">
