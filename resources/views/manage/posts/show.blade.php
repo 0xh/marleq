@@ -55,7 +55,7 @@
             </span>
             <span><strong>ID:</strong> {{ $post->id }}</span>
         </p>
-        <p>{{ $post->content }}</p>
+        <p>{!! $post->content !!}</p>
         <ul>
             @foreach($post->tags as $tag)
                 <li>

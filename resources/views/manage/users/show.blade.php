@@ -44,7 +44,7 @@
                         </small>
                     </p>
                     <p>
-                        {{ $user->biography }}
+                        {!! $user->biography !!}
                     </p>
 
                     <h3 class="subtitle">Specialties:</h3>

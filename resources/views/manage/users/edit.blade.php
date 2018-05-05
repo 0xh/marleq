@@ -43,7 +43,8 @@
                         <div class="field">
                             <label class="label"><small>Name:</small></label>
                             <div class="control has-icons-left has-icons-right">
-                                <input id="name" type="text" class="input{{ $errors->has('name') ? ' is-danger' : '' }}" name="name" value="{{ $user->name }}" placeholder="Name input" required autofocus>
+                                <input id="name" type="text" class="input{{ $errors->has('name') ? ' is-danger' : '' }}"
+                                       name="name" value="{{ $user->name }}" placeholder="Name input" required autofocus>
                                 <span class="icon is-small is-left">
                                     <i class="fa fa-user"></i>
                                 </span>
@@ -63,7 +64,8 @@
                         <div class="field">
                             <label class="label"><small>Email:</small></label>
                             <div class="control has-icons-left has-icons-right">
-                                <input id="email" type="email" class="input{{ $errors->has('email') ? ' is-danger' : '' }}" name="email" value="{{ $user->email }}" placeholder="Email input" required autofocus>
+                                <input id="email" type="email" class="input{{ $errors->has('email') ? ' is-danger' : '' }}"
+                                       name="email" value="{{ $user->email }}" placeholder="Email input" required autofocus>
                                 <span class="icon is-small is-left">
                                     <i class="fa fa-envelope"></i>
                                 </span>
@@ -83,7 +85,7 @@
                         <div class="field">
                             <label class="label"><small>Biography:</small></label>
                             <div class="control has-icons-left has-icons-right">
-                                <textarea id="biography" type="text" class="textarea{{ $errors->has('biography') ? ' is-danger' : '' }}" name="biography" placeholder="Biography input" autofocus>{{ $user->biography }}</textarea>
+                                <textarea name="biography" class="form-control my-editor{{ $errors->has('biography') ? ' is-danger' : '' }}">{!! old('biography', $user->biography) !!}</textarea>
                                 @if ($errors->has('biography'))
                                     <span class="icon is-small is-right">
                                         <i class="fa fa-exclamation-triangle"></i>

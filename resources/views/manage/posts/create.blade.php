@@ -102,7 +102,7 @@
                         <div class="field">
                             <label class="label"><small>Content:</small></label>
                             <div class="control has-icons-left has-icons-right">
-                                <textarea id="article_content" type="text" class="textarea{{ $errors->has('article_content') ? ' is-danger' : '' }}" name="article_content" placeholder="Content input" autofocus>{{ old('article_content') }}</textarea>
+                                <textarea name="article_content" class="form-control my-editor{{ $errors->has('article_content') ? ' is-danger' : '' }}">{!! old('article_content') !!}</textarea>
                                 @if ($errors->has('article_content'))
                                     <span class="icon is-small is-right">
                                         <i class="fa fa-exclamation-triangle"></i>
@@ -115,6 +115,7 @@
                                 </p>
                             @endif
                         </div>
+
                         <div class="field">
                             <label class="label"><small>Tags:</small></label>
                             <b-field>
