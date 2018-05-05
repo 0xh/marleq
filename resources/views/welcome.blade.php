@@ -107,7 +107,9 @@
                     @foreach($featuredServices as $service)
                         <div class="column is-one-quarter has-text-centered">
                             <div class="content">
-                                <img src="{{ $service->image }}" style="width:120px;">
+                                @if($service->image)
+                                    <img src="{{ URL::asset($service->image) }}" style="width:120px;">
+                                @endif
                                 <h3>{{ $service->name }}</h3>
                                 <p>{{ $service->description }}</p>
                             </div>
@@ -120,7 +122,9 @@
                             @foreach($services as $service)
                                 <div class="column is-one-fifth">
                                     <div class="content">
-                                        <img src="{{ $service->image }}" style="width:120px;">
+                                        @if($service->image)
+                                            <img src="{{ URL::asset($service->image) }}" style="width:120px;">
+                                        @endif
                                         <h4 class="m-t-20">{{ $service->name }}</h4>
                                         <p>{{ $service->description }}</p>
                                     </div>
@@ -154,7 +158,9 @@
                         @else
                             <div class='carousel-item'>
                         @endif
-                            <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 8px;"></figure>
+                            @if($coach->picture_crop)
+                                <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 8px;"></figure>
+                            @endif
                             <div class="content has-text-centered m-t-20">
                                 <h2 class="has-text-weight-bold">{{ $coach->name }}</h2>
                                 <p>{{ $coach->biography }}</p>
@@ -208,11 +214,13 @@
                 @foreach($inspiration->posts as $post)
                     <div class="column">
                         <div class="card is-shadowless">
-                            <div class="card-image">
-                                <figure class="image is-4by3">
-                                    <img src="{{ URL::asset($post->intro_image) }}" alt="">
-                                </figure>
-                            </div>
+                            @if($post->intro_image)
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                        <img src="{{ URL::asset($post->intro_image) }}" alt="">
+                                    </figure>
+                                </div>
+                            @endif
                             <div class="card-content">
                                 <div class="content">
                                     <p class="title is-4">{{ $post->title }}</p>

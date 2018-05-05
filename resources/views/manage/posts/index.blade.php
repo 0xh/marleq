@@ -39,7 +39,7 @@
                 <td>
                     <div class="field has-addons">
                         <p class="control">
-                            <a class="button is-small">
+                            <a class="is-small">
                                 @if($post->status == 1)
                                     <span class="icon is-small has-text-danger">
                                         <i class="fa fa-times"></i>
@@ -51,11 +51,11 @@
                                 @endif
                             </a>
                         </p>
-                        <p class="control">
-                            <a class="button is-small">
+                        <p class="control m-l-10">
+                            <a class="is-small">
                                 <span class="icon is-small">
                                     @if($post->featured == 0)
-                                        <span class="icon is-small">
+                                        <span class="icon is-small has-text-grey">
                                             <i class="fa fa-star"></i>
                                         </span>
                                     @else
@@ -77,12 +77,12 @@
                 </td>
                 <td>
                     @if($post->intro_image != '')
-                        <span class="icon">
+                        <span class="icon has-text-grey">
                             <i class="fa fa-image"></i>
                         </span>
                     @endif
                     @if($post->full_image != '')
-                        <span class="icon">
+                        <span class="icon has-text-grey">
                             <i class="fa fa-image"></i>
                         </span>
                     @endif

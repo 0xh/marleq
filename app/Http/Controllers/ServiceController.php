@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Service;
 use Illuminate\Http\Request;
 use Session;
+use Storage;
 
 class ServiceController extends Controller
 {
@@ -43,6 +44,13 @@ class ServiceController extends Controller
 
         $service = new Service();
         $service->name = $request->name;
+        $service->featured = $request->featured;
+        $service->description = $request->description;
+
+        if(!empty($request->service_image)) {
+            $file = $request->file('service_image')->store('public/services');
+            $service->image = Storage::url($file);
+        }
 
         if($service->save()) {
             Session::flash('success', 'Service has been successfully created');
@@ -92,6 +100,16 @@ class ServiceController extends Controller
 
         $service = Service::findOrFail($id);
         $service->name = $request->name;
+        $service->featured = $request->featured;
+        $service->description = $request->description;
+
+        if(!empty($request->service_image)) {
+            if(Storage::disk('public')->exists(str_replace('/storage/', '', $service->image))) {
+                Storage::delete(str_replace('/storage/', 'public/', $service->image));
+            }
+            $file = $request->file('service_image')->store('public/services');
+            $service->image = Storage::url($file);
+        }
 
         if($service->save()) {
             Session::flash('success', 'Service has been successfully updated');
@@ -110,6 +128,13 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
+        $service = Service::findOrFail($id);
+
+        if(!empty($service->image)) {
+            if(Storage::disk('public')->exists(str_replace('/storage/', '', $service->image))) {
+                Storage::delete(str_replace('/storage/', 'public/', $service->image));
+            }
+        }
         Service::destroy($id);
     }
 }

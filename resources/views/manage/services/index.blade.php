@@ -24,6 +24,8 @@
     <table class="table is-fullwidth is-striped is-hoverable is-narrow">
         <thead>
         <tr>
+            <th>Featured</th>
+            <th>Image / Description</th>
             <th>Name</th>
             <th></th>
         </tr>
@@ -31,6 +33,37 @@
         <tbody>
         @foreach($services as $service)
             <tr>
+                <td class="is-narrow">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <a class="is-small">
+                                <span class="icon is-small">
+                                    @if($service->featured == 0)
+                                        <span class="icon is-small has-text-grey">
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                    @else
+                                        <span class="icon is-small has-text-warning">
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                    @endif
+                                </span>
+                            </a>
+                        </p>
+                    </div>
+                </td>
+                <td>
+                    @if($service->image != '')
+                        <span class="icon">
+                            <i class="fa fa-image has-text-grey"></i>
+                        </span>
+                    @endif
+                    @if($service->description != '')
+                        <span class="icon">
+                        <i class="fa fa-align-left has-text-grey"></i>
+                    </span>
+                    @endif
+                </td>
                 <td>
                     <small><strong><a href="{{ route('services.show', $service->id) }}">{{$service->name}}</a></strong></small>
                 </td>
