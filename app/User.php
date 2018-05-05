@@ -29,6 +29,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function level()
+    {
+        return $this->belongsTo('App\Level');
+    }
+
     public function posts()
     {
         return $this->hasMany('App\Post');

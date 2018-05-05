@@ -44,6 +44,13 @@
                     <span>Countries</span>
                 </a>
             </li>
+            <li><a href="{{route('levels.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <span>Levels</span>
+                </a>
+            </li>
             <li><a href="{{route('roles.index')}}">
                     <span class="icon">
                         <i class="fa fa-user-md"></i>

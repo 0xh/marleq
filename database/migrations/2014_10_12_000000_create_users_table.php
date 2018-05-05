@@ -22,7 +22,14 @@ class CreateUsersTable extends Migration
             $table->string('picture_crop')->nullable();
             $table->string('document')->nullable();
             $table->text('biography')->nullable();
+            $table->integer('featured')->defaul(0);
             $table->rememberToken();
+
+            $table->unsignedInteger('level_id');
+            $table->foreign('level_id')
+                ->references('id')->on('levels')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

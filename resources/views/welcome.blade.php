@@ -305,7 +305,7 @@
             <div class="content has-text-centered">
                 <h1>Testimonials</h1>
             </div>
-            <div class='carousel is-4 carousel-animated carousel-animate-slide' data-autoplay="false" data-delay="5000">
+            <div class='carousel is-3 carousel-animated carousel-animate-slide' data-autoplay="false" data-delay="5000">
                 <div class='carousel-container'>
                     @foreach($testimonials as $testimonial)
                         <div class='carousel-item @if($loop->first) is-active @endif has-text-centered'>

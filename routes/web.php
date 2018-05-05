@@ -34,6 +34,7 @@ Route::group(['prefix' => '/manage', 'middleware' => 'role:superadministrator|ad
     Route::resource('/specialties', 'SpecialtyController');
     Route::resource('/countries', 'CountryController');
     Route::resource('/testimonials', 'TestimonialController');
+    Route::resource('/levels', 'LevelController', ['except' => 'destroy']);
     Route::resource('/roles', 'RoleController', ['except' => 'destroy']);
     Route::resource('/permissions', 'PermissionController', ['except' => 'destroy']);
 });
