@@ -28,4 +28,9 @@ class Service extends Model
     {
         return $this->belongsToMany('App\User');
     }
+
+    public function costs()
+    {
+        return $this->hasMany('App\Cost');
+    }
 }

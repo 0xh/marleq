@@ -25,6 +25,7 @@ Route::group(['prefix' => '/manage', 'middleware' => 'role:superadministrator|ad
     Route::get('/dashboard', ['as' => 'manage.dashboard', 'uses' => 'ManageController@dashboard']);
 
     Route::resource('/services', 'ServiceController');
+    Route::resource('/costs', 'CostController');
 
     Route::resource('/posts', 'PostController');
     Route::resource('/categories', 'CategoryController');

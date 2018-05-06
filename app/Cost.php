@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Level extends Model
+class Cost extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Level extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'price', 'description'
     ];
 
     /**
@@ -24,13 +24,13 @@ class Level extends Model
 
     ];
 
-    public function users()
+    public function level()
     {
-        return $this->hasMany('App\User');
+        return $this->belongsTo('App\Level');
     }
 
-    public function costs()
+    public function service()
     {
-        return $this->hasMany('App\Cost');
+        return $this->belongsTo('App\Service');
     }
 }

@@ -103,6 +103,13 @@
                     <span>Manage Services</span>
                 </a>
             </li>
+            <li><a href="{{route('costs.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-dollar"></i>
+                    </span>
+                    <span>Manage Costs</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>
