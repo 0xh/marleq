@@ -19,10 +19,10 @@
             <a class="navbar-item" href="{{ url('/about-us') }}">
                 About Us
             </a>
-            <a class="navbar-item" href="{{ url('/') }}">
+            <a class="navbar-item" href="{{ url('/inspiration') }}">
                 Inspiration
             </a>
-            <a class="navbar-item" href="{{ url('/') }}">
+            <a class="navbar-item" href="{{ url('/events') }}">
                 Events
             </a>
             <a class="navbar-item" href="{{ url('/') }}">

@@ -18,6 +18,10 @@
 
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/about-us', ['as' => 'about-us', 'uses' => 'HomeController@aboutUs']);
+Route::get('/inspiration', ['as' => 'inspiration', 'uses' => 'HomeController@inspirationIndex']);
+Route::get('/inspiration/{alias}', ['as' => 'inspiration-show', 'uses' => 'HomeController@inspirationShow']);
+Route::get('/events', ['as' => 'events', 'uses' => 'HomeController@eventsIndex']);
+Route::get('/events/{alias}', ['as' => 'event-show', 'uses' => 'HomeController@eventShow']);
 
 Auth::routes();
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use App\Service;
 use App\Testimonial;
 use App\User;
@@ -50,5 +51,49 @@ class HomeController extends Controller
     {
         $team = User::whereRoleIs('administrator')->get();
         return view('about-us', compact('team'));
+    }
+
+    /**
+     * Show the application Inspiration Index Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inspirationIndex()
+    {
+        $inspiration = Category::where('name', 'Inspiration')->with('posts')->first();
+        return view('posts.index', compact('inspiration'));
+    }
+
+    /**
+     * Show the application Inspiration Show Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function inspirationShow($alias)
+    {
+        $post = Post::where('alias', $alias)->first();
+        return view('posts.show', compact('post'));
+    }
+
+    /**
+     * Show the application Events Index Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function eventsIndex()
+    {
+        $inspiration = Category::where('name', 'Events')->with('posts')->first();
+        return view('posts.index', compact('inspiration'));
+    }
+
+    /**
+     * Show the application Events Show Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function eventShow($alias)
+    {
+        $post = Post::where('alias', $alias)->first();
+        return view('posts.show', compact('post'));
     }
 }
