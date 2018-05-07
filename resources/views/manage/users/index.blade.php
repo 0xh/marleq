@@ -36,6 +36,7 @@
     <table class="table is-fullwidth is-striped is-hoverable is-narrow">
         <thead>
         <tr>
+            <th></th>
             <th>Id</th>
             <th>Level</th>
             <th>Name</th>
@@ -47,6 +48,25 @@
         <tbody>
         @foreach($users as $user)
             <tr>
+                <td class="is-narrow">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <a class="is-small">
+                                <span class="icon is-small">
+                                    @if($user->featured == 0)
+                                        <span class="icon is-small has-text-grey">
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                    @else
+                                        <span class="icon is-small has-text-warning">
+                                            <i class="fa fa-star"></i>
+                                        </span>
+                                    @endif
+                                </span>
+                            </a>
+                        </p>
+                    </div>
+                </td>
                 <td><small>{{ $user->id }}</small></td>
                 <td><small>@if($user->level) {{ $user->level->name }} @endif</small></td>
                 <td><small><strong><a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a></strong></small></td>

@@ -29,7 +29,24 @@
             </figure>
             <div class="media-content">
                 <div class="content">
-                    <span class="title"><small>{{ $user->name }}</small></span> <small>({{ $user->level->name }})</small> <small>{{ $user->email }}</small>
+                    <span class="title">
+                        <small>{{ $user->name }}</small>
+                    </span>
+                    <small>(
+                    <span class="icon is-small">
+                        @if($user->featured == 0)
+                            <span class="icon is-small has-text-grey">
+                            <i class="fa fa-star"></i>
+                        </span>
+                        @else
+                            <span class="icon is-small has-text-warning">
+                            <i class="fa fa-star"></i>
+                        </span>
+                        @endif
+                    </span>
+                    {{ $user->level->name }}
+                    )</small>
+                    <small>{{ $user->email }}</small>
                     <p>
                         <small>
                             <a href="{{ URL::asset($user->document) }}" target="_blank">

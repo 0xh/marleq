@@ -32,6 +32,7 @@
         </thead>
         <tbody>
         @foreach($costs as $cost)
+            <tr>
                 <td>
                     <small><strong><a href="{{ route('services.show', $cost->service->id) }}">{{$cost->service->name}}</a></strong></small>
                 </td>

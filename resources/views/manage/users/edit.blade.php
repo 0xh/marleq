@@ -216,6 +216,18 @@
                 </div>
 
                 <div class="field">
+                    <label class="label"><small>Featured:</small></label>
+                    <b-switch
+                            name="featured"
+                            v-model="isSwitchedFeatured"
+                            true-value="1"
+                            false-value="0">
+                    </b-switch>
+                </div>
+                <input type="hidden" name="featured" :value="isSwitchedFeatured">
+
+
+                <div class="field">
                     <h1 class="subtitle m-t-20 m-b-10">Password:</h1>
                     <div class="field">
                         <b-radio name="passwordOptions" type="is-marleq" native-value="keep" v-model="passwordOptions">Do Not Change Password</b-radio>
@@ -300,7 +312,8 @@
                 isSelectOnly: false,
                 tags: {!! $user->countries !!},
                 countries: {!! $user->countries->pluck('id') !!},
-                allownew: false
+                allownew: false,
+                isSwitchedFeatured: '{!! $user->featured !!}',
             },
             methods: {
                 getFilteredTags(text) {

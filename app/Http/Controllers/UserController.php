@@ -121,6 +121,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->biography = $request->biography;
         $user->level_id = $request->level;
+        $user->featured = $request->featured;
 
         // Cropped Image is important, without it the User can't upload a new photo
         if(!empty($request->picture_crop)) {

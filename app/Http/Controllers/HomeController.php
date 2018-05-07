@@ -21,13 +21,13 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the application Homepage.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $coaches = User::whereRoleIs('administrator')->get();
+        $coaches = User::whereRoleIs('coach')->where('featured', 1)->get();
         $featuredServices = Service::where('featured', 1)->get();
         $services = Service::where('featured', '!=', 1)->get();
         $inspiration = Category::where('name', 'Inspiration')->with(['posts' => function($query){
@@ -39,5 +39,16 @@ class HomeController extends Controller
         $testimonials = Testimonial::where('featured', 1)->get();
 
         return view('welcome', compact('coaches', 'services', 'featuredServices', 'inspiration', 'events', 'testimonials'));
+    }
+
+    /**
+     * Show the application About Us Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function aboutUs()
+    {
+        $team = User::whereRoleIs('administrator')->get();
+        return view('about-us', compact('team'));
     }
 }
