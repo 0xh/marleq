@@ -1,12 +1,13 @@
 @extends('layouts/app')
 
 @section('content')
-    <section class="hero is-marleq is-narrow">
+    <section class="hero hero-has-background is-marleq is-narrow">
         <div class="hero-body">
             <div class="columns is-centered">
                 <div class="column is-two-thirds has-text-centered">
-                    <h1 class="title m-b-50 has-text-weight-light">
-                        <small>WE ARE TEAM OF PROFESSIONALS FULLY DEDICATED TO YOUR CAREER PROGRESS</small>
+                    <h1 class="title m-b-50">
+                        WE ARE TEAM OF PROFESSIONALS FULLY DEDICATED<br/>
+                        TO YOUR CAREER PROGRESS
                     </h1>
                     <h2 class="subtitle">
                         We aim to bring closer job seekers to career coaches. Our goal is that job seekers find and
@@ -29,7 +30,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="content">
-                                    <p class="title is-4">{{ $member->name }}</p>
+                                    <p class="title is-4 m-b-10">{{ $member->name }}</p>
                                     {!! $member->biography !!}
                                 </div>
                             </div>
@@ -42,14 +43,16 @@
 
     <section class="hero is-light is-narrow">
         <div class="hero-body">
-            <div class="columns is-centered">
+            <div class="columns is-centered p-b-30">
                 <div class="column is-two-thirds has-text-centered">
-                    <h1 class="title m-b-50 has-text-weight-light">
-                        <small>WORK WITH US</small>
+                    <h1 class="homepage-mod-h2 m-b-50">
+                        WORK WITH US
                     </h1>
                     <h2 class="subtitle">
                         We are always seeking for outstanding candidates. If you like what we do, share same values,
                         and have ideas of how to grow our impact, let us know. We have several cooperation opportunities.<br />
+                    </h2>
+                    <h2 class="subtitle">
                         Join our fast growing team and send your email (CV) to info@marleq.com.
                     </h2>
                 </div>

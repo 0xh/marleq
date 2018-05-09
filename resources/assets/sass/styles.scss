@@ -1,6 +1,9 @@
 img {
   image-rendering: crisp-edges;
 }
+.button {
+  border-radius: 5px;
+}
 .is-circle {
   border-radius: 50%;
 }
@@ -12,4 +15,148 @@ img {
   -moz-column-width: 200px;
   -webkit-column-width: 200px;
   column-width: 200px;
+}
+
+//MAIN MENY
+.navbar-brand .navbar-item img {
+  width: 207px;
+  height: 45px;
+  max-height: inherit;
+}
+.navbar-start .navbar-item {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.navbar-dropdown .navbar-item {
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.hero-has-background {
+  background: url(/../images/marleq-background-image-hero-004-our-approach.jpg) no-repeat center center;
+  background-size: cover;
+}
+.hero .title {
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 38px;
+}
+
+//HOMEPAGE
+.hero-intro {
+  background: url(/../images/marleq-background-image-hero-001.jpg) no-repeat center center;
+  background-size: cover;
+}
+.hero-find-a-coach {
+  background: url(/../images/marleq-background-image-hero-003.jpg) no-repeat center center;
+  background-size: cover;
+}
+.hero-our-approach {
+  background: url(/../images/marleq-background-image-hero-004-our-approach.jpg) no-repeat center center;
+  background-size: cover;
+}
+.hero-in-figures {
+  background: url(/../images/marleq-background-image-hero-005-numbers.jpg) no-repeat center center;
+  background-size: cover;
+}
+.hero-intro .title, .hero-find-a-coach .title, .hero-in-figures .title {
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 46px;
+}
+.hero-intro .subtitle, .hero-find-a-coach .subtitle {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 38px;
+}
+.hero-in-figures .heading {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+.hero-free-cv {
+  background: url(/../images/marleq-background-image-hero-002-check-your-cv-for-free.jpg) no-repeat center center;
+  background-size: cover;
+  position: relative;
+}
+.hero-free-cv:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 48%;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-color: #22abe2 transparent transparent transparent;
+  border-style: solid;
+  border-width: 20px;
+}
+.hero-free-cv .title {
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 46px;
+}
+.hero-free-cv .title span {
+  font-weight: 900;
+}
+.hero-free-cv .subtitle {
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 38px;
+}
+.hero-free-cv .title {
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 46px;
+}
+.homepage-mod-h1 {
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 46px;
+  color: $marleq;
+  text-transform: uppercase;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}
+.homepage-mod-h2 {
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 26px;
+  color: $marleq;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.homepage-mod-h3 {
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 22px;
+  color: $marleq;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.hero-how-it-works img {
+  width: 90px;
+  height: 90px;
+}
+.hero-services .service-box {
+  background-color: #ffffff;
+  border-bottom: 5px solid $marleq;
+}
+.hero-services .media {
+  display: table;
+  height: 200px;
+  overflow: hidden;
+  width: 100%;
+}
+.hero-services .media div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.hero-footer img {
+  max-width: 300px;
+}
+.hero-footer a {
+  color: #ffffff;
 }

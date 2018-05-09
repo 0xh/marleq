@@ -1,18 +1,32 @@
 @extends('layouts/app')
 
 @section('content')
-    <section class="hero is-marleq is-narrow">
+    <section class="hero hero-has-background is-marleq is-narrow">
         <div class="hero-body">
             <div class="columns is-centered">
                 <div class="column is-two-thirds has-text-centered">
-                    <h1 class="title m-b-50 has-text-weight-light">
-                        <small>WE ARE TEAM OF PROFESSIONALS FULLY DEDICATED TO YOUR CAREER PROGRESS</small>
-                    </h1>
-                    <h2 class="subtitle">
-                        We aim to bring closer job seekers to career coaches. Our goal is that job seekers find and
-                        book right career coach, gain new knowledge and skills, and achieve desirable career.<br />
-                        Among the 4 experienced co-founders, we have a common goal to help job seekers land their dream job.
-                    </h2>
+                    @if($posts->name == 'Inspiration')
+                        <h1 class="title m-b-50">
+                            WE SHARE WITH YOU VALUABLE CAREER TIPS<br/>
+                            AND INSPIRING STORIES
+                        </h1>
+                        <h2 class="subtitle">
+                            Our purpose is to help job seekers land their dream job. We truly believe this is possible.
+                            We strive to inspire and motivate each of you by sharing outstanding career stories and advices.<br />
+                            If these people below could build impressive careers, you can too.<br/>
+                            Read carefully these articles and interviews, get inspired, work hard and smart, and achieve desirable career progress.
+                        </h2>
+                    @else
+                        <h1 class="title m-b-50">
+                            YOUR CAREER DEVELOPMENT IS THE CORE<br/>
+                            OF OUR MISSION
+                        </h1>
+                        <h2 class="subtitle">
+                            We have hosted dozens of career related events. MARLEQ has welcomed 18 speakers with more than 300 attendees in the last 6 months.
+                            We continue to invite more outstanding people to share their inspiring career stories.<br />
+                        </h2>
+                        <h2 class="subtitle has-text-weight-bold">We are looking forward to seeing you at our events!</h2>
+                    @endif
                 </div>
             </div>
         </div>
@@ -21,26 +35,30 @@
     <section class="section">
         <div class="container">
             <div class="columns is-centered is-mobile is-multiline">
-                @foreach($inspiration->posts as $post)
-                    <div class="column is-full-mobile is-one-third-tablet is-one-third-desktop">
+                @foreach($posts->posts as $post)
+                    <div class="column">
                         <div class="card is-shadowless">
-                            <div class="card-image">
-                                <figure class="image is-4by3">
-                                    <img src="{{ URL::asset($post->intro_image) }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="content">
-                                    <p class="title is-4">{{ $post->title }}</p>
-                                    {!! $post->content !!}
-                                    <p>
-                                        <a href="{{ route('inspiration-show', $post->alias) }}">
+                            @if($post->intro_image)
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                        <img src="{{ URL::asset($post->intro_image) }}" alt="" style="border-radius: 15px;">
+                                    </figure>
+                                </div>
+                            @endif
+                            <div class="card-content p-l-0 p-r-0">
+                                <div>
+                                    <h3 class="homepage-mod-h3">{{ $post->title }}</h3>
+                                    <div class="m-b-15">
+                                        {!! str_limit($post->content, 150) !!}
+                                    </div>
+                                    <div>
+                                        <a href="@if($post->category->name == 'Inspiration') {{ route('inspiration-show', $post->alias) }} @else {{ route('event-show', $post->alias) }} @endif" class="has-text-weight-bold">
                                             <span>Read more</span>
                                             <span class="icon">
-                                                <i class="fa fa-angle-double-right"></i>
+                                                <i class="fa fa-angle-right has-text-marleq"></i>
                                             </span>
                                         </a>
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

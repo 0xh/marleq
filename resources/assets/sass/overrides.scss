@@ -1,32 +1,49 @@
+$radius: 5px;
+
 // Import Bulma's core
 @import "node_modules/bulma/sass/utilities/_all.sass";
-
-// Set custom colors
-$primary: #00a7e1;
-$primary-invert: findColorInvert($primary);
 
 // Import the initial variables
 @import "node_modules/bulma/sass/utilities/initial-variables";
 @import "node_modules/bulma/sass/utilities/functions";
 
 // Set custom initial variables
-// Update link
 $link: #00a7e1;
+$light: #fafafa;
+$success: #36cd64;
+$primary: #00a7e1;
+$primary-invert: findColorInvert($primary);
+$danger: #f1666a;
+$warning: #f7e244;
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+$facebook: #4267B2;
+$facebook-invert: findColorInvert($facebook);
+$google-plus: #DB4437;
+$google-plus-invert: findColorInvert($google-plus);
+$blue: #0f688a;
 
-// Add pink and its invert
-//$pink: #ffb3b3;
-//$pink-invert: #fff;
+$colors: (
+        white: ($white, $black),
+        black: ($black, $white),
+        light: ($light, $light-invert),
+        dark: ($dark, $dark-invert),
+        blue: ($blue, $white),
+        primary: ($primary, $primary-invert),
+        info: ($info, $info-invert),
+        success: ($success, $success-invert),
+        warning: ($warning, $warning-invert),
+        danger: ($danger, $danger-invert),
+        twitter: ($twitter, $twitter-invert),
+        facebook: ($facebook, $facebook-invert),
+        google-plus: ($google-plus, $google-plus-invert)
+);
+
 // Add a serif family
-//$family-serif: "Merriweather", "Georgia", serif;
+$family-serif: "Open Sans", "Helvetica", sans-serif;
 
-// Set the derived variables
-// Use the new pink as the primary color
-//$primary: $pink;
-//$primary-invert: $pink-invert;
-// Use the existing orange as the danger color
-//$danger: $orange;
 // Use the new serif family
-//$family-primary: $family-serif;
+$family-primary: $family-serif;
 
 // 4. Setup your Custom Colors
 $marleq: #00a7e1;

@@ -4,24 +4,21 @@
 
     {{--MARLEQ INTRO--}}
 
-    <section class="hero is-marleq is-medium">
+    <section class="hero hero-intro is-marleq is-medium">
         <div class="hero-body">
             <div class="columns is-centered">
                 <div class="column is-three-quarters has-text-centered">
-                    <h1 class="title m-b-50 has-text-weight-light">
-                        FIND YOUR CAREER COACH, AND BUILD A SUCCESSFUL CAREER
+                    <h1 class="title m-b-50">
+                        FIND A CAREER COACH AND <br />BUILD YOUR SUCCESSFUL CAREER
                     </h1>
                     <h2 class="subtitle">
                         We are team of professionals fully dedicated to your career progress.<br />
                         Our experienced career coaches will help you gain new knowledge and skills, and land a dream job.
                     </h2>
                     <p class="m-t-50">
-                        <button class="button is-marleq is-medium is-inverted is-rounded"
+                        <button class="button is-marleq is-medium is-uppercase has-text-weight-semibold"
                                 @click="isVideoModalActive = true">
-                            <span class="icon">
-                                <i class="fa fa-play-circle"></i>
-                            </span>
-                            <span>Tour Overview</span>
+                            <span>Find a Career Coach</span>
                         </button>
                     </p>
                 </div>
@@ -31,11 +28,11 @@
 
     {{--FREE CV CHECK--}}
 
-    <section class="hero is-narrow is-dark">
+    <section class="hero hero-free-cv is-dark">
         <div class="hero-body">
-            <div class="container has-text-centered">
-                <h1 class="title m-b-40 has-text-weight-light">
-                    CHECK YOUR CV FOR FREE!
+            <div class="container has-text-centered p-t-50 p-b-50">
+                <h1 class="title m-b-50">
+                    GET YOUR CV CHECKED OUT BY OUR EXPERTS <span>FOR FREE!</span>
                 </h1>
                 <h2 class="subtitle">
                     Upload CV and our experienced career coach will quickly review it.<br />
@@ -73,22 +70,25 @@
 
     {{--HOW IT WORKS--}}
 
-    <section class="section">
-        <div class="container">
-            <div class="content has-text-centered">
-                <h1>How it works</h1>
+    <section class="section hero-how-it-works">
+        <div class="container p-b-50">
+            <div class="has-text-centered">
+                <h1 class="homepage-mod-h1">How it works</h1>
             </div>
-            <div class="columns is-narrow">
+            <div class="columns is-narrow has-text-centered">
                 <div class="column">
-                    <h2>FIND YOUR CAREER COACH</h2>
-                    <p>Find and book right career coach</p>
+                    <img src="{{ url('/../images/marleq-how-it-works-browse-career-coaches.svg') }}" alt="">
+                    <h2 class="homepage-mod-h2">FIND YOUR CAREER COACH</h2>
+                    <p>Find and book the right career coach</p>
                 </div>
                 <div class="column">
-                    <h2>GAIN CAREER MENTORSHIP</h2>
+                    <img src="{{ url('/../images/marleq-how-it-works-gain-mentorship.svg') }}" alt="">
+                    <h2 class="homepage-mod-h2">GAIN CAREER MENTORSHIP</h2>
                         <p>Gain new knowledge and skills</p>
                 </div>
                 <div class="column">
-                    <h2>LAND YOUR DREAM JOB</h2>
+                    <img src="{{ url('/../images/marleq-how-it-works-land-your-dream-job.svg') }}" alt="">
+                    <h2 class="homepage-mod-h2">LAND YOUR DREAM JOB</h2>
                         <p>Achieve desirable career progress</p>
                 </div>
             </div>
@@ -97,21 +97,22 @@
 
     {{--SERVICES--}}
 
-    <section class="hero is-narrow is-light">
+    <section class="hero hero-services is-narrow is-light">
         <div class="hero-body">
             <div class="container">
-                <div class="content has-text-centered">
-                    <h1>Our Services</h1>
+                <div class="has-text-centered">
+                    <h1 class="homepage-mod-h1">Our Services</h1>
                 </div>
-                <div class="columns is-multiline is-narrow has-text-centered">
+                <div class="columns is-multiline is-variable bd-klmn-columns is-7 is-narrow has-text-centered m-b-30">
                     @foreach($featuredServices as $service)
-                        <div class="column is-one-quarter has-text-centered">
-                            <div class="content">
-                                @if($service->image)
-                                    <img src="{{ URL::asset($service->image) }}" style="width:120px;">
-                                @endif
-                                <h3>{{ $service->name }}</h3>
-                                {!! $service->description !!}
+                        <div class="column is-3 is-one-quarter has-text-centered">
+                            <div class="media service-box">
+                                <div class="media-left">
+                                    <img src="{{ URL::asset($service->image) }}" class="m-l-10" style="min-width:100px;">
+                                </div>
+                                <div class="media-content">
+                                    <h2 class="homepage-mod-h2 p-r-20">{{ $service->name }}</h2>
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -121,12 +122,14 @@
                         <div class="columns is-multiline is-narrow m-t-20">
                             @foreach($services as $service)
                                 <div class="column is-one-fifth">
-                                    <div class="content">
+                                    <div>
                                         @if($service->image)
                                             <img src="{{ URL::asset($service->image) }}" style="width:120px;">
                                         @endif
-                                        <h4 class="m-t-20">{{ $service->name }}</h4>
-                                        {!! $service->description !!}
+                                        <h3 class="m-t-20 homepage-mod-h3">{{ $service->name }}</h3>
+                                        <div class="has-text-weight-light">
+                                            {!! $service->description !!}
+                                        </div>
                                     </div>
                                 </div>
                             @endforeach
@@ -134,7 +137,7 @@
                         <a class="button is-text is-medium" slot="trigger" style="text-decoration: inherit;">
                             <span>Additional Coaching Services</span>
                             <span class="icon">
-                                <i class="fa fa-angle-double-down"></i>
+                                <i class="fa fa-angle-down has-text-marleq"></i>
                             </span>
                         </a>
                     </b-collapse>
@@ -147,19 +150,21 @@
 
     <section class="section">
         <div class="container">
-            <div class="content has-text-centered">
-                <h1>Our Coaches</h1>
+            <div class="has-text-centered">
+                <h1 class="homepage-mod-h1">Our Coaches</h1>
             </div>
             <div class='carousel is-4 carousel-animated carousel-animate-slide' data-autoplay="true" data-delay="5000">
                 <div class='carousel-container'>
                     @foreach($coaches as $coach)
                         <div class='carousel-item @if($loop->first) is-active @endif'>
                             @if($coach->picture_crop)
-                                <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 8px;"></figure>
+                                <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 15px;"></figure>
                             @endif
-                            <div class="content has-text-centered m-t-20">
-                                <h2 class="has-text-weight-bold">{{ $coach->name }}</h2>
-                                <p>{!! $coach->biography !!}</p>
+                            <div class="has-text-centered m-t-20">
+                                <h3 class="homepage-mod-h3">{{ $coach->name }}</h3>
+                                <div class="has-text-weight-light">
+                                    {!! $coach->biography !!}
+                                </div>
                             </div>
                         </div>
                     @endforeach
@@ -178,18 +183,18 @@
 
     {{--FIND A COACH--}}
 
-    <section class="hero is-narrow is-marleq">
+    <section class="hero hero-find-a-coach is-marleq">
         <div class="hero-body">
-            <div class="container has-text-centered">
-                <h1 class="title m-b-40 has-text-weight-light">
-                    FIND AND BOOK RIGHT CAREER COACH, AND BUILD A SUCCESSFUL CAREER
+            <div class="container has-text-centered p-t-50 p-b-50">
+                <h1 class="title m-b-40">
+                    BOOKING THE RIGHT CAREER COACH<br />
+                    FOR YOU WAS NEVER EASIER
                 </h1>
                 <h2 class="subtitle">
-                    Our experienced and skilled career coaches and professionals can help you to improve your job search, CV, LinkedIn, and cover letter. <br />
-                    They will prepare you for your next job interview, negotiation round, and answer all your career related questions. We are all here to help you land a dream job.
+                    Our experienced and skilled career coaches and professionals can help you to improve<br /> your job search, CV, LinkedIn, and cover letter. <br />
+                    They will prepare you for your next job interview, negotiation round, and answer all your career related questions.<br /> We are all here to help you land a dream job.
                 </h2>
-                <button class="button is-marleq is-medium is-inverted is-rounded"
-                        @click="isVideoModalActive = true">
+                <button class="button is-marleq is-medium is-inverted">
                     <span class="icon">
                         <i class="fa fa-search"></i>
                     </span>
@@ -203,8 +208,8 @@
 
     <section class="section">
         <div class="container">
-            <div class="content has-text-centered">
-                <h1>MARLEQ Inspiration</h1>
+            <div class="has-text-centered">
+                <h1 class="homepage-mod-h1">More than Inspiration</h1>
             </div>
             <div class="columns is-narrow m-t-40">
                 @foreach($inspiration->posts as $post)
@@ -213,22 +218,24 @@
                             @if($post->intro_image)
                                 <div class="card-image">
                                     <figure class="image is-4by3">
-                                        <img src="{{ URL::asset($post->intro_image) }}" alt="">
+                                        <img src="{{ URL::asset($post->intro_image) }}" alt="" style="border-radius: 15px;">
                                     </figure>
                                 </div>
                             @endif
-                            <div class="card-content">
-                                <div class="content">
-                                    <p class="title is-4">{{ $post->title }}</p>
-                                    {!! $post->content !!}
-                                    <p>
-                                        <a href="#">
+                            <div class="card-content p-l-0 p-r-0">
+                                <div>
+                                    <h3 class="homepage-mod-h3">{{ $post->title }}</h3>
+                                    <div class="m-b-15">
+                                        {!! str_limit($post->content, 150) !!}
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('inspiration-show', $post->alias) }}" class="has-text-weight-bold">
                                             <span>Read more</span>
                                             <span class="icon">
-                                                <i class="fa fa-angle-double-right"></i>
+                                                <i class="fa fa-angle-right has-text-marleq"></i>
                                             </span>
                                         </a>
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -238,23 +245,30 @@
         </div>
     </section>
 
-    {{--SOCIAL NETWORKS--}}
+    {{--OUR APPROACH--}}
 
-    <section class="hero is-narrow is-light">
+    <section class="hero hero-our-approach is-narrow is-marleq">
         <div class="hero-body">
-            <div class="container">
-                <div class="content has-text-centered">
-                    <h1>Follow us on:</h1>
+            <div class="container p-b-50">
+                <div class="has-text-centered">
+                    <h1 class="homepage-mod-h1 m-b-50 has-text-white">Our Approach</h1>
                 </div>
-                <div class="columns has-text-centered">
+                <div class="columns is-centered is-mobile m-b-10 has-text-centered bd-klmn-columns is-variable is-8">
                     <div class="column">
-                        Facebook
+                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10 m-b-10" style="border-bottom: 2px solid #fff;">Professional</h2>
+                        <p>You will work with a team of professionals fully dedicated to your career success.</p>
                     </div>
                     <div class="column">
-                        LinkedIn
+                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10 m-b-10" style="border-bottom: 2px solid #fff;">Superior Fast</h2>
+                        <p>Simple and easy to use tools will help you find and book your career coach within 24h.</p>
                     </div>
                     <div class="column">
-                        Instagram
+                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10 m-b-10" style="border-bottom: 2px solid #fff;">Outstanding</h2>
+                        <p>Our coaches deliver valuable advices, as only best coaches meet our quality criteria.</p>
+                    </div>
+                    <div class="column">
+                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10 m-b-10" style="border-bottom: 2px solid #fff;">Result-driven</h2>
+                        <p>On average candidates need 6 months for a new job, our candidates need 1-2 months.</p>
                     </div>
                 </div>
             </div>
@@ -265,30 +279,34 @@
 
     <section class="section">
         <div class="container">
-            <div class="content has-text-centered">
-                <h1>MARLEQ Inspiration</h1>
+            <div class="has-text-centered">
+                <h1 class="homepage-mod-h1">Our Events</h1>
             </div>
             <div class="columns is-narrow m-t-40">
                 @foreach($events->posts as $post)
                     <div class="column">
                         <div class="card is-shadowless">
-                            <div class="card-image">
-                                <figure class="image is-4by3">
-                                    <img src="{{ URL::asset($post->intro_image) }}" alt="">
-                                </figure>
-                            </div>
-                            <div class="card-content">
-                                <div class="content">
-                                    <p class="title is-4">{{ $post->title }}</p>
-                                    {!! $post->content !!}
-                                    <p>
-                                        <a href="#">
+                            @if($post->intro_image)
+                                <div class="card-image">
+                                    <figure class="image is-4by3">
+                                        <img src="{{ URL::asset($post->intro_image) }}" alt="" style="border-radius: 15px;">
+                                    </figure>
+                                </div>
+                            @endif
+                            <div class="card-content p-l-0 p-r-0">
+                                <div>
+                                    <h3 class="homepage-mod-h3">{{ $post->title }}</h3>
+                                    <div class="m-b-15">
+                                        {!! str_limit($post->content, 150) !!}
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('event-show', $post->alias) }}" class="has-text-weight-bold">
                                             <span>Read more</span>
                                             <span class="icon">
-                                                <i class="fa fa-angle-double-right"></i>
+                                                <i class="fa fa-angle-right has-text-marleq"></i>
                                             </span>
                                         </a>
-                                    </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -298,23 +316,61 @@
         </div>
     </section>
 
+    {{--MARLEQ IN FIGURES--}}
+
+    <section class="hero hero-in-figures is-narrow is-marleq">
+        <div class="hero-body">
+            <div class="container p-b-50">
+                <div class="has-text-centered">
+                    <h1 class="homepage-mod-h1 m-b-50 has-text-white">MARLEQ in figures</h1>
+                </div>
+                <nav class="level">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Faster to a new job</p>
+                            <p class="title">3-6x</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Countries</p>
+                            <p class="title">20+</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Events attendants</p>
+                            <p class="title">1,000+</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Post views</p>
+                            <p class="title">600,000+</p>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </section>
+
     {{--TESTIMONIALS--}}
 
     <section class="section">
-        <div class="container">
-            <div class="content has-text-centered">
-                <h1>Testimonials</h1>
+        <div class="container p-b-20">
+            <div class="has-text-centered">
+                <h1 class="homepage-mod-h1 m-b-30">Testimonials</h1>
             </div>
             <div class='carousel is-3 carousel-animated carousel-animate-slide' data-autoplay="false" data-delay="5000">
                 <div class='carousel-container'>
                     @foreach($testimonials as $testimonial)
                         <div class='carousel-item @if($loop->first) is-active @endif has-text-centered'>
-                            <div class="content has-text-centered m-t-20">
+                            <div class="has-text-centered m-t-20">
                                 @if($testimonial->user->picture_crop)
-                                    <img class="" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 10px; width:44px;">
+                                    <img class="is-grayscale" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 15px; width:64px;">
                                 @endif
-                                <h5>{{ $testimonial->user->name }}</h5>
-                                <p>{!! $testimonial->content !!}</p>
+                                <h3 class="homepage-mod-h3">{{ $testimonial->user->name }}</h3>
+                                <div>{!! str_limit($testimonial->content, 350) !!}</div>
                             </div>
                         </div>
                     @endforeach
@@ -325,6 +381,59 @@
                     </div>
                     <div class="carousel-nav-right">
                         <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {{--SOCIAL NETWORKS--}}
+
+    <section class="hero is-narrow is-marleq">
+        <div class="hero-body">
+            <div class="container p-b-50">
+                <div class="has-text-centered">
+                    <h1 class="homepage-mod-h1 m-b-40 has-text-white">Get Social with Us</h1>
+                </div>
+                <div class="columns is-centered is-mobile m-b-10">
+                    <div class="column is-centered is-full-mobile is-half-tablet is-one-third-desktop">
+                        <div class="columns has-text-centered is-mobile">
+                            <div class="column">
+                                <a href="#">
+                            <span class="icon is-large">
+                                <i class="fa fa-facebook-f fa-3x has-text-white"></i>
+                            </span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="#">
+                            <span class="icon is-large">
+                                <i class="fa fa-instagram fa-3x has-text-white"></i>
+                            </span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="#">
+                            <span class="icon is-large">
+                                <i class="fa fa-linkedin fa-3x has-text-white"></i>
+                            </span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="#">
+                            <span class="icon is-large">
+                                <i class="fa fa-twitter fa-3x has-text-white"></i>
+                            </span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="#">
+                            <span class="icon is-large">
+                                <i class="fa fa-youtube-play fa-3x has-text-white"></i>
+                            </span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

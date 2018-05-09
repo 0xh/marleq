@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="hero is-info is-narrow">
+<section class="hero hero-has-background is-info is-narrow">
     <div class="hero-body">
         <div class="columns is-centered">
             <div class="column is-two-thirds has-text-centered">
-                <h1 class="title m-b-50 has-text-weight-light">
-                    <small>SIMPLE AND EASY WAY TO REACH JOB SEEKERS FROM ALL OVER THE WORLD, AND MENTOR THEIR CAREER SUCCESS</small>
+                <h1 class="title m-b-50">
+                    <small>LOGIN</small>
                 </h1>
                 <h2 class="subtitle">
-                    Are you looking to expand your clients list? We are team of professionals fully dedicated to bring closer job seekers to career coaches.
-                    Earn more money with a new revenue stream, and have a global reach with more international clients.
+
+                </h2>
+                <h2 class="subtitle">
+                    No profile yet? Go to <a class="" href="{{ route('register')}}" style="text-decoration: underline;">Registration</a>.
                 </h2>
             </div>
         </div>
@@ -18,7 +20,7 @@
 </section>
 <section class="section">
     <div class="container">
-        <div class="columns is-centered is-mobile">
+        <div class="columns is-centered is-mobile m-t-20 m-b-50">
             <div class="column is-full-mobile is-half-tablet is-one-third-desktop">
                 <h1 class="title"><small>Sign in</small></h1>
                 <form method="POST" action="{{ route('login') }}">
@@ -68,7 +70,7 @@
 
                     <div class="field">
                         <p class="control">
-                            <button type="submit" class="button is-primary">
+                            <button type="submit" class="button is-marleq">
                                 Sign in
                             </button>
                             <a class="button is-text" href="{{ route('password.request') }}" style="text-decoration: inherit;">

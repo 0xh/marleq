@@ -121,7 +121,7 @@
             },
             methods: {
                 onServiceImageChange(file) {
-                    if (!file.target.files[0].name.match(/.(jpg|jpeg|png|gif)$/i)) {
+                    if (!file.target.files[0].name.match(/.(jpg|jpeg|png|gif|svg)$/i)) {
                         console.warn('not an image');
                         file.target.value = null;
                         this.$emit('imageChanged', null);

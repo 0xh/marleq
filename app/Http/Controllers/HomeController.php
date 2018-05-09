@@ -60,8 +60,8 @@ class HomeController extends Controller
      */
     public function inspirationIndex()
     {
-        $inspiration = Category::where('name', 'Inspiration')->with('posts')->first();
-        return view('posts.index', compact('inspiration'));
+        $posts = Category::where('name', 'Inspiration')->with('posts')->first();
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -82,8 +82,8 @@ class HomeController extends Controller
      */
     public function eventsIndex()
     {
-        $inspiration = Category::where('name', 'Events')->with('posts')->first();
-        return view('posts.index', compact('inspiration'));
+        $posts = Category::where('name', 'Events')->with('posts')->first();
+        return view('posts.index', compact('posts'));
     }
 
     /**
