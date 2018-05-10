@@ -44,7 +44,7 @@
                         </span>
                         @endif
                     </span>
-                    {{ $user->level->name }}
+                        @if($user->level) {{ $user->level->name }} @endif
                     )</small>
                     <small>{{ $user->email }}</small>
                     <p>

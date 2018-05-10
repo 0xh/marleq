@@ -23,7 +23,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->paginate(10);
+        $users = User::orderBy('id', 'desc')->paginate(25);
         return view('manage.users.index', compact('users'));
     }
 
@@ -164,10 +164,10 @@ class UserController extends Controller
 
         if($user->save()) {
             DB::transaction(function () use ($user, $request) {
-                $user->syncRoles(explode(',', $request->roles));
-                $user->specialties()->sync(explode(',', $request->specialties));
-                $user->services()->sync(explode(',', $request->services));
-                $user->countries()->sync(explode(',', $request->countries));
+                if($request->roles) $user->syncRoles(explode(',', $request->roles));
+                if($request->specialties) $user->specialties()->sync(explode(',', $request->specialties));
+                if($request->services) $user->services()->sync(explode(',', $request->services));
+                if($request->countries) $user->countries()->sync(explode(',', $request->countries));
             }, 5);
 
             Session::flash('success', 'User has been successfully edited');

@@ -36,7 +36,7 @@
         <div class="container">
             <div class="columns is-centered is-mobile is-multiline">
                 @foreach($posts->posts as $post)
-                    <div class="column">
+                    <div class="column is-one-quarter">
                         <div class="card is-shadowless">
                             @if($post->intro_image)
                                 <div class="card-image">

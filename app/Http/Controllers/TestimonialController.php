@@ -45,6 +45,7 @@ class TestimonialController extends Controller
         $testimonial->content = $request->testimonial_content;
         $testimonial->featured = $request->featured;
         $testimonial->user_id = $request->user;
+        $testimonial->reviewed = 0;
 
         if($testimonial->save()) {
             Session::flash('success', 'Testimonial has been successfully created');

@@ -146,6 +146,11 @@
                                             @remove="removeTagId">
                                     </b-taginput>
                                 </b-field>
+                            @if ($errors->has('countries'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('countries') }}</strong>
+                                </p>
+                            @endif
                         </div>
 
                         <input type="hidden" name="countries" :value="countries">
