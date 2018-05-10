@@ -82,7 +82,9 @@ class CostController extends Controller
     public function edit($id)
     {
         $cost = Cost::findOrFail($id);
-        return view('manage.costs.edit', compact('cost'));
+        $services = Service::all();
+        $levels = Level::all();
+        return view('manage.costs.edit', compact('cost', 'services', 'levels'));
     }
 
     /**

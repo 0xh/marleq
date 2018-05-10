@@ -22,6 +22,8 @@ Route::get('/inspiration', ['as' => 'inspiration', 'uses' => 'HomeController@ins
 Route::get('/inspiration/{alias}', ['as' => 'inspiration-show', 'uses' => 'HomeController@inspirationShow']);
 Route::get('/events', ['as' => 'events', 'uses' => 'HomeController@eventsIndex']);
 Route::get('/events/{alias}', ['as' => 'event-show', 'uses' => 'HomeController@eventShow']);
+Route::get('/services', ['as' => 'services', 'uses' => 'HomeController@servicesIndex']);
+Route::get('/services/{alias}', ['as' => 'service-show', 'uses' => 'HomeController@serviceShow']);
 
 Auth::routes();
 

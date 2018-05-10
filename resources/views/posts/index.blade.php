@@ -14,7 +14,7 @@
                             Our purpose is to help job seekers land their dream job. We truly believe this is possible.
                             We strive to inspire and motivate each of you by sharing outstanding career stories and advices.<br />
                             If these people below could build impressive careers, you can too.<br/>
-                            Read carefully these articles and interviews, get inspired, work hard and smart, and achieve desirable career progress.
+                            Read carefully these articles and interviews, work hard and smart, and achieve desirable career progress.
                         </h2>
                     @else
                         <h1 class="title m-b-50">
@@ -22,7 +22,7 @@
                             OF OUR MISSION
                         </h1>
                         <h2 class="subtitle">
-                            We have hosted dozens of career related events. MARLEQ has welcomed 18 speakers with more than 300 attendees in the last 6 months.
+                            We have hosted dozens of career related events and welcomed 18 speakers with more than 300 attendees in the last 6 months.
                             We continue to invite more outstanding people to share their inspiring career stories.<br />
                         </h2>
                         <h2 class="subtitle has-text-weight-bold">We are looking forward to seeing you at our events!</h2>
@@ -49,7 +49,7 @@
                                 <div>
                                     <h3 class="homepage-mod-h3">{{ $post->title }}</h3>
                                     <div class="m-b-15">
-                                        {!! str_limit($post->content, 150) !!}
+                                        {!! strip_tags(str_limit($post->content, 150)) !!}
                                     </div>
                                     <div>
                                         <a href="@if($post->category->name == 'Inspiration') {{ route('inspiration-show', $post->alias) }} @else {{ route('event-show', $post->alias) }} @endif" class="has-text-weight-bold">

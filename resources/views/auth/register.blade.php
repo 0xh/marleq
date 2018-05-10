@@ -6,13 +6,13 @@
         <div class="columns is-centered">
             <div class="column is-two-thirds has-text-centered">
                 <h1 class="title m-b-50">
-                    ARE YOU FACING A CAREER CHALLENGE?<br/>
-                    YOU HAVE COME TO THE RIGHT PLACE!
+                    SIMPLE AND EASY WAY TO REACH JOB SEEKERS<br/> FROM ALL OVER THE WORLD
+                    AND MENTOR THEIR CAREER SUCCESS
                 </h1>
                 <h2 class="subtitle">
-                    Find and book right career mentor, gain new knowledge and skills, and build successful career.<br />
-                    Our experienced and skilled coaches can help you with your CV, LinkedIn, and cover letter.<br />
-                    They will prepare you for your next job interview and answer all your career related questions.
+                    Are you looking to expand your clients list?<br/>
+                    We are team of professionals fully dedicated to bring closer job seekers to career coaches.<br/>
+                    Earn more money with a new revenue stream and have a global reach with more international clients.
                 </h2>
             </div>
         </div>

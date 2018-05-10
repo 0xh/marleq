@@ -9,11 +9,11 @@
             <div class="columns is-centered">
                 <div class="column is-three-quarters has-text-centered">
                     <h1 class="title m-b-50">
-                        FIND A CAREER COACH AND <br />BUILD YOUR SUCCESSFUL CAREER
+                        FIND YOUR CAREER COACH AND <br />BUILD A SUCCESSFUL CAREER
                     </h1>
                     <h2 class="subtitle">
                         We are team of professionals fully dedicated to your career progress.<br />
-                        Our experienced career coaches will help you gain new knowledge and skills, and land a dream job.
+                        Our experienced career coaches will help you gain new knowledge and skills to land a dream job.
                     </h2>
                     <p class="m-t-50">
                         <button class="button is-marleq is-medium is-uppercase has-text-weight-semibold"
@@ -111,7 +111,7 @@
                                     <img src="{{ URL::asset($service->image) }}" class="m-l-10" style="min-width:100px;">
                                 </div>
                                 <div class="media-content">
-                                    <h2 class="homepage-mod-h2 p-r-20">{{ $service->name }}</h2>
+                                    <a href="{{ route('service-show', $service->id) }}"><h2 class="homepage-mod-h2 p-r-20">{{ $service->name }}</h2></a>
                                 </div>
                             </div>
                         </div>
@@ -121,12 +121,12 @@
                     <b-collapse :open="false">
                         <div class="columns is-multiline is-narrow m-t-20">
                             @foreach($services as $service)
-                                <div class="column is-one-fifth">
+                                <div class="column is-one-quarter">
                                     <div>
                                         @if($service->image)
                                             <img src="{{ URL::asset($service->image) }}" style="width:120px;">
                                         @endif
-                                        <h3 class="m-t-20 homepage-mod-h3">{{ $service->name }}</h3>
+                                        <a href="{{ route('service-show', $service->id) }}"><h3 class="m-t-20 homepage-mod-h3">{{ $service->name }}</h3></a>
                                         <div class="has-text-weight-light">
                                             {!! $service->description !!}
                                         </div>
@@ -226,7 +226,7 @@
                                 <div>
                                     <h3 class="homepage-mod-h3">{{ $post->title }}</h3>
                                     <div class="m-b-15">
-                                        {!! str_limit($post->content, 150) !!}
+                                        {!! strip_tags(str_limit($post->content, 150)) !!}
                                     </div>
                                     <div>
                                         <a href="{{ route('inspiration-show', $post->alias) }}" class="has-text-weight-bold">
@@ -255,19 +255,19 @@
                 </div>
                 <div class="columns is-centered is-mobile m-b-10 has-text-centered bd-klmn-columns is-variable is-8">
                     <div class="column">
-                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10 m-b-10" style="border-bottom: 2px solid #fff;">Professional</h2>
+                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Professional</h2>
                         <p>You will work with a team of professionals fully dedicated to your career success.</p>
                     </div>
                     <div class="column">
-                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10 m-b-10" style="border-bottom: 2px solid #fff;">Superior Fast</h2>
+                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Superior Fast</h2>
                         <p>Simple and easy to use tools will help you find and book your career coach within 24h.</p>
                     </div>
                     <div class="column">
-                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10 m-b-10" style="border-bottom: 2px solid #fff;">Outstanding</h2>
+                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Outstanding</h2>
                         <p>Our coaches deliver valuable advices, as only best coaches meet our quality criteria.</p>
                     </div>
                     <div class="column">
-                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10 m-b-10" style="border-bottom: 2px solid #fff;">Result-driven</h2>
+                        <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Result-driven</h2>
                         <p>On average candidates need 6 months for a new job, our candidates need 1-2 months.</p>
                     </div>
                 </div>
@@ -297,7 +297,7 @@
                                 <div>
                                     <h3 class="homepage-mod-h3">{{ $post->title }}</h3>
                                     <div class="m-b-15">
-                                        {!! str_limit($post->content, 150) !!}
+                                        {!! strip_tags(str_limit($post->content, 150)) !!}
                                     </div>
                                     <div>
                                         <a href="{{ route('event-show', $post->alias) }}" class="has-text-weight-bold">
@@ -318,11 +318,11 @@
 
     {{--MARLEQ IN FIGURES--}}
 
-    <section class="hero hero-in-figures is-narrow is-marleq">
-        <div class="hero-body">
+    <section class="hero hero-in-figures is-narrow is-marleq p-b-10">
+        <div class="hero-body p-b-50">
             <div class="container p-b-50">
                 <div class="has-text-centered">
-                    <h1 class="homepage-mod-h1 m-b-50 has-text-white">MARLEQ in figures</h1>
+                    <h1 class="homepage-mod-h1 m-b-50 m-t-30 p-b-20 has-text-white">MARLEQ in figures</h1>
                 </div>
                 <nav class="level">
                     <div class="level-item has-text-centered">

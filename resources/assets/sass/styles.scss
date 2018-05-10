@@ -59,7 +59,7 @@ img {
   background: url(/../images/marleq-background-image-hero-005-numbers.jpg) no-repeat center center;
   background-size: cover;
 }
-.hero-intro .title, .hero-find-a-coach .title, .hero-in-figures .title {
+.hero-intro .title, .hero-find-a-coach .title {
   font-weight: 900;
   font-size: 40px;
   line-height: 46px;
@@ -69,10 +69,15 @@ img {
   font-size: 24px;
   line-height: 38px;
 }
+.hero-in-figures .title {
+  font-weight: 900;
+  font-size: 62px;
+  line-height: 68px;
+}
 .hero-in-figures .heading {
   font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 18px;
 }
 .hero-free-cv {
   background: url(/../images/marleq-background-image-hero-002-check-your-cv-for-free.jpg) no-repeat center center;
@@ -142,7 +147,7 @@ img {
 }
 .hero-services .service-box {
   background-color: #ffffff;
-  border-bottom: 5px solid $marleq;
+  //border-bottom: 5px solid $marleq;
 }
 .hero-services .media {
   display: table;
@@ -154,9 +159,31 @@ img {
   display: table-cell;
   vertical-align: middle;
 }
+.hero-service-coaches .title {
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 46px;
+}
+.hero-service-coaches .title span {
+  font-weight: 900;
+}
 .hero-footer img {
   max-width: 300px;
 }
 .hero-footer a {
   color: #ffffff;
+}
+
+.plan-items p {
+  background: #fafafa;
+  border-bottom: 0.1rem solid white;
+  padding: .75em;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  text-align: center;
+  font-size: .9em;
+  color: #4a4a4a;
+}
+.carousel-container .carousel-item p {
+  padding-bottom: 10px;
 }

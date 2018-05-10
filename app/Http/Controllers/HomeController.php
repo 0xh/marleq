@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cost;
 use App\Post;
 use App\Service;
 use App\Testimonial;
@@ -95,5 +96,35 @@ class HomeController extends Controller
     {
         $post = Post::where('alias', $alias)->first();
         return view('posts.show', compact('post'));
+    }
+
+    /**
+     * Show the application Events Index Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function servicesIndex()
+    {
+        $featuredServices = Service::where('featured', 1)->get();
+        $services = Service::where('featured', '!=', 1)->get();
+        return view('services.index', compact('services', 'featuredServices'));
+    }
+
+    /**
+     * Show the application Events Show Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function serviceShow($alias)
+    {
+        $featuredServices = Service::where('featured', 1)->get();
+        $services = Service::where('featured', '!=', 1)->get();
+        $service = Service::where('id', $alias)->first();
+        $costs = Cost::where('service_id', $service->id)->get();
+        $coaches = User::whereRoleIs('coach')->whereHas('services', function ($query) use ($alias) {
+            $query->where('service_id', $alias);
+        })->get()->take(4);
+
+        return view('services.show', compact('service', 'services', 'featuredServices', 'costs', 'coaches'));
     }
 }

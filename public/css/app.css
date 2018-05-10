@@ -511,8 +511,7 @@ img {
 }
 
 .hero-intro .title,
-.hero-find-a-coach .title,
-.hero-in-figures .title {
+.hero-find-a-coach .title {
   font-weight: 900;
   font-size: 40px;
   line-height: 46px;
@@ -525,10 +524,16 @@ img {
   line-height: 38px;
 }
 
+.hero-in-figures .title {
+  font-weight: 900;
+  font-size: 62px;
+  line-height: 68px;
+}
+
 .hero-in-figures .heading {
   font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 18px;
 }
 
 .hero-free-cv {
@@ -609,7 +614,6 @@ img {
 
 .hero-services .service-box {
   background-color: #ffffff;
-  border-bottom: 5px solid #00a7e1;
 }
 
 .hero-services .media {
@@ -624,12 +628,37 @@ img {
   vertical-align: middle;
 }
 
+.hero-service-coaches .title {
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 46px;
+}
+
+.hero-service-coaches .title span {
+  font-weight: 900;
+}
+
 .hero-footer img {
   max-width: 300px;
 }
 
 .hero-footer a {
   color: #ffffff;
+}
+
+.plan-items p {
+  background: #fafafa;
+  border-bottom: 0.1rem solid white;
+  padding: .75em;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  text-align: center;
+  font-size: .9em;
+  color: #4a4a4a;
+}
+
+.carousel-container .carousel-item p {
+  padding-bottom: 10px;
 }
 
 /*! bulma.io v0.6.2 | MIT License | github.com/jgthms/bulma */
@@ -15376,6 +15405,801 @@ label.panel-block:hover {
 .is-checkradio[type="radio"].is-marleq:checked.has-background-color + label::after {
   border-color: #fff !important;
   background-color: #fff !important;
+}
+
+.pricing-table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.pricing-table.is-comparative .pricing-plan {
+  margin: 0;
+}
+
+.pricing-table.is-comparative .pricing-plan:not(:last-child) {
+  border-right: none;
+}
+
+.pricing-table .pricing-plan {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  background-color: white;
+  border: 0.1rem solid whitesmoke;
+  border-radius: 5px;
+  list-style-type: none;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  margin: .5em;
+}
+
+.pricing-table .pricing-plan .plan-header {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: .75em;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+}
+
+.pricing-table .pricing-plan .plan-item {
+  background: whitesmoke;
+  border-bottom: 0.1rem solid white;
+  padding: .75em;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+  font-size: .9em;
+  color: #7a7a7a;
+}
+
+.pricing-table .pricing-plan .plan-price {
+  background-color: white;
+  font-size: 0.75rem;
+  font-weight: 400;
+  padding: .75em;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+}
+
+.pricing-table .pricing-plan .plan-price .plan-price-amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.pricing-table .pricing-plan .plan-price .plan-price-amount .plan-price-currency {
+  vertical-align: super;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  color: #4a4a4a;
+  margin-right: .25rem;
+}
+
+.pricing-table .pricing-plan .plan-footer {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: .75em;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+  margin-top: auto;
+}
+
+.pricing-table .pricing-plan.is-active {
+  -webkit-box-shadow: 0 8px 12px 0 rgba(122, 122, 122, 0.2);
+          box-shadow: 0 8px 12px 0 rgba(122, 122, 122, 0.2);
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+.pricing-table .pricing-plan.is-active .plan-price .plan-price-amount {
+  color: #00a7e1;
+}
+
+.pricing-table .pricing-plan.is-active .plan-footer .button {
+  background-color: #00a7e1;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-active .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-active .plan-footer .button.is-hovered {
+  background-color: #009ed4;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-active .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-active .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(0, 167, 225, 0.25);
+          box-shadow: 0 0 0.5em rgba(0, 167, 225, 0.25);
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-active .plan-footer .button:active,
+.pricing-table .pricing-plan.is-active .plan-footer .button.is-active {
+  background-color: #0094c8;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-active .plan-footer .button[disabled] {
+  background-color: #00a7e1;
+  border-color: transparent;
+}
+
+.pricing-table .pricing-plan.is-white .plan-price .plan-price-amount {
+  color: white;
+}
+
+.pricing-table .pricing-plan.is-white .plan-footer .button {
+  background-color: white;
+  border-color: transparent;
+  color: #0a0a0a;
+}
+
+.pricing-table .pricing-plan.is-white .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-white .plan-footer .button.is-hovered {
+  background-color: #f9f9f9;
+  border-color: transparent;
+  color: #0a0a0a;
+}
+
+.pricing-table .pricing-plan.is-white .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-white .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(255, 255, 255, 0.25);
+          box-shadow: 0 0 0.5em rgba(255, 255, 255, 0.25);
+  color: #0a0a0a;
+}
+
+.pricing-table .pricing-plan.is-white .plan-footer .button:active,
+.pricing-table .pricing-plan.is-white .plan-footer .button.is-active {
+  background-color: #f2f2f2;
+  border-color: transparent;
+  color: #0a0a0a;
+}
+
+.pricing-table .pricing-plan.is-white .plan-footer .button[disabled] {
+  background-color: white;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-black .plan-price .plan-price-amount {
+  color: #0a0a0a;
+}
+
+.pricing-table .pricing-plan.is-black .plan-footer .button {
+  background-color: #0a0a0a;
+  border-color: transparent;
+  color: white;
+}
+
+.pricing-table .pricing-plan.is-black .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-black .plan-footer .button.is-hovered {
+  background-color: #040404;
+  border-color: transparent;
+  color: white;
+}
+
+.pricing-table .pricing-plan.is-black .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-black .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(10, 10, 10, 0.25);
+          box-shadow: 0 0 0.5em rgba(10, 10, 10, 0.25);
+  color: white;
+}
+
+.pricing-table .pricing-plan.is-black .plan-footer .button:active,
+.pricing-table .pricing-plan.is-black .plan-footer .button.is-active {
+  background-color: black;
+  border-color: transparent;
+  color: white;
+}
+
+.pricing-table .pricing-plan.is-black .plan-footer .button[disabled] {
+  background-color: #0a0a0a;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-light .plan-price .plan-price-amount {
+  color: #fafafa;
+}
+
+.pricing-table .pricing-plan.is-light .plan-footer .button {
+  background-color: #fafafa;
+  border-color: transparent;
+  color: #363636;
+}
+
+.pricing-table .pricing-plan.is-light .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-light .plan-footer .button.is-hovered {
+  background-color: #f4f4f4;
+  border-color: transparent;
+  color: #363636;
+}
+
+.pricing-table .pricing-plan.is-light .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-light .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(250, 250, 250, 0.25);
+          box-shadow: 0 0 0.5em rgba(250, 250, 250, 0.25);
+  color: #363636;
+}
+
+.pricing-table .pricing-plan.is-light .plan-footer .button:active,
+.pricing-table .pricing-plan.is-light .plan-footer .button.is-active {
+  background-color: #ededed;
+  border-color: transparent;
+  color: #363636;
+}
+
+.pricing-table .pricing-plan.is-light .plan-footer .button[disabled] {
+  background-color: #fafafa;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-dark .plan-price .plan-price-amount {
+  color: #363636;
+}
+
+.pricing-table .pricing-plan.is-dark .plan-footer .button {
+  background-color: #363636;
+  border-color: transparent;
+  color: whitesmoke;
+}
+
+.pricing-table .pricing-plan.is-dark .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-dark .plan-footer .button.is-hovered {
+  background-color: #2f2f2f;
+  border-color: transparent;
+  color: whitesmoke;
+}
+
+.pricing-table .pricing-plan.is-dark .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-dark .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(54, 54, 54, 0.25);
+          box-shadow: 0 0 0.5em rgba(54, 54, 54, 0.25);
+  color: whitesmoke;
+}
+
+.pricing-table .pricing-plan.is-dark .plan-footer .button:active,
+.pricing-table .pricing-plan.is-dark .plan-footer .button.is-active {
+  background-color: #292929;
+  border-color: transparent;
+  color: whitesmoke;
+}
+
+.pricing-table .pricing-plan.is-dark .plan-footer .button[disabled] {
+  background-color: #363636;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-blue .plan-price .plan-price-amount {
+  color: #0f688a;
+}
+
+.pricing-table .pricing-plan.is-blue .plan-footer .button {
+  background-color: #0f688a;
+  border-color: transparent;
+  color: white;
+}
+
+.pricing-table .pricing-plan.is-blue .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-blue .plan-footer .button.is-hovered {
+  background-color: #0e5f7f;
+  border-color: transparent;
+  color: white;
+}
+
+.pricing-table .pricing-plan.is-blue .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-blue .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(15, 104, 138, 0.25);
+          box-shadow: 0 0 0.5em rgba(15, 104, 138, 0.25);
+  color: white;
+}
+
+.pricing-table .pricing-plan.is-blue .plan-footer .button:active,
+.pricing-table .pricing-plan.is-blue .plan-footer .button.is-active {
+  background-color: #0d5773;
+  border-color: transparent;
+  color: white;
+}
+
+.pricing-table .pricing-plan.is-blue .plan-footer .button[disabled] {
+  background-color: #0f688a;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-primary .plan-price .plan-price-amount {
+  color: #00a7e1;
+}
+
+.pricing-table .pricing-plan.is-primary .plan-footer .button {
+  background-color: #00a7e1;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-primary .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-primary .plan-footer .button.is-hovered {
+  background-color: #009ed4;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-primary .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-primary .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(0, 167, 225, 0.25);
+          box-shadow: 0 0 0.5em rgba(0, 167, 225, 0.25);
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-primary .plan-footer .button:active,
+.pricing-table .pricing-plan.is-primary .plan-footer .button.is-active {
+  background-color: #0094c8;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-primary .plan-footer .button[disabled] {
+  background-color: #00a7e1;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-info .plan-price .plan-price-amount {
+  color: #209cee;
+}
+
+.pricing-table .pricing-plan.is-info .plan-footer .button {
+  background-color: #209cee;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-info .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-info .plan-footer .button.is-hovered {
+  background-color: #1496ed;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-info .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-info .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(32, 156, 238, 0.25);
+          box-shadow: 0 0 0.5em rgba(32, 156, 238, 0.25);
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-info .plan-footer .button:active,
+.pricing-table .pricing-plan.is-info .plan-footer .button.is-active {
+  background-color: #118fe4;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-info .plan-footer .button[disabled] {
+  background-color: #209cee;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-success .plan-price .plan-price-amount {
+  color: #36cd64;
+}
+
+.pricing-table .pricing-plan.is-success .plan-footer .button {
+  background-color: #36cd64;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-success .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-success .plan-footer .button.is-hovered {
+  background-color: #31c55e;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-success .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-success .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(54, 205, 100, 0.25);
+          box-shadow: 0 0 0.5em rgba(54, 205, 100, 0.25);
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-success .plan-footer .button:active,
+.pricing-table .pricing-plan.is-success .plan-footer .button.is-active {
+  background-color: #2fbb59;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-success .plan-footer .button[disabled] {
+  background-color: #36cd64;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-warning .plan-price .plan-price-amount {
+  color: #f7e244;
+}
+
+.pricing-table .pricing-plan.is-warning .plan-footer .button {
+  background-color: #f7e244;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.pricing-table .pricing-plan.is-warning .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-warning .plan-footer .button.is-hovered {
+  background-color: #f6e038;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.pricing-table .pricing-plan.is-warning .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-warning .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(247, 226, 68, 0.25);
+          box-shadow: 0 0 0.5em rgba(247, 226, 68, 0.25);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.pricing-table .pricing-plan.is-warning .plan-footer .button:active,
+.pricing-table .pricing-plan.is-warning .plan-footer .button.is-active {
+  background-color: #f6de2c;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.pricing-table .pricing-plan.is-warning .plan-footer .button[disabled] {
+  background-color: #f7e244;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-danger .plan-price .plan-price-amount {
+  color: #f1666a;
+}
+
+.pricing-table .pricing-plan.is-danger .plan-footer .button {
+  background-color: #f1666a;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-danger .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-danger .plan-footer .button.is-hovered {
+  background-color: #f05a5f;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-danger .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-danger .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(241, 102, 106, 0.25);
+          box-shadow: 0 0 0.5em rgba(241, 102, 106, 0.25);
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-danger .plan-footer .button:active,
+.pricing-table .pricing-plan.is-danger .plan-footer .button.is-active {
+  background-color: #ef4f53;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-danger .plan-footer .button[disabled] {
+  background-color: #f1666a;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-twitter .plan-price .plan-price-amount {
+  color: #4099FF;
+}
+
+.pricing-table .pricing-plan.is-twitter .plan-footer .button {
+  background-color: #4099FF;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-twitter .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-twitter .plan-footer .button.is-hovered {
+  background-color: #3392ff;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-twitter .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-twitter .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(64, 153, 255, 0.25);
+          box-shadow: 0 0 0.5em rgba(64, 153, 255, 0.25);
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-twitter .plan-footer .button:active,
+.pricing-table .pricing-plan.is-twitter .plan-footer .button.is-active {
+  background-color: #278bff;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-twitter .plan-footer .button[disabled] {
+  background-color: #4099FF;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-facebook .plan-price .plan-price-amount {
+  color: #4267B2;
+}
+
+.pricing-table .pricing-plan.is-facebook .plan-footer .button {
+  background-color: #4267B2;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-facebook .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-facebook .plan-footer .button.is-hovered {
+  background-color: #3f62a9;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-facebook .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-facebook .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(66, 103, 178, 0.25);
+          box-shadow: 0 0 0.5em rgba(66, 103, 178, 0.25);
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-facebook .plan-footer .button:active,
+.pricing-table .pricing-plan.is-facebook .plan-footer .button.is-active {
+  background-color: #3b5c9f;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-facebook .plan-footer .button[disabled] {
+  background-color: #4267B2;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-google-plus .plan-price .plan-price-amount {
+  color: #DB4437;
+}
+
+.pricing-table .pricing-plan.is-google-plus .plan-footer .button {
+  background-color: #DB4437;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-google-plus .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-google-plus .plan-footer .button.is-hovered {
+  background-color: #d93a2c;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-google-plus .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-google-plus .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(219, 68, 55, 0.25);
+          box-shadow: 0 0 0.5em rgba(219, 68, 55, 0.25);
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-google-plus .plan-footer .button:active,
+.pricing-table .pricing-plan.is-google-plus .plan-footer .button.is-active {
+  background-color: #d33426;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-google-plus .plan-footer .button[disabled] {
+  background-color: #DB4437;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.pricing-table .pricing-plan.is-marleq .plan-price .plan-price-amount {
+  color: #00a7e1;
+}
+
+.pricing-table .pricing-plan.is-marleq .plan-footer .button {
+  background-color: #00a7e1;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-marleq .plan-footer .button:hover,
+.pricing-table .pricing-plan.is-marleq .plan-footer .button.is-hovered {
+  background-color: #009ed4;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-marleq .plan-footer .button:focus,
+.pricing-table .pricing-plan.is-marleq .plan-footer .button.is-focused {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(0, 167, 225, 0.25);
+          box-shadow: 0 0 0.5em rgba(0, 167, 225, 0.25);
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-marleq .plan-footer .button:active,
+.pricing-table .pricing-plan.is-marleq .plan-footer .button.is-active {
+  background-color: #0094c8;
+  border-color: transparent;
+  color: #fff;
+}
+
+.pricing-table .pricing-plan.is-marleq .plan-footer .button[disabled] {
+  background-color: #00a7e1;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+@media screen and (min-width: 769px), print {
+  .pricing-table.is-comparative {
+    margin: .5rem;
+  }
+
+  .pricing-table.is-comparative.is-features {
+    display: none;
+  }
+
+  .pricing-table.is-comparative .plan-item::before {
+    content: attr("data-feature");
+  }
+
+  .pricing-table.is-horizontal .pricing-plan {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+  }
+
+  .pricing-table.is-horizontal .pricing-plan .plan-header {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+  .pricing-table.is-horizontal .pricing-plan .plan-price {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+  .pricing-table.is-horizontal .pricing-plan .plan-items {
+    width: 100%;
+    background-color: whitesmoke;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    -webkit-column-gap: .1rem;
+            column-gap: .1rem;
+  }
+
+  .pricing-table.is-horizontal .pricing-plan .plan-footer {
+    width: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pricing-table.is-comparative .pricing-plan {
+    margin: .5rem;
+  }
+
+  .pricing-table.is-comparative .pricing-plan.is-plan-first-mobile {
+    -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+            order: -1;
+  }
+
+  .pricing-table.is-comparative .pricing-plan.is-features {
+    display: none;
+  }
+
+  .pricing-table.is-comparative .pricing-plan .plan-item::before {
+    content: attr(data-feature);
+    display: block;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: #b5b5b5;
+  }
 }
 
 /*!

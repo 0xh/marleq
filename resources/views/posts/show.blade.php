@@ -1,7 +1,7 @@
 @extends('layouts/app')
 
 @section('content')
-    <section class="hero is-marleq is-medium" style="background: url({{ URL::asset($post->full_image) }}) no-repeat center center; background-size: cover;">
+    <section class="hero is-marleq is-medium p-b-30 p-t-30" style="background: url({{ URL::asset($post->full_image) }}) no-repeat center center; background-size: cover;">
         <div class="hero-body">
 
         </div>

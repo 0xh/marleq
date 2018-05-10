@@ -8,25 +8,45 @@
 
     <div class="columns">
         <div class="column">
-            <form action="{{route('testimonials.update', $testimonial->id)}}" method="post">
+            <form action="{{route('costs.update', $cost->id)}}" method="post">
                 @method('PUT')
                 @csrf
 
                 <div class="columns">
                     <div class="column is-three-quarters">
                         <div class="field">
-                            <label class="label"><small>Testimonial:</small></label>
+                            <label class="label"><small>Price:</small></label>
                             <div class="control has-icons-left has-icons-right">
-                                <textarea name="testimonial_content" class="form-control my-editor{{ $errors->has('testimonial_content') ? ' is-danger' : '' }}">{!! old('testimonial_content', $testimonial->content) !!}</textarea>
-                                @if ($errors->has('testimonial_content'))
+                                <input id="price" type="text" class="input{{ $errors->has('price') ? ' is-danger' : '' }}" name="price" value="{{ old('price', $cost->price) }}" placeholder="Price input" required autofocus>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-euro"></i>
+                                </span>
+                                @if ($errors->has('price'))
+                                    <span class="icon is-small is-right">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
+                                @endif
+                            </div>
+                            @if ($errors->has('price'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('price') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="field">
+                            <label class="label"><small>What is included:</small></label>
+                            <div class="control has-icons-left has-icons-right">
+                                <textarea name="description" class="form-control my-editor{{ $errors->has('description') ? ' is-danger' : '' }}">{!! old('description', $cost->description) !!}</textarea>
+                                @if ($errors->has('description'))
                                     <span class="icon is-small is-right">
                                     <i class="fa fa-exclamation-triangle"></i>
                                 </span>
                                 @endif
                             </div>
-                            @if ($errors->has('testimonial_content'))
+                            @if ($errors->has('description'))
                                 <p class="help is-danger">
-                                    <strong>{{ $errors->first('testimonial_content') }}</strong>
+                                    <strong>{{ $errors->first('description') }}</strong>
                                 </p>
                             @endif
                         </div>
@@ -35,26 +55,57 @@
                             <p class="control">
                                 <button type="submit" class="button is-marleq">
                             <span class="icon">
-                                <i class="fa fa-comment"></i>
+                                <i class="fa fa-dollar"></i>
                             </span>
-                                    <span>Update Testimonial</span>
+                                    <span>Save Cost</span>
                                 </button>
                             </p>
                         </div>
                     </div>
+
                     <div class="column is-one-quarter">
                         <div class="field">
-                            <label class="label"><small>Featured:</small></label>
-                            <b-switch
-                                    name="featured"
-                                    v-model="isSwitchedFeatured"
-                                    true-value="1"
-                                    false-value="0">
-                            </b-switch>
+                            <label class="label"><small>Service:</small></label>
+                            <div class="control has-icons-left">
+                                <div class="select is-fullwidth">
+                                    <select name="service" required autofocus>
+                                        @foreach($services as $service)
+                                            <option value="{{ $service->id }}" {{ $cost->service_id == $service->id ? 'selected' : '' }}>{{ $service->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <span class="icon is-left">
+                                    <i class="fa fa-space-shuttle"></i>
+                                </span>
+                            </div>
+                            @if ($errors->has('service'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('service') }}</strong>
+                                </p>
+                            @endif
                         </div>
-                        <input type="hidden" name="featured" :value="isSwitchedFeatured">
-                    </div>
 
+                        <div class="field">
+                            <label class="label"><small>Level:</small></label>
+                            <div class="control has-icons-left">
+                                <div class="select is-fullwidth">
+                                    <select name="level" required autofocus>
+                                        @foreach($levels as $level)
+                                            <option value="{{ $level->id }}" {{ $cost->level_id == $level->id ? 'selected' : '' }}>{{ $level->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <span class="icon is-left">
+                                    <i class="fa fa-folder"></i>
+                                </span>
+                            </div>
+                            @if ($errors->has('level'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('level') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -67,7 +118,7 @@
         let app = new Vue({
             el: "#app",
             data: {
-                isSwitchedFeatured: '{!! $testimonial->featured !!}'
+                isSwitchedFeatured: '{!! $cost->featured !!}'
             }
         })
     </script>

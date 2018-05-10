@@ -42,6 +42,9 @@
             <a class="navbar-item" href="{{ url('/events') }}">
                 Events
             </a>
+            <a class="navbar-item" href="{{ url('/services') }}">
+                Services
+            </a>
             <a class="navbar-item" href="{{ url('/') }}">
                 Find a Coach
             </a>
