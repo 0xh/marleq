@@ -284,7 +284,7 @@
                 <div class="has-text-centered">
                     <h1 class="homepage-mod-h1 m-b-50 has-text-white">Our Approach</h1>
                 </div>
-                <div class="columns is-centered is-mobile m-b-10 has-text-centered bd-klmn-columns is-variable is-8">
+                <div class="columns is-centered m-b-10 has-text-centered bd-klmn-columns is-variable is-8">
                     <div class="column">
                         <img src="{{ url('/../images/marleq-our-approach-professional.svg') }}" alt="" style="width:100px;">
                         <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Professional</h2>
@@ -434,38 +434,38 @@
                     <div class="column is-centered is-full-mobile is-half-tablet is-one-third-desktop">
                         <div class="columns has-text-centered is-mobile">
                             <div class="column">
-                                <a href="#">
-                            <span class="icon is-large">
-                                <i class="fa fa-facebook-f fa-3x has-text-white"></i>
-                            </span>
+                                <a href="https://www.facebook.com/MARLEQcoach/" target="_blank">
+                                    <span class="icon is-large">
+                                        <i class="fa fa-facebook-f fa-3x has-text-white"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="https://www.instagram.com/_marleq_/" target="_blank">
+                                    <span class="icon is-large">
+                                        <i class="fa fa-instagram fa-3x has-text-white"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="https://www.linkedin.com/company/marleq/" target="_blank">
+                                    <span class="icon is-large">
+                                        <i class="fa fa-linkedin fa-3x has-text-white"></i>
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="column">
+                                <a href="https://vimeo.com/marleq">
+                                    <span class="icon is-large">
+                                        <i class="fa fa-vimeo fa-3x has-text-white"></i>
+                                    </span>
                                 </a>
                             </div>
                             <div class="column">
                                 <a href="#">
-                            <span class="icon is-large">
-                                <i class="fa fa-instagram fa-3x has-text-white"></i>
-                            </span>
-                                </a>
-                            </div>
-                            <div class="column">
-                                <a href="#">
-                            <span class="icon is-large">
-                                <i class="fa fa-linkedin fa-3x has-text-white"></i>
-                            </span>
-                                </a>
-                            </div>
-                            <div class="column">
-                                <a href="#">
-                            <span class="icon is-large">
-                                <i class="fa fa-twitter fa-3x has-text-white"></i>
-                            </span>
-                                </a>
-                            </div>
-                            <div class="column">
-                                <a href="#">
-                            <span class="icon is-large">
-                                <i class="fa fa-youtube-play fa-3x has-text-white"></i>
-                            </span>
+                                    <span class="icon is-large">
+                                        <i class="fa fa-youtube-play fa-3x has-text-white"></i>
+                                    </span>
                                 </a>
                             </div>
                         </div>
