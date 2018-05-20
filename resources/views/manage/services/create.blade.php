@@ -19,12 +19,12 @@
                             <div class="control has-icons-left has-icons-right">
                                 <input id="name" type="text" class="input{{ $errors->has('name') ? ' is-danger' : '' }}" name="name" value="{{ old('name') }}" placeholder="Name input" required autofocus>
                                 <span class="icon is-small is-left">
-                            <i class="fa fa-edit"></i>
-                        </span>
+                                    <i class="fa fa-edit"></i>
+                                </span>
                                 @if ($errors->has('name'))
                                     <span class="icon is-small is-right">
-                                <i class="fa fa-exclamation-triangle"></i>
-                            </span>
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
                                 @endif
                             </div>
                             @if ($errors->has('name'))
@@ -35,13 +35,34 @@
                         </div>
 
                         <div class="field">
+                            <label class="label"><small>Alias:</small></label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="name" type="text" class="input{{ $errors->has('alias') ? ' is-danger' : '' }}"
+                                       name="alias" value="{{ old('alias') }}" placeholder="Auto-generate from title" autofocus>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-edit"></i>
+                                </span>
+                                @if ($errors->has('alias'))
+                                    <span class="icon is-small is-right">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
+                                @endif
+                            </div>
+                            @if ($errors->has('alias'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('alias') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="field">
                             <label class="label"><small>Description:</small></label>
                             <div class="control has-icons-left has-icons-right">
                                 <textarea name="description" class="form-control my-editor{{ $errors->has('description') ? ' is-danger' : '' }}">{!! old('description') !!}</textarea>
                                 @if ($errors->has('description'))
                                     <span class="icon is-small is-right">
-                                    <i class="fa fa-exclamation-triangle"></i>
-                                </span>
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
                                 @endif
                             </div>
                             @if ($errors->has('description'))
@@ -54,9 +75,9 @@
                         <div class="field">
                             <p class="control">
                                 <button type="submit" class="button is-marleq">
-                            <span class="icon">
-                                <i class="fa fa-space-shuttle"></i>
-                            </span>
+                                    <span class="icon">
+                                        <i class="fa fa-space-shuttle"></i>
+                                    </span>
                                     <span>Save Service</span>
                                 </button>
                             </p>

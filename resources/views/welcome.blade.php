@@ -18,7 +18,7 @@
                         </button>
                     </p>
                     <p>
-                        Are you facing a career challenge? <a class="" href="{{ route('register')}}" style="text-decoration: underline;">Register</a>
+                        Are you facing a career challenge? <a class="has-text-marleq" href="{{ route('register')}}" style="text-decoration: underline;">Register</a>
                     </p>
                 </div>
             </div>
@@ -109,7 +109,7 @@
                                 @if($service->image)
                                     <img src="{{ URL::asset($service->image) }}" style="width:70px;">
                                 @endif
-                                <a href="{{ route('service-show', $service->id) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
+                                <a href="{{ route('service-show', $service->alias) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
                                 <div class="has-text-weight-light">
                                     {!! $service->description !!}
                                 </div>
@@ -126,7 +126,7 @@
                                         @if($service->image)
                                             <img src="{{ URL::asset($service->image) }}" style="width:70px;">
                                         @endif
-                                        <a href="{{ route('service-show', $service->id) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
+                                        <a href="{{ route('service-show', $service->alias) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
                                         <div class="has-text-weight-light">
                                             {!! $service->description !!}
                                         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Session;
 use Storage;
 
@@ -38,14 +39,22 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->alias) {
+            $request['alias'] = $this->stringURLSafe($request->alias);
+        } else {
+            $request['alias'] = $this->stringURLSafe($request->name);
+        }
+
         $this->validate($request, [
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
+            'alias' => 'unique:services|string|max:255',
         ]);
 
         $service = new Service();
         $service->name = $request->name;
         $service->featured = $request->featured;
         $service->description = $request->description;
+        $service->alias = $request->alias;
 
         if(!empty($request->service_image)) {
             $file = $request->file('service_image')->store('public/services');
@@ -94,14 +103,22 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->alias) {
+            $request['alias'] = $this->stringURLSafe($request->alias);
+        } else {
+            $request['alias'] = $this->stringURLSafe($request->name);
+        }
+
         $this->validate($request, [
-            'name' => 'required|string|max:255'
+            'name' => 'required|string|max:255',
+            'alias' => Rule::unique('services')->ignore($id),
         ]);
 
         $service = Service::findOrFail($id);
         $service->name = $request->name;
         $service->featured = $request->featured;
         $service->description = $request->description;
+        $service->alias = $request->alias;
 
         if(!empty($request->service_image)) {
             if(Storage::disk('public')->exists(str_replace('/storage/', '', $service->image))) {
@@ -136,5 +153,30 @@ class ServiceController extends Controller
             }
         }
         Service::destroy($id);
+    }
+
+    /**
+     * This method processes a string and replaces all accented UTF-8 characters by unaccented
+     * ASCII-7 "equivalents", whitespaces are replaced by hyphens and the string is lowercase.
+     *
+     * @param   string  $string    String to process
+     *
+     * @return  string  Processed string
+     */
+    function stringURLSafe($string)
+    {
+        // Remove any '-' from the string since they will be used as concatenaters
+        $str = str_replace('-', ' ', $string);
+
+        // Trim white spaces at beginning and end of alias and make lowercase
+        $str = trim(strtolower($str));
+
+        // Remove any duplicate whitespace, and ensure all characters are alphanumeric
+        $str = preg_replace('/(\s|[^A-Za-z0-9\-])+/', '-', $str);
+
+        // Trim dashes at beginning and end of alias
+        $str = trim($str, '-');
+
+        return $str;
     }
 }

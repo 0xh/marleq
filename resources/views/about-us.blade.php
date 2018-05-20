@@ -28,7 +28,7 @@
                     <div class="column is-full-mobile is-one-quarter-tablet is-one-quarter-desktop has-text-centered">
                         <div class="card is-shadowless">
                             <div class="card-image p-l-20 p-r-20 p-t-50">
-                                <img src="{{ URL::asset($member->picture_crop) }}" alt="" class="is-grayscale is-square" style="border-radius: 8px;">
+                                <img src="{{ URL::asset($member->picture_crop) }}" alt="" class="is-grayscale is-square" style="border-radius: 15px;">
                             </div>
                             <div class="card-content">
                                 <div class="content">

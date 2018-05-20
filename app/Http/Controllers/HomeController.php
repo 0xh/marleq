@@ -119,7 +119,7 @@ class HomeController extends Controller
     {
         $featuredServices = Service::where('featured', 1)->get();
         $services = Service::where('featured', '!=', 1)->get();
-        $service = Service::where('id', $alias)->first();
+        $service = Service::where('alias', $alias)->first();
         $costs = Cost::where('service_id', $service->id)->get();
         $coaches = User::whereRoleIs('coach')->whereHas('services', function ($query) use ($alias) {
             $query->where('service_id', $alias);

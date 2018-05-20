@@ -27,7 +27,7 @@
                             @if($service->image)
                                 <img src="{{ URL::asset($service->image) }}" style="width:70px;">
                             @endif
-                            <a href="{{ route('service-show', $service->id) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
+                            <a href="{{ route('service-show', $service->alias) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
                             <div class="has-text-weight-light">
                                 {!! $service->description !!}
                             </div>
@@ -43,7 +43,7 @@
                                 @if($service->image)
                                     <img src="{{ URL::asset($service->image) }}" style="width:70px;">
                                 @endif
-                                <a href="{{ route('service-show', $service->id) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
+                                <a href="{{ route('service-show', $service->alias) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
                                 <div class="has-text-weight-light">
                                     {!! $service->description !!}
                                 </div>
