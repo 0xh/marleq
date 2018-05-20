@@ -598,13 +598,23 @@ img {
 }
 
 .homepage-mod-h3 {
-  font-weight: 900;
-  font-size: 18px;
-  line-height: 22px;
+  font-weight: 300;
+  font-size: 23px;
+  line-height: 30px;
   color: #00a7e1;
   text-transform: uppercase;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.service-h3 {
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 24px;
+  color: #00a7e1;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
 .hero-how-it-works img {
@@ -657,7 +667,8 @@ img {
   color: #4a4a4a;
 }
 
-.carousel-container .carousel-item p {
+.carousel-container .carousel-item p,
+.card-coach p {
   padding-bottom: 10px;
 }
 

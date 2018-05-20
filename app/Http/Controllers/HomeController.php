@@ -33,10 +33,10 @@ class HomeController extends Controller
         $featuredServices = Service::where('featured', 1)->get();
         $services = Service::where('featured', '!=', 1)->get();
         $inspiration = Category::where('name', 'Inspiration')->with(['posts' => function($query){
-            return $query->where('status', '==', 0)->take(3);
+            return $query->where('status', 0)->where('featured', 1)->take(3);
         }])->first();
         $events = Category::where('name', 'Events')->with(['posts' => function($query){
-            return $query->where('status', '==', 0)->take(3);
+            return $query->where('status', 0)->where('featured', '1')->orderBy('id', 'desc')->take(3);
         }])->first();
         $testimonials = Testimonial::where('featured', 1)->get();
 
@@ -99,7 +99,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application Events Index Page.
+     * Show the application Services Index Page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -111,7 +111,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application Events Show Page.
+     * Show the application Service Show Page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -126,5 +126,24 @@ class HomeController extends Controller
         })->get()->take(4);
 
         return view('services.show', compact('service', 'services', 'featuredServices', 'costs', 'coaches'));
+    }
+
+    /**
+     * Show the application Find A Coach Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function findACoach()
+    {
+        $coaches = User::whereRoleIs('coach')->get();
+
+        return view('coaches.index', compact('coaches'));
+    }
+
+    public function coachShow($alias)
+    {
+        $coach = User::whereRoleIs('coach')->where('id', $alias)->first();
+
+        return view('coaches.show', compact('coach'));
     }
 }

@@ -26,15 +26,15 @@
                     <div class="columns is-centered is-multiline is-variable bd-klmn-columns is-8">
                         <div class="column is-4">
                             <img src="{{ url('/../images/marleq-logo-white.svg') }}" alt="">
-                            <p class="p-l-5 p-t-10">Copyright 2018. MARLEQ LLC Estonia</p>
+                            <p class="p-l-5 p-t-10">Copyright 2018. MARLEQ Montenegro</p>
                         </div>
                         <div class="column is-3">
                             {{--<h2 class="homepage-mod-h2 p-b-10" style="color: #ffffff;">About us</h2>--}}
-                            <a href="">Out Team</a><br />
-                            <a href="">Events</a><br />
-                            <a href="">Inspiration</a><br />
-                            <a href="">Browse Career Coaches</a><br />
-                            <a href="">Request a Service</a><br />
+                            <a href="{{ url('/about-us') }}">Out Team</a><br />
+                            <a href="{{ url('/events') }}">Events</a><br />
+                            <a href="{{ url('/inspiration') }}">Inspiration</a><br />
+                            <a href="{{ url('/find-a-coach') }}">Browse Career Coaches</a><br />
+                            <a href="{{ url('/services') }}">Request a Service</a><br />
                         </div>
                         <div class="column is-3">
                             <a href="">Privacy Statement</a><br />
@@ -45,11 +45,10 @@
                         </div>
                         <div class="column is-2">
                             <p>
-                                Germany, Berlin Office<br />
-                                +49-(0)30-85767542<br />
+                                Montenegro, Podgorica Office<br />
+                                +382 67 453 507<br />
                                 info@marleq.com<br />
-                                Maricistrase 23<br />
-                                12047 Berlin
+                                81000 Podgorica
                             </p>
                         </div>
                     </div>

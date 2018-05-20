@@ -47,12 +47,14 @@
                             @endif
                             <div class="card-content p-l-0 p-r-0">
                                 <div>
-                                    <h3 class="homepage-mod-h3">{{ $post->title }}</h3>
+                                    <a href="@if($post->category->name == 'Inspiration') {{ route('inspiration-show', $post->alias) }} @else {{ route('event-show', $post->alias) }} @endif">
+                                        <h3 class="homepage-mod-h3">{{ $post->title }}</h3>
+                                    </a>
                                     <div class="m-b-15">
                                         {!! strip_tags(str_limit($post->content, 150)) !!}
                                     </div>
                                     <div>
-                                        <a href="@if($post->category->name == 'Inspiration') {{ route('inspiration-show', $post->alias) }} @else {{ route('event-show', $post->alias) }} @endif" class="has-text-weight-bold">
+                                        <a href="@if($post->category->name == 'Inspiration') {{ route('inspiration-show', $post->alias) }} @else {{ route('event-show', $post->alias) }} @endif">
                                             <span>Read more</span>
                                             <span class="icon">
                                                 <i class="fa fa-angle-right has-text-marleq"></i>

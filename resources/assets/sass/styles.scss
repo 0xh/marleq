@@ -133,13 +133,22 @@ img {
   margin-bottom: 5px;
 }
 .homepage-mod-h3 {
-  font-weight: 900;
-  font-size: 18px;
-  line-height: 22px;
+  font-weight: 300;
+  font-size: 23px;
+  line-height: 30px;
   color: $marleq;
   text-transform: uppercase;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.service-h3 {
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 24px;
+  color: $marleq;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 5px;
 }
 .hero-how-it-works img {
   width: 90px;
@@ -184,6 +193,15 @@ img {
   font-size: .9em;
   color: #4a4a4a;
 }
-.carousel-container .carousel-item p {
+.carousel-container .carousel-item p, .card-coach p {
   padding-bottom: 10px;
+  //display: flex;
 }
+//.carousel-container .carousel-item p:before, .card-coach p:before {
+//  font-family: FontAwesome;
+//  content: "\f105";
+//  display: inline-block;
+//  padding-right: 13px;
+//  vertical-align: top;
+//  color: $marleq;
+//}

@@ -12,41 +12,20 @@
 
     <div class="navbar-menu" id="navMenu">
         <div class="navbar-start">
-
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link" href="{{ url('/') }}">
-                    Menu
-                </a>
-                <div class="navbar-dropdown is-boxed">
-                    <a class="navbar-item" href="{{ url('/about-us') }}">
-                        About Us
-                    </a>
-                    <a class="navbar-item" href="#">
-                        Contact
-                    </a>
-                    <a class="navbar-item" href="#">
-                        Job Offers
-                    </a>
-                    <a class="navbar-item" href="#">
-                        Press
-                    </a>
-                    <a class="navbar-item" href="#">
-                        FAQ
-                    </a>
-                </div>
-            </div>
-
+            <a class="navbar-item" href="{{ url('/find-a-coach') }}">
+                Find a Coach
+            </a>
+            <a class="navbar-item" href="{{ url('/services') }}">
+                Services
+            </a>
             <a class="navbar-item" href="{{ url('/inspiration') }}">
                 Inspiration
             </a>
             <a class="navbar-item" href="{{ url('/events') }}">
                 Events
             </a>
-            <a class="navbar-item" href="{{ url('/services') }}">
-                Services
-            </a>
-            <a class="navbar-item" href="{{ url('/') }}">
-                Find a Coach
+            <a class="navbar-item" href="{{ url('/about-us') }}">
+                About Us
             </a>
         </div>
 

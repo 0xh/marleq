@@ -10,9 +10,11 @@
                         TO YOUR CAREER PROGRESS
                     </h1>
                     <h2 class="subtitle">
-                        We aim to bring closer job seekers to career coaches. Our goal is that job seekers find and
-                        book right career coach, gain new knowledge and skills, and achieve desirable career.<br />
-                        Among the 4 experienced co-founders, we have a common goal to help job seekers land their dream job.
+                        ﻿We are here to help you land a dream job and build a successful career at home or abroad. We will
+                        inspire you with successful stories and interviews with outstanding people, organize career related events,
+                        give you career guidance and tips, and connect you with your career coach who will mentor your career success.<br/>
+                        Our mission is to assist you achieve a desirable career progress. Reaching your career goals is faster and easier with right expert guidance and support.<br/>
+                        We think you should love what you do. Our career coach will help you set specific goals, improve your performance, and move forward with a career you dream about<br/>
                     </h2>
                 </div>
             </div>
@@ -21,16 +23,16 @@
 
     <section class="section">
         <div class="container">
-            <div class="columns is-centered is-mobile">
+            <div class="columns is-centered">
                 @foreach($team as $member)
-                    <div class="column is-full-mobile is-one-third-tablet is-one-third-desktop has-text-centered">
+                    <div class="column is-full-mobile is-one-quarter-tablet is-one-quarter-desktop has-text-centered">
                         <div class="card is-shadowless">
-                            <div class="card-image p-l-50 p-r-50 p-t-50">
+                            <div class="card-image p-l-20 p-r-20 p-t-50">
                                 <img src="{{ URL::asset($member->picture_crop) }}" alt="" class="is-grayscale is-square" style="border-radius: 8px;">
                             </div>
                             <div class="card-content">
                                 <div class="content">
-                                    <p class="title is-4 m-b-10">{{ $member->name }}</p>
+                                    <p class="homepage-mod-h3 is-4 m-b-10">{{ $member->name }}</p>
                                     {!! $member->biography !!}
                                 </div>
                             </div>

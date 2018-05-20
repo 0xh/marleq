@@ -12,7 +12,7 @@
             <div class="columns">
                 <div class="column">
                     <div class="content">
-                        <h1 class="has-text-weight-light">
+                        <h1 class="has-text-weight-light m-b-30">
                             {{ $post->title }}
                         </h1>
                         {!! $post->content !!}
@@ -33,7 +33,7 @@
                                             <img class="is-grayscale" src="{{ URL::asset($post->user->picture_crop) }}" alt="" style="border-radius: 15px;">
                                         </figure>
                                     </div>
-                                    <div class="media-content">
+                                    <div>
                                         <p class="title is-4 has-text-white"><small>{{ $post->user->name }}</small></p>
                                         <p class="subtitle is-6 has-text-white">{{ $post->user->level->name }}</p>
                                     </div>
@@ -41,7 +41,7 @@
 
                                 <div class="content has-text-centered has-text-white p-t-20 p-b-10">
                                     {!! $post->user->biography !!}
-                                    <a class="button is-marleq is-small is-rounded is-inverted m-t-10" href="#">Get in contact</a>
+                                    <a class="button is-marleq is-small is-rounded is-inverted m-t-10" href="{{ route('coach-show', $post->user->id) }}">Get in contact</a>
                                 </div>
                             </div>
                         </div>

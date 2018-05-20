@@ -8,18 +8,17 @@
         <div class="hero-body">
             <div class="columns is-centered">
                 <div class="column is-three-quarters has-text-centered">
-                    <h1 class="title m-b-50">
+                    <h1 class="title m-b-25">
                         FIND YOUR CAREER COACH AND <br />BUILD A SUCCESSFUL CAREER
                     </h1>
-                    <h2 class="subtitle">
-                        We are team of professionals fully dedicated to your career progress.<br />
-                        Our experienced career coaches will help you gain new knowledge and skills to land a dream job.
-                    </h2>
-                    <p class="m-t-50">
-                        <button class="button is-marleq is-medium is-uppercase has-text-weight-semibold"
+                    <p class="m-t-30 m-b-30">
+                        <button class="button is-marleq is-medium is-uppercase is-inverted has-text-weight-semibold"
                                 @click="isVideoModalActive = true">
-                            <span>Find a Career Coach</span>
+                            <span>Watch the Video</span>
                         </button>
+                    </p>
+                    <p>
+                        Are you facing a career challenge? <a class="" href="{{ route('register')}}" style="text-decoration: underline;">Register</a>
                     </p>
                 </div>
             </div>
@@ -105,13 +104,14 @@
                 </div>
                 <div class="columns is-multiline is-variable bd-klmn-columns is-7 is-narrow has-text-centered m-b-30">
                     @foreach($featuredServices as $service)
-                        <div class="column is-3 is-one-quarter has-text-centered">
-                            <div class="media service-box">
-                                <div class="media-left">
-                                    <img src="{{ URL::asset($service->image) }}" class="m-l-10" style="min-width:100px;">
-                                </div>
-                                <div class="media-content">
-                                    <a href="{{ route('service-show', $service->id) }}"><h2 class="homepage-mod-h2 p-r-20">{{ $service->name }}</h2></a>
+                        <div class="column is-one-quarter">
+                            <div>
+                                @if($service->image)
+                                    <img src="{{ URL::asset($service->image) }}" style="width:70px;">
+                                @endif
+                                <a href="{{ route('service-show', $service->id) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
+                                <div class="has-text-weight-light">
+                                    {!! $service->description !!}
                                 </div>
                             </div>
                         </div>
@@ -121,12 +121,12 @@
                     <b-collapse :open="false">
                         <div class="columns is-multiline is-narrow m-t-20">
                             @foreach($services as $service)
-                                <div class="column is-one-quarter">
+                                <div class="column is-one-quarter m-t-20">
                                     <div>
                                         @if($service->image)
-                                            <img src="{{ URL::asset($service->image) }}" style="width:120px;">
+                                            <img src="{{ URL::asset($service->image) }}" style="width:70px;">
                                         @endif
-                                        <a href="{{ route('service-show', $service->id) }}"><h3 class="m-t-20 homepage-mod-h3">{{ $service->name }}</h3></a>
+                                        <a href="{{ route('service-show', $service->id) }}"><h3 class="m-t-20 service-h3">{{ $service->name }}</h3></a>
                                         <div class="has-text-weight-light">
                                             {!! $service->description !!}
                                         </div>
@@ -161,8 +161,10 @@
                                 <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 15px;"></figure>
                             @endif
                             <div class="has-text-centered m-t-20">
-                                <h3 class="homepage-mod-h3">{{ $coach->name }}</h3>
-                                <div class="has-text-weight-light">
+                                <a href="{{ route('coach-show', $coach->id) }}">
+                                    <h3 class="homepage-mod-h3">{{ $coach->name }}</h3>
+                                </a>
+                                <div class="has-text-weight-light has-text-centered">
                                     {!! $coach->biography !!}
                                 </div>
                             </div>
@@ -176,6 +178,35 @@
                     <div class="carousel-nav-right">
                         <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     </div>
+                </div>
+            </div>
+            <div class="has-text-centered">
+                <h1 class="homepage-mod-h1 m-t-50 m-b-50 p-t-20 p-b-20">Our Career Coaches have worked at</h1>
+            </div>
+            <div class="columns m-b-25">
+                <div class="column">
+                    <img src="{{ url('/../images/marleq-logos-001-google.svg') }}" alt="" class="is-grayscale p-t-30">
+                </div>
+                <div class="column">
+                    <img src="{{ url('/../images/marleq-logos-002-linkedin.svg') }}" alt="" class="is-grayscale p-t-30">
+                </div>
+                <div class="column">
+                    <img src="{{ url('/../images/marleq-logos-003-salesforce.svg') }}" alt="" class="is-grayscale">
+                </div>
+                <div class="column">
+                    <img src="{{ url('/../images/marleq-logos-004-tata.svg') }}" alt="" class="is-grayscale p-t-30">
+                </div>
+                <div class="column">
+                    <img src="{{ url('/../images/marleq-logos-005-telekom.svg') }}" alt="" class="is-grayscale p-t-30">
+                </div>
+                <div class="column">
+                    <img src="{{ url('/../images/marleq-logos-006-xerox.svg') }}" alt="" class="is-grayscale p-t-30">
+                </div>
+                <div class="column">
+                    <img src="{{ url('/../images/marleq-logos-007-ing.svg') }}" alt="" class="is-grayscale p-t-30">
+                </div>
+                <div class="column">
+                    <img src="{{ url('/../images/marleq-logos-008-trivago.svg') }}" alt="" class="is-grayscale p-t-30">
                 </div>
             </div>
         </div>
@@ -229,7 +260,7 @@
                                         {!! strip_tags(str_limit($post->content, 150)) !!}
                                     </div>
                                     <div>
-                                        <a href="{{ route('inspiration-show', $post->alias) }}" class="has-text-weight-bold">
+                                        <a href="{{ route('inspiration-show', $post->alias) }}">
                                             <span>Read more</span>
                                             <span class="icon">
                                                 <i class="fa fa-angle-right has-text-marleq"></i>
@@ -255,18 +286,22 @@
                 </div>
                 <div class="columns is-centered is-mobile m-b-10 has-text-centered bd-klmn-columns is-variable is-8">
                     <div class="column">
+                        <img src="{{ url('/../images/marleq-our-approach-professional.svg') }}" alt="" style="width:100px;">
                         <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Professional</h2>
                         <p>You will work with a team of professionals fully dedicated to your career success.</p>
                     </div>
                     <div class="column">
+                        <img src="{{ url('/../images/marleq-our-approach-superor-fast.svg') }}" alt="" style="width:100px;">
                         <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Superior Fast</h2>
                         <p>Simple and easy to use tools will help you find and book your career coach within 24h.</p>
                     </div>
                     <div class="column">
+                        <img src="{{ url('/../images/marleq-our-approach-outstanding.svg') }}" alt="" style="width:100px;">
                         <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Outstanding</h2>
                         <p>Our coaches deliver valuable advices, as only best coaches meet our quality criteria.</p>
                     </div>
                     <div class="column">
+                        <img src="{{ url('/../images/marleq-our-approach-results.svg') }}" alt="" style="width:100px;">
                         <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Result-driven</h2>
                         <p>On average candidates need 6 months for a new job, our candidates need 1-2 months.</p>
                     </div>
@@ -300,7 +335,7 @@
                                         {!! strip_tags(str_limit($post->content, 150)) !!}
                                     </div>
                                     <div>
-                                        <a href="{{ route('event-show', $post->alias) }}" class="has-text-weight-bold">
+                                        <a href="{{ route('event-show', $post->alias) }}">
                                             <span>Read more</span>
                                             <span class="icon">
                                                 <i class="fa fa-angle-right has-text-marleq"></i>
@@ -367,7 +402,7 @@
                         <div class='carousel-item @if($loop->first) is-active @endif has-text-centered'>
                             <div class="has-text-centered m-t-20">
                                 @if($testimonial->user->picture_crop)
-                                    <img class="is-grayscale" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 15px; width:64px;">
+                                    <img class="is-grayscale" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 15px; width:100px;">
                                 @endif
                                 <h3 class="homepage-mod-h3">{{ $testimonial->user->name }}</h3>
                                 <div>{!! str_limit($testimonial->content, 350) !!}</div>
@@ -445,7 +480,7 @@
     <template>
         <section>
             <b-modal :active.sync="isVideoModalActive">
-                <iframe src="https://player.vimeo.com/video/18222554?autoplay=1&title=0&byline=0&portrait=0"
+                <iframe src="https://player.vimeo.com/video/269202769?autoplay=1&title=0&byline=0&portrait=0"
                         width="640" height="360" frameborder="0"
                         webkitallowfullscreen mozallowfullscreen allowfullscreen>
                 </iframe>

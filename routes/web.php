@@ -24,6 +24,8 @@ Route::get('/events', ['as' => 'events', 'uses' => 'HomeController@eventsIndex']
 Route::get('/events/{alias}', ['as' => 'event-show', 'uses' => 'HomeController@eventShow']);
 Route::get('/services', ['as' => 'services', 'uses' => 'HomeController@servicesIndex']);
 Route::get('/services/{alias}', ['as' => 'service-show', 'uses' => 'HomeController@serviceShow']);
+Route::get('/find-a-coach', ['as' => 'find-a-coach', 'uses' => 'HomeController@findACoach']);
+Route::get('/coaches/{alias}', ['as' => 'coach-show', 'uses' => 'HomeController@coachShow']);
 
 Auth::routes();
 
