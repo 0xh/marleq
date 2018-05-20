@@ -25,11 +25,6 @@ class CreateUsersTable extends Migration
             $table->integer('featured')->default(0);
             $table->rememberToken();
 
-            $table->unsignedInteger('level_id');
-            $table->foreign('level_id')
-                ->references('id')->on('levels')
-                ->onDelete('cascade');
-
             $table->timestamps();
         });
     }

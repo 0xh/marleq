@@ -14,20 +14,18 @@ class ServiceSeeder extends Seeder
         // Add Services
 
         DB::table('services')->insert([
-            ['name' => 'CV Review', 'featured' => 1, 'description' => 'Work with a resume review coach to turn your existing resume into an eye-catching, ATS-beating doc that clearly tells hiring managers why they should bring you in for an interview.'],
-            ['name' => 'LinkedIn Review', 'featured' => 1, 'description' => 'It\'s hard to fit your entire career on a single piece of paper or social network profile. Our coaches know all the resume and LinkedIn profile tips to help you get hired faster.'],
-            ['name' => 'Cover Letter Review', 'featured' => 0, 'description' => 'You have the perfect resume and you\'re ready to apply to your dream job. Now you just need a (non-sleep-inducing) cover letter that helps you stand out from the crowd.'],
-            ['name' => 'New Job Search Strategy', 'featured' => 1, 'description' => 'Job searching can be an overwhelming process. The right strategy can make it easier and help you land a job much faster.'],
-            ['name' => 'Interview Coaching', 'featured' => 0, 'description' => 'When it comes to landing a job, it\'s all about your interviewing skills. And our coaches are the best at helping you overcome your interview fears, refine your pitch, and tackle even the hardest interview questions.'],
-            ['name' => 'Negotiation Coaching', 'featured' => 0, 'description' => 'Negotiating is tough stuff. But it\'s a skill you seriously need if you want to get ahead in your career. Let one of our coaches help you navigate salary negotiations, earn a promotion, or just get more comfortable fighting for what you deserve.'],
-            ['name' => 'Leadership Coaching', 'featured' => 0, 'description' => 'All great leaders have gotten help along the way. Leadership coaching can help you become a better manager, establish yourself as a leader, and, in general, excel in any organization.'],
-            ['name' => 'Networking Coaching', 'featured' => 0, 'description' => 'Networking is one of the single greatest things you can do for your career on a regular basis. Get the confidence and help you need to do it well and reach your career goals.'],
-            ['name' => 'New Position Coaching', 'featured' => 0, 'description' => ''],
-            ['name' => 'HRM Coaching', 'featured' => 0, 'description' => ''],
-            ['name' => 'Grow in my current role', 'featured' => 0, 'description' => ''],
-            ['name' => 'Explore future career options', 'featured' => 0, 'description' => ''],
-            ['name' => 'Return to work after an absence', 'featured' => 0, 'description' => ''],
-            ['name' => 'Career Q&A', 'featured' => 1, 'description' => 'Imagine having your own expert on call to answer any career questions you have, as soon as they come up. Now you do.'],
+            ['name' => 'CV Review', 'alias' => 'cv-review', 'featured' => 1, 'description' => 'Work on your CV and improve it with your career coach, who will mentor you master CV writing. Your exceptional CV will be a signal to recruiters and hiring managers to invite you for an interview.'],
+            ['name' => 'LinkedIn Review', 'alias' => 'linkedin-review', 'featured' => 1, 'description' => 'Job seekers are still not aware of importance of LinkedIn profile and its power in hiring process. Luckily, our career coaches will guide you in order to attract headhunters and get job opportunities.'],
+            ['name' => 'Cover Letter Review', 'alias' => 'cover-letter-review', 'featured' => 0, 'description' => 'You have an outstanding CV and you are ready to apply for a desirable job. Next step is a cover letter that stands out.'],
+            ['name' => 'New Job Search Strategy', 'alias' => 'new-job-search-strategy', 'featured' => 1, 'description' => 'You are not alone in a job hunt. All you need is right approach and strategy. Our experienced coaches will provide you with tips and guidance, and help you get a dream job faster and easier.'],
+            ['name' => 'Interview Coaching', 'alias' => 'interview-coaching', 'featured' => 0, 'description' => 'The most important step for landing a desirable job is interview. Therefore, interview skills are essential. Our coaches will prepare you and help in order overcome even the trickiest interview questions.'],
+            ['name' => 'Negotiation Coaching', 'alias' => 'negotiation-coaching', 'featured' => 0, 'description' => 'Negotiating skills are crucial for a career progress and for fighting for your needs and motivation. Our coaches will help you to better negotiate current position, wage, bonuses, advancement, etc.'],
+            ['name' => 'Leadership Coaching', 'alias' => 'leadership-coaching', 'featured' => 0, 'description' => 'Leadership coaching will help you become a more successful and effective leader in any organization. We believe that leaders should be leading by example, and by being a role model to others. Leaders do not create followers, they create more leaders.'],
+            ['name' => 'New Position Coaching', 'alias' => 'new-position-coaching', 'featured' => 0, 'description' => 'Our career coach will help you set specific goals, improve your performance, and overcome new career challenges.'],
+            ['name' => 'HRM Coaching', 'alias' => 'hrm-coaching', 'featured' => 0, 'description' => 'Human Resource Management coaching helps in motivation of individuals in making changes to further their professional development. Our coaches will help you to improve yours and your colleagues’ work skills, discover your strengths, and achieve your goals.'],
+            ['name' => 'Grow in my current role', 'alias' => 'grow-in-my-current-role', 'featured' => 0, 'description' => 'We will help you develop skills to become a respected colleague everyone wants to work with.'],
+            ['name' => 'Return to work after an absence', 'alias' => 'return-to-work-after-an-absence', 'featured' => 0, 'description' => 'Back-on-track is a real career challenge. Reaching your career goals is faster and easier with right career coaching guidance and support.'],
+            ['name' => 'Career Q&A', 'alias' => 'career-q-a', 'featured' => 1, 'description' => 'Finally, you have a list of experts to ask all career related questions and receive answers that will help you build a successful career.'],
         ]);
     }
 }
