@@ -41,7 +41,7 @@
 
                                 <div class="content has-text-centered has-text-white p-t-20 p-b-10">
                                     {!! $post->user->biography !!}
-                                    <a class="button is-marleq is-small is-rounded is-inverted m-t-10" href="{{ route('coach-show', $post->user->id) }}">Get in contact</a>
+                                    <a class="button is-marleq is-small is-rounded is-inverted m-t-10" href="{{ route('coach-show', $post->user->alias) }}">Get in contact</a>
                                 </div>
                             </div>
                         </div>

@@ -84,7 +84,7 @@
                             @endif
                             <div class="card-content card-coach p-l-0 p-r-0">
                                 <div>
-                                    <a href="{{ route('coach-show', $coach->id) }}">
+                                    <a href="{{ route('coach-show', $coach->alias) }}">
                                         <h3 class="homepage-mod-h3">{{ $coach->name }}</h3>
                                     </a>
                                     <div class="m-b-15">

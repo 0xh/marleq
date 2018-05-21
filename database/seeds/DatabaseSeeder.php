@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             SpecialtySeeder::class,
             ServiceSeeder::class,
             CountrySeeder::class,
-            CategorySeeder::class
+            CategorySeeder::class,
+            LanguageSeeder::class,
         ]);
     }
 }

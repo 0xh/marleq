@@ -31,12 +31,14 @@
                             @endif
                             <div class="card-content card-coach has-text-centered">
                                 <div>
-                                    <h3 class="homepage-mod-h3">{{ $coach->name }}</h3>
+                                    <a href="{{ route('coach-show', $coach->alias) }}">
+                                        <h3 class="homepage-mod-h3">{{ $coach->name }}</h3>
+                                    </a>
                                     <div class="m-b-15 has-text-centered">
                                         {!! $coach->biography !!}
                                     </div>
                                     <div>
-                                        <a href="{{ route('coach-show', $coach->id) }}" class=" button is-marleq has-text-weight-bold">
+                                        <a href="{{ route('coach-show', $coach->alias) }}" class=" button is-marleq has-text-weight-bold">
                                             <span>View Info</span>
                                         </a>
                                     </div>

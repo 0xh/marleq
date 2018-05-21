@@ -15,7 +15,7 @@
                 <div class="field">
                     <label class="label"><small>Name:</small></label>
                     <div class="control has-icons-right">
-                        <input id="display_name" type="text" class="input{{ $errors->has('display_name') ? ' is-danger' : '' }}" name="display_name" value="{{ old('display_name') }}" placeholder="e.g Create Elections" required autofocus>
+                        <input id="display_name" type="text" class="input{{ $errors->has('display_name') ? ' is-danger' : '' }}" name="display_name" value="{{ old('display_name') }}" placeholder="e.g Coach" required autofocus>
                         @if ($errors->has('display_name'))
                             <span class="icon is-small is-right">
                                 <i class="fa fa-exclamation-triangle"></i>
@@ -32,7 +32,7 @@
                 <div class="field">
                     <label class="label"><small>Slug:</small></label>
                     <div class="control has-icons-right">
-                        <input id="name" type="text" class="input" name="name" value="{{ old('name') }}" placeholder="e.g create-elections" required autofocus>
+                        <input id="name" type="text" class="input" name="name" value="{{ old('name') }}" placeholder="e.g coach" required autofocus>
                         @if ($errors->has('name'))
                             <span class="icon is-small is-right">
                                 <i class="fa fa-exclamation-triangle"></i>

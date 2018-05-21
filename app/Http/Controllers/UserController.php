@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Language;
 use App\Level;
 use App\Service;
 use App\Specialty;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\User;
 use App\Role;
 use Hash;
@@ -81,7 +83,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::where('id', $id)->with('roles')->first();
-        return view('manage.users.show', compact('user'));
+        $certification = collect(explode(';', $user->certification));
+        return view('manage.users.show', compact('user', 'certification'));
     }
 
     /**
@@ -97,9 +100,14 @@ class UserController extends Controller
         $specialties = Specialty::all();
         $services = Service::all();
         $countries = Country::select('id', 'name')->get();
+        $languages = Language::select('id', 'name')->get();
         $levels = Level::all();
+        if($user->certification == '')
+            $certification = collect([]);
+        else
+            $certification = collect(explode(';', $user->certification));
 
-        return view('manage.users.edit', compact('user', 'roles', 'specialties', 'services', 'countries', 'levels'));
+        return view('manage.users.edit', compact('user', 'roles', 'specialties', 'services', 'countries', 'languages', 'levels', 'certification'));
     }
 
     /**
@@ -111,17 +119,32 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($request->alias) {
+            $request['alias'] = $this->stringURLSafe($request->alias);
+        } else {
+            $request['alias'] = str_replace('.' , '-',substr($request['email'], 0, strpos($request['email'], '@'))) . '-' . Hash::make($request['email']);
+        }
+
         $this->validate($request, [
             'name' => 'required|string|max:255',
+            'alias' => Rule::unique('users')->ignore($id),
             'email' => 'required|email|unique:users,email,'.$id
         ]);
 
         $user = User::findOrFail($id);
         $user->name = $request->name;
+        $user->title = $request->title;
+        $user->alias = $request->alias;
         $user->email = $request->email;
         $user->biography = $request->biography;
-        $user->level_id = $request->level;
         $user->featured = $request->featured;
+        $user->country = $request->country;
+        $user->certification = str_replace(',', ';', $request->certification);
+
+        if($request->level == -1)
+            $user->level_id = NULL;
+        else
+            $user->level_id = $request->level;
 
         // Cropped Image is important, without it the User can't upload a new photo
         if(!empty($request->picture_crop)) {
@@ -168,6 +191,7 @@ class UserController extends Controller
                 if($request->specialties) $user->specialties()->sync(explode(',', $request->specialties));
                 if($request->services) $user->services()->sync(explode(',', $request->services));
                 if($request->countries) $user->countries()->sync(explode(',', $request->countries));
+                if($request->language) $user->languages()->sync(explode(',', $request->language));
             }, 5);
 
             Session::flash('success', 'User has been successfully edited');
@@ -202,5 +226,30 @@ class UserController extends Controller
             $string .= $keyspace[random_int(0, $max)];
         }
         return $string;
+    }
+
+    /**
+     * This method processes a string and replaces all accented UTF-8 characters by unaccented
+     * ASCII-7 "equivalents", whitespaces are replaced by hyphens and the string is lowercase.
+     *
+     * @param   string  $string    String to process
+     *
+     * @return  string  Processed string
+     */
+    function stringURLSafe($string)
+    {
+        // Remove any '-' from the string since they will be used as concatenaters
+        $str = str_replace('-', ' ', $string);
+
+        // Trim white spaces at beginning and end of alias and make lowercase
+        $str = trim(strtolower($str));
+
+        // Remove any duplicate whitespace, and ensure all characters are alphanumeric
+        $str = preg_replace('/(\s|[^A-Za-z0-9\-])+/', '-', $str);
+
+        // Trim dashes at beginning and end of alias
+        $str = trim($str, '-');
+
+        return $str;
     }
 }

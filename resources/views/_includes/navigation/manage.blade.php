@@ -44,6 +44,13 @@
                     <span>Countries</span>
                 </a>
             </li>
+            <li><a href="{{route('languages.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-language"></i>
+                    </span>
+                    <span>Languages</span>
+                </a>
+            </li>
             <li><a href="{{route('levels.index')}}">
                     <span class="icon">
                         <i class="fa fa-bars"></i>

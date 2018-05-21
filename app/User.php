@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'picture', 'picture_crop', 'document', 'biography'
+        'name', 'alias', 'title', 'certification', 'country', 'email', 'password', 'picture', 'picture_crop', 'document', 'biography'
     ];
 
     /**
@@ -57,5 +57,10 @@ class User extends Authenticatable
     public function countries()
     {
         return $this->belongsToMany('App\Country');
+    }
+
+    public function languages()
+    {
+        return $this->belongsToMany('App\Language');
     }
 }

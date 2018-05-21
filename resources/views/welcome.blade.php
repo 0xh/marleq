@@ -161,7 +161,7 @@
                                 <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 15px;"></figure>
                             @endif
                             <div class="has-text-centered m-t-20">
-                                <a href="{{ route('coach-show', $coach->id) }}">
+                                <a href="{{ route('coach-show', $coach->alias) }}">
                                     <h3 class="homepage-mod-h3">{{ $coach->name }}</h3>
                                 </a>
                                 <div class="has-text-weight-light has-text-centered">

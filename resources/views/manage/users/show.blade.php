@@ -48,21 +48,44 @@
                     )</small>
                     <small>{{ $user->email }}</small>
                     <p>
-                        <small>
-                            <a href="{{ URL::asset($user->document) }}" target="_blank">
-                                <span class="icon">
-                                    <i class="fa fa-file"></i>
-                                </span>
-                                <span>View CV</span>
-                                <span class="icon">
-                                    <i class="fa fa-angle-double-right"></i>
-                                </span>
-                            </a>
-                        </small>
+                        <small>{{ $user->title }} from {{ $user->country }}</small>
                     </p>
+                    @if($user->document)
+                        <p>
+                            <small>
+                                <a href="{{ URL::asset($user->document) }}" target="_blank">
+                                    <span class="icon">
+                                        <i class="fa fa-file"></i>
+                                    </span>
+                                    <span>View CV</span>
+                                    <span class="icon">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </span>
+                                </a>
+                            </small>
+                        </p>
+                    @endif
                     <p>
                         {!! $user->biography !!}
                     </p>
+
+                    <h3 class="subtitle">Certification:</h3>
+                    <ul>
+                        @foreach($certification as $certificate)
+                            <li>
+                                {{ $certificate }}
+                            </li>
+                        @endforeach
+                    </ul>
+
+                    <h3 class="subtitle">Languages:</h3>
+                    <ul>
+                        @foreach($user->languages as $language)
+                            <li>
+                                {{ $language->name }}
+                            </li>
+                        @endforeach
+                    </ul>
 
                     <h3 class="subtitle">Specialties:</h3>
                     <ul>
@@ -90,6 +113,7 @@
                             </li>
                         @endforeach
                     </ul>
+
                     <h3 class="subtitle">Roles:</h3>
                     <ul>
                         @foreach($user->roles as $role)

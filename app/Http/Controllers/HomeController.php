@@ -121,8 +121,9 @@ class HomeController extends Controller
         $services = Service::where('featured', '!=', 1)->get();
         $service = Service::where('alias', $alias)->first();
         $costs = Cost::where('service_id', $service->id)->get();
-        $coaches = User::whereRoleIs('coach')->whereHas('services', function ($query) use ($alias) {
-            $query->where('service_id', $alias);
+        $serviceId = $service->id;
+        $coaches = User::whereRoleIs('coach')->whereHas('services', function ($query) use ($serviceId) {
+            $query->where('service_id', $serviceId);
         })->get()->take(4);
 
         return view('services.show', compact('service', 'services', 'featuredServices', 'costs', 'coaches'));
@@ -142,7 +143,7 @@ class HomeController extends Controller
 
     public function coachShow($alias)
     {
-        $coach = User::whereRoleIs('coach')->where('id', $alias)->first();
+        $coach = User::whereRoleIs('coach')->where('alias', $alias)->first();
 
         return view('coaches.show', compact('coach'));
     }

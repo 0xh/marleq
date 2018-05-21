@@ -44,7 +44,7 @@
                             <label class="label"><small>Name:</small></label>
                             <div class="control has-icons-left has-icons-right">
                                 <input id="name" type="text" class="input{{ $errors->has('name') ? ' is-danger' : '' }}"
-                                       name="name" value="{{ $user->name }}" placeholder="Name input" required autofocus>
+                                       name="name" value="{{ old('name', $user->name) }}" placeholder="Name input" required autofocus>
                                 <span class="icon is-small is-left">
                                     <i class="fa fa-user"></i>
                                 </span>
@@ -57,6 +57,48 @@
                             @if ($errors->has('name'))
                                 <p class="help is-danger">
                                     <strong>{{ $errors->first('name') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="field">
+                            <label class="label"><small>Alias:</small></label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="alias" type="text" class="input{{ $errors->has('alias') ? ' is-danger' : '' }}"
+                                       name="alias" value="{{ old('alias', $user->alias) }}" placeholder="Name input" required autofocus>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                @if ($errors->has('alias'))
+                                    <span class="icon is-small is-right">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
+                                @endif
+                            </div>
+                            @if ($errors->has('alias'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('alias') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="field">
+                            <label class="label"><small>Title:</small></label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="title" type="text" class="input{{ $errors->has('title') ? ' is-danger' : '' }}"
+                                       name="title" value="{{ old('title', $user->title) }}" placeholder="Name input" required autofocus>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                @if ($errors->has('title'))
+                                    <span class="icon is-small is-right">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
+                                @endif
+                            </div>
+                            @if ($errors->has('title'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('title') }}</strong>
                                 </p>
                             @endif
                         </div>
@@ -130,6 +172,32 @@
                         </div>
 
                         <div class="field">
+                            <h1 class="subtitle m-t-20 m-b-10">Languages:</h1>
+                            <b-field>
+                                <b-taginput
+                                        v-model="langtags"
+                                        :data="filteredLanguageTags"
+                                        maxtags="10"
+                                        autocomplete
+                                        :allow-new="allownew"
+                                        field="name"
+                                        type="is-marleq"
+                                        placeholder="Add a language"
+                                @typing="getFilteredLanguageTags"
+                                @add="addLanguageTagId"
+                                @remove="removeLanguageTagId">
+                                </b-taginput>
+                            </b-field>
+                            @if ($errors->has('language'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('language') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+
+                        <input type="hidden" name="language" :value="languages">
+
+                        <div class="field">
                             <h1 class="subtitle m-t-20 m-b-10">Countries:</h1>
                                 <b-field>
                                     <b-taginput
@@ -140,7 +208,7 @@
                                             :allow-new="allownew"
                                             field="name"
                                             type="is-marleq"
-                                            placeholder="Add a tag"
+                                            placeholder="Add a country"
                                             @typing="getFilteredTags"
                                             @add="addTagId"
                                             @remove="removeTagId">
@@ -154,6 +222,25 @@
                         </div>
 
                         <input type="hidden" name="countries" :value="countries">
+
+                        <div class="field">
+                            <h1 class="subtitle m-t-20 m-b-10">Certification:</h1>
+                                <b-field>
+                                    <b-taginput
+                                            v-model="certification"
+                                            maxtags="10"
+                                            type="is-marleq"
+                                            placeholder="Add a certificate">
+                                    </b-taginput>
+                                </b-field>
+                            @if ($errors->has('certification'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('certification') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+
+                        <input type="hidden" name="certification" :value="certification">
 
                         <div class="field">
                             <h1 class="subtitle m-t-20 m-b-10">Services:</h1>
@@ -200,10 +287,11 @@
                 </div>
 
                 <div class="field">
-                    <label class="label"><small>Category:</small></label>
+                    <label class="label"><small>Level:</small></label>
                     <div class="control has-icons-left">
                         <div class="select">
                             <select name="level" required autofocus>
+                                <option value="-1"{{ $user->level_id == '' ? 'selected' : '' }}></option>
                                 @foreach($levels as $level)
                                     <option value="{{ $level->id }}" {{ $user->level_id == $level->id ? 'selected' : '' }}>{{ $level->name }}</option>
                                 @endforeach
@@ -216,6 +304,27 @@
                     @if ($errors->has('level'))
                         <p class="help is-danger">
                             <strong>{{ $errors->first('level') }}</strong>
+                        </p>
+                    @endif
+                </div>
+
+                <div class="field">
+                    <label class="label"><small>Country:</small></label>
+                    <div class="control has-icons-left">
+                        <div class="select">
+                            <select name="country" required autofocus>
+                                @foreach($countries as $country)
+                                    <option value="{{ $country->name }}" {{ $user->country == $country->name ? 'selected' : '' }}>{{ $country->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <span class="icon is-left">
+                            <i class="fa fa-bars"></i>
+                        </span>
+                    </div>
+                    @if ($errors->has('country'))
+                        <p class="help is-danger">
+                            <strong>{{ $errors->first('country') }}</strong>
                         </p>
                     @endif
                 </div>
@@ -289,6 +398,7 @@
 @section('scripts')
     <script>
         const data = {!! $countries !!};
+        const datalang = {!! $languages !!};
         const app = new Vue({
             el: "#app",
             mounted() {
@@ -314,9 +424,13 @@
                 tooltipType: 'is-marleq',
                 showCroppie: false,
                 filteredTags: data,
+                filteredLanguageTags: datalang,
                 isSelectOnly: false,
                 tags: {!! $user->countries !!},
+                langtags: {!! $user->languages !!},
                 countries: {!! $user->countries->pluck('id') !!},
+                languages: {!! $user->languages->pluck('id') !!},
+                certification: {!! $certification !!},
                 allownew: false,
                 isSwitchedFeatured: '{!! $user->featured !!}',
             },
@@ -335,6 +449,21 @@
                 removeTagId(option) {
                     let index = this.countries.indexOf(option.id);
                     this.countries.splice(index, 1);
+                },
+                getFilteredLanguageTags(text) {
+                    this.filteredLanguageTags = datalang.filter((option) => {
+                        return option.name
+                                .toString()
+                                .toLowerCase()
+                                .indexOf(text.toLowerCase()) >= 0
+                    })
+                },
+                addLanguageTagId(option) {
+                    this.languages.push(option.id);
+                },
+                removeLanguageTagId(option) {
+                    let index = this.languages.indexOf(option.id);
+                    this.languages.splice(index, 1);
                 },
                 success() {
                     this.$toast.open({
