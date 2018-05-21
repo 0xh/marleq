@@ -32,7 +32,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="content">
-                                    <p class="homepage-mod-h3 is-4 m-b-10">{{ $member->name }}</p>
+                                    <p class="homepage-mod-h3 is-4 m-b-10">{{ $member->name }} {{ $member->surname }}</p>
                                     <p>{{ $member->title }}</p>
                                     {!! $member->biography !!}
                                 </div>

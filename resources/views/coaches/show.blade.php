@@ -8,7 +8,7 @@
                     <img src="{{ URL::asset($coach->picture_crop) }}" alt="" class="is-grayscale m-b-10" style="overflow: hidden; width: 120px; border-radius: 15px;">
                     <p>@if($coach->level) {{ $coach->level->name }} @endif</p>
                     <h1 class="title m-b-10">
-                        {{ $coach->name }}
+                        {{ $coach->name }} {{ $coach->surname }}
                     </h1>
                     <p class="p-b-5">Countries:</p>
                     @foreach($coach->countries as $country)

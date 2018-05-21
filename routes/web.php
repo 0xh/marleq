@@ -27,6 +27,11 @@ Route::get('/services/{alias}', ['as' => 'service-show', 'uses' => 'HomeControll
 Route::get('/find-a-coach', ['as' => 'find-a-coach', 'uses' => 'HomeController@findACoach']);
 Route::get('/coaches/{alias}', ['as' => 'coach-show', 'uses' => 'HomeController@coachShow']);
 
+Route::group(['prefix' => '/user', 'middleware' => 'role:country-manager|coach|user'], function () {
+    Route::get('/', ['as' => 'user', 'uses' => 'ProfileController@index']);
+    Route::resource('/profile', 'ProfileController')->only(['index', 'edit', 'update']);;
+});
+
 Auth::routes();
 
 Route::group(['prefix' => '/manage', 'middleware' => 'role:superadministrator|administrator'], function () {

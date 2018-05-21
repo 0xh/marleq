@@ -34,7 +34,7 @@
                                         </figure>
                                     </div>
                                     <div>
-                                        <p class="title is-4 has-text-white"><small>{{ $post->user->name }}</small></p>
+                                        <p class="title is-4 has-text-white"><small>{{ $post->user->name }} {{ $post->user->surname }}</small></p>
                                         <p class="subtitle is-6 has-text-white">{{ $post->user->level->name }}</p>
                                     </div>
                                 </div>

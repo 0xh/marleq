@@ -13,9 +13,9 @@
                 @csrf
 
                 <div class="field">
-                    <label class="label"><small>Name:</small></label>
+                    <label class="label"><small>First name:</small></label>
                     <div class="control has-icons-left has-icons-right">
-                        <input id="name" type="text" class="input{{ $errors->has('name') ? ' is-danger' : '' }}" name="name" value="{{ old('name') }}" placeholder="Name input" required autofocus>
+                        <input id="name" type="text" class="input{{ $errors->has('name') ? ' is-danger' : '' }}" name="name" value="{{ old('name') }}" placeholder="First name input" required autofocus>
                         <span class="icon is-small is-left">
                             <i class="fa fa-user"></i>
                         </span>
@@ -28,6 +28,26 @@
                     @if ($errors->has('name'))
                         <p class="help is-danger">
                             <strong>{{ $errors->first('name') }}</strong>
+                        </p>
+                    @endif
+                </div>
+
+                <div class="field">
+                    <label class="label"><small>Last name:</small></label>
+                    <div class="control has-icons-left has-icons-right">
+                        <input id="surname" type="text" class="input{{ $errors->has('surname') ? ' is-danger' : '' }}" name="surname" value="{{ old('surname') }}" placeholder="Last name input" required autofocus>
+                        <span class="icon is-small is-left">
+                            <i class="fa fa-user"></i>
+                        </span>
+                        @if ($errors->has('surname'))
+                            <span class="icon is-small is-right">
+                                <i class="fa fa-exclamation-triangle"></i>
+                            </span>
+                        @endif
+                    </div>
+                    @if ($errors->has('surname'))
+                        <p class="help is-danger">
+                            <strong>{{ $errors->first('surname') }}</strong>
                         </p>
                     @endif
                 </div>

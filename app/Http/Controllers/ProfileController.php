@@ -15,8 +15,9 @@ use Hash;
 use Session;
 use Illuminate\Support\Facades\Storage;
 use DB;
+use Auth;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,92 +26,40 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id', 'desc')->paginate(25);
-        return view('manage.users.index', compact('users'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $roles = Role::all();
-        return view('manage.users.create', compact('roles'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'surname' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-        ]);
-
-        if (!empty($request->password)) {
-            $password = trim($request->password);
-        } else {
-            $password = $this->generatePassword();
-        }
-
-        $user = new User();
-        $user->name = $request->name;
-        $user->surname = $request->surname;
-        $user->status = 0;
-        $user->email = $request->email;
-        $user->password = Hash::make($password);
-
-        if($user->save()) {
-            $user->syncRoles(explode(',', $request->roles));
-            Session::flash('success', 'User has been successfully created');
-            return redirect()->route('users.show', $user->id);
-        } else {
-            Session::flash('danger', 'Sorry, a problem occurred while creating this user.');
-            return redirect()->route('users.create');
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $user = User::where('id', $id)->with('roles')->first();
+        $user = Auth::user();
         $certification = collect(explode(';', $user->certification));
-        return view('manage.users.show', compact('user', 'certification'));
+
+        return view('user.profile.index', compact('user', 'certification'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $alias
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($alias)
     {
-        $user = User::where('id', $id)->with('roles')->first();
-        $roles = Role::all();
-        $specialties = Specialty::all();
-        $services = Service::all();
+//        $user = User::where('alias', $alias)->first();
+        $user = Auth::user();
+        if(Auth::user()->hasRole('coach|country-manager')) {
+            $specialties = Specialty::all();
+            $services = Service::all();
+            $levels = Level::all();
+        } else {
+            $specialties = null;
+            $services = null;
+            $levels = null;
+        }
         $countries = Country::select('id', 'name')->get();
         $languages = Language::select('id', 'name')->get();
-        $levels = Level::all();
+
         if($user->certification == '')
             $certification = collect([]);
         else
             $certification = collect(explode(';', $user->certification));
 
-        return view('manage.users.edit', compact('user', 'roles', 'specialties', 'services', 'countries', 'languages', 'levels', 'certification'));
+        return view('user.profile.edit', compact('user', 'specialties', 'services', 'countries', 'languages', 'levels', 'certification'));
     }
 
     /**
@@ -138,19 +87,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->surname = $request->surname;
-        $user->status = $request->status;
-        $user->title = $request->title;
         $user->alias = $request->alias;
         $user->email = $request->email;
         $user->biography = $request->biography;
-        $user->featured = $request->featured;
         $user->country = $request->country;
         $user->certification = str_replace(',', ';', $request->certification);
-
-        if($request->level == -1)
-            $user->level_id = NULL;
-        else
-            $user->level_id = $request->level;
 
         // Cropped Image is important, without it the User can't upload a new photo
         if(!empty($request->picture_crop)) {
@@ -193,18 +134,19 @@ class UserController extends Controller
 
         if($user->save()) {
             DB::transaction(function () use ($user, $request) {
-                if($request->roles) $user->syncRoles(explode(',', $request->roles));
-                if($request->specialties) $user->specialties()->sync(explode(',', $request->specialties));
-                if($request->services) $user->services()->sync(explode(',', $request->services));
-                if($request->countries) $user->countries()->sync(explode(',', $request->countries));
+                if(Auth::user()->hasRole('coach|country-manager')) {
+                    if ($request->specialties) $user->specialties()->sync(explode(',', $request->specialties));
+                    if ($request->services) $user->services()->sync(explode(',', $request->services));
+                    if ($request->countries) $user->countries()->sync(explode(',', $request->countries));
+                }
                 if($request->language) $user->languages()->sync(explode(',', $request->language));
             }, 5);
 
-            Session::flash('success', 'User has been successfully edited');
-            return redirect()->route('users.show', $id);
+            Session::flash('success', 'Your Profile has been successfully edited');
+            return redirect()->route('profile.index');
         } else {
-            Session::flash('danger', 'Sorry, a problem occurred while updating this user.');
-            return redirect()->route('users.edit', $id);
+            Session::flash('danger', 'Sorry, a problem occurred while updating your Profile.');
+            return redirect()->route('profile.edit', $user->alias);
         }
     }
 
@@ -216,7 +158,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        //
     }
 
     /**

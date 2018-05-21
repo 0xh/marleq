@@ -29,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $coaches = User::whereRoleIs('coach')->where('featured', 1)->get();
+        $coaches = User::whereRoleIs('coach')->where('featured', 1)->where('status', 1)->get();
         $featuredServices = Service::where('featured', 1)->get();
         $services = Service::where('featured', '!=', 1)->get();
         $inspiration = Category::where('name', 'Inspiration')->with(['posts' => function($query){
@@ -50,7 +50,7 @@ class HomeController extends Controller
      */
     public function aboutUs()
     {
-        $team = User::whereRoleIs('administrator')->get();
+        $team = User::whereRoleIs('administrator')->where('status', 1)->get();
         return view('about-us', compact('team'));
     }
 
@@ -122,7 +122,7 @@ class HomeController extends Controller
         $service = Service::where('alias', $alias)->first();
         $costs = Cost::where('service_id', $service->id)->get();
         $serviceId = $service->id;
-        $coaches = User::whereRoleIs('coach')->whereHas('services', function ($query) use ($serviceId) {
+        $coaches = User::whereRoleIs('coach')->where('status', 1)->whereHas('services', function ($query) use ($serviceId) {
             $query->where('service_id', $serviceId);
         })->get()->take(4);
 
@@ -136,7 +136,7 @@ class HomeController extends Controller
      */
     public function findACoach()
     {
-        $coaches = User::whereRoleIs('coach')->get();
+        $coaches = User::whereRoleIs('coach')->where('status', 1)->get();
 
         return view('coaches.index', compact('coaches'));
     }
@@ -144,7 +144,9 @@ class HomeController extends Controller
     public function coachShow($alias)
     {
         $coach = User::whereRoleIs('coach')->where('alias', $alias)->first();
-
-        return view('coaches.show', compact('coach'));
+        if($coach->status == 0)
+            return view('coaches.show', compact('coach'));
+        else
+            return redirect()->route('home');
     }
 }

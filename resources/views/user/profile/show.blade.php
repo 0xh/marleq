@@ -30,7 +30,7 @@
             <div class="media-content">
                 <div class="content">
                     <span class="title">
-                        <small>{{ $user->name }} {{ $user->surname }}</small>
+                        <small>{{ $user->name }}</small>
                     </span>
                     <small>(
                     <span class="icon is-small">

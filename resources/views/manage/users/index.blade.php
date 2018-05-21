@@ -37,6 +37,7 @@
         <thead>
         <tr>
             <th></th>
+            <th></th>
             <th>Id</th>
             <th>Level</th>
             <th>Name</th>
@@ -48,6 +49,23 @@
         <tbody>
         @foreach($users as $user)
             <tr>
+                <td class="is-narrow">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <a class="is-small">
+                                @if($user->status == 0)
+                                    <span class="icon is-small has-text-danger">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                @else
+                                    <span class="icon is-small has-text-success">
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                @endif
+                            </a>
+                        </p>
+                    </div>
+                </td>
                 <td class="is-narrow">
                     <div class="field has-addons">
                         <p class="control">
@@ -69,7 +87,7 @@
                 </td>
                 <td><small>{{ $user->id }}</small></td>
                 <td><small>@if($user->level) {{ $user->level->name }} @endif</small></td>
-                <td><small><strong><a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a></strong></small></td>
+                <td><small><strong><a href="{{ route('users.show', $user->id) }}">{{ $user->name }} {{ $user->surname }}</a></strong></small></td>
                 <td><small>{{ $user->email }}</small></td>
                 <td><small>{{ $user->created_at->format('j. M, Y. H:i:s') }}</small></td>
                 <td>

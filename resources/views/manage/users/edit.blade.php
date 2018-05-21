@@ -41,10 +41,10 @@
                         <input type="hidden" name="picture_crop" :value="cropped" v-if="isCropped">
 
                         <div class="field">
-                            <label class="label"><small>Name:</small></label>
+                            <label class="label"><small>First name:</small></label>
                             <div class="control has-icons-left has-icons-right">
                                 <input id="name" type="text" class="input{{ $errors->has('name') ? ' is-danger' : '' }}"
-                                       name="name" value="{{ old('name', $user->name) }}" placeholder="Name input" required autofocus>
+                                       name="name" value="{{ old('name', $user->name) }}" placeholder="First name input" required autofocus>
                                 <span class="icon is-small is-left">
                                     <i class="fa fa-user"></i>
                                 </span>
@@ -57,6 +57,27 @@
                             @if ($errors->has('name'))
                                 <p class="help is-danger">
                                     <strong>{{ $errors->first('name') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="field">
+                            <label class="label"><small>Last name:</small></label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="surname" type="text" class="input{{ $errors->has('surname') ? ' is-danger' : '' }}"
+                                       name="surname" value="{{ old('surname', $user->surname) }}" placeholder="Last name input" required autofocus>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                @if ($errors->has('surname'))
+                                    <span class="icon is-small is-right">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
+                                @endif
+                            </div>
+                            @if ($errors->has('surname'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('surname') }}</strong>
                                 </p>
                             @endif
                         </div>
@@ -340,6 +361,25 @@
                 </div>
                 <input type="hidden" name="featured" :value="isSwitchedFeatured">
 
+                <div class="field">
+                    <label class="label"><small>Status:</small></label>
+                    <div class="control has-icons-left">
+                        <div class="select">
+                            <select name="status" required autofocus>
+                                <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>Published</option>
+                                <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>Unpublished</option>
+                            </select>
+                        </div>
+                        <span class="icon is-left">
+                            <i class="fa fa-check-circle"></i>
+                          </span>
+                    </div>
+                    @if ($errors->has('status'))
+                        <p class="help is-danger">
+                            <strong>{{ $errors->first('status') }}</strong>
+                        </p>
+                    @endif
+                </div>
 
                 <div class="field">
                     <h1 class="subtitle m-t-20 m-b-10">Password:</h1>

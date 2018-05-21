@@ -51,11 +51,11 @@
                     @if (Auth::user())
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link" href="#">
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->name }} {{ Auth::user()->surname }}
                             </a>
                             <div class="navbar-dropdown is-right">
-                                @if (Auth::user()->hasRole('user'))
-                                    <a class="navbar-item" href="#">
+                                @if (Auth::user()->hasRole('user|coach|country-manager'))
+                                    <a class="navbar-item" href="{{ route('user') }}">
                                         <span class="icon">
                                             <i class="fa fa-user-circle"></i>
                                         </span>

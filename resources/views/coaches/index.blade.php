@@ -32,7 +32,7 @@
                             <div class="card-content card-coach has-text-centered">
                                 <div>
                                     <a href="{{ route('coach-show', $coach->alias) }}">
-                                        <h3 class="homepage-mod-h3">{{ $coach->name }}</h3>
+                                        <h3 class="homepage-mod-h3">{{ $coach->name }} {{ $coach->surname }}</h3>
                                     </a>
                                     <div class="m-b-15 has-text-centered">
                                         {!! $coach->biography !!}
