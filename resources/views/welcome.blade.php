@@ -18,7 +18,7 @@
                         </button>
                     </p>
                     <p>
-                        Are you facing a career challenge? <a class="has-text-marleq" href="{{ route('register')}}" style="text-decoration: underline;">Register</a>
+                        Are you facing a career challenge? <a class="has-text-white" href="{{ route('register')}}" style="text-decoration: underline;">Register</a>
                     </p>
                 </div>
             </div>

@@ -65,10 +65,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $alias = $this->stringURLSafe(substr($data['email'], 0, strpos($data['email'], '@')) . '-' . Hash::make($data['email']));
+
+        if(!empty($data['status']))
+            $status = $data['status'];
+        else
+            $status = 0;
+
         $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
-            'status' => $data['status'],
+            'status' => $status,
             'alias' => $alias,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),

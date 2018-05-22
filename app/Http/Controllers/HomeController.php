@@ -144,7 +144,7 @@ class HomeController extends Controller
     public function coachShow($alias)
     {
         $coach = User::whereRoleIs('coach')->where('alias', $alias)->first();
-        if($coach->status == 0)
+        if($coach->status == 1)
             return view('coaches.show', compact('coach'));
         else
             return redirect()->route('home');
