@@ -118,5 +118,38 @@
                 </a>
             </li>
         </ul>
+        <p class="menu-label">
+            Surveys
+        </p>
+        <ul class="menu-list">
+            <li><a href="{{route('surveys.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-list-ol"></i>
+                    </span>
+                    <span>Manage Surveys</span>
+                </a>
+            </li>
+            <li><a href="{{route('questions.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-question-circle"></i>
+                    </span>
+                    <span>Questions</span>
+                </a>
+            </li>
+            <li><a href="{{route('answers.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-list-ul"></i>
+                    </span>
+                    <span>Answers</span>
+                </a>
+            </li>
+            <li><a href="{{route('results.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-clipboard"></i>
+                    </span>
+                    <span>Results</span>
+                </a>
+            </li>
+        </ul>
     </aside>
 </div>

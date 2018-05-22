@@ -177,7 +177,7 @@
                                         @endif
 
                                         <div class="field">
-                                            <label class="label"><small>Biography:</small></label>
+                                            <label class="label"><small>Short biography:</small></label>
                                             <div class="control has-icons-left has-icons-right">
                                                 <textarea name="biography" class="form-control my-editor{{ $errors->has('biography') ? ' is-danger' : '' }}">{!! old('biography', $user->biography) !!}</textarea>
                                                 @if ($errors->has('biography'))
