@@ -27,6 +27,8 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
+        if(!$user->country) return redirect()->route('profile.edit', $user->alias);
+
         $certification = collect(explode(';', $user->certification));
 
         return view('user.profile.index', compact('user', 'certification'));
@@ -74,7 +76,7 @@ class ProfileController extends Controller
         if($request->alias) {
             $request['alias'] = $this->stringURLSafe($request->alias);
         } else {
-            $request['alias'] = str_replace('.' , '-',substr($request['email'], 0, strpos($request['email'], '@'))) . '-' . Hash::make($request['email']);
+            $request['alias'] = $this->stringURLSafe(str_replace('.' , '-',substr($request['email'], 0, strpos($request['email'], '@'))) . '-' . Hash::make($request['email']));
         }
 
         $this->validate($request, [
@@ -92,6 +94,11 @@ class ProfileController extends Controller
         $user->biography = $request->biography;
         $user->country = $request->country;
         $user->certification = str_replace(',', ';', $request->certification);
+
+        if($request->level == -1)
+            $user->level_id = NULL;
+        else
+            $user->level_id = $request->level;
 
         // Cropped Image is important, without it the User can't upload a new photo
         if(!empty($request->picture_crop)) {

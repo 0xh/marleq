@@ -34,7 +34,7 @@
                 <div class="field is-grouped">
                     @if (Auth::guest())
                         <p class="control">
-                            <a class="button is-marleq" href="{{ route('register')}}">
+                            <a class="button is-marleq" href="{{ route('register-coach')}}">
                                 <span class="icon">
                                     <i class="fa fa-user"></i>
                                 </span>

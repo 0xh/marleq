@@ -50,6 +50,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -63,16 +64,65 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $alias = substr($data['email'], 0, strpos($data['email'], '@')) . '-' . Hash::make($data['email']);
+        $alias = $this->stringURLSafe(substr($data['email'], 0, strpos($data['email'], '@')) . '-' . Hash::make($data['email']));
         $user = User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
+            'status' => $data['status'],
             'alias' => $alias,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->attachRole('user');
+        if($data['role'] == 'user') $user->attachRole('user');
+        if($data['role'] == 'coach') $user->attachRole('coach');
+        if($data['role'] == 'country-manager') $user->attachRole('country-manager');
 
         return $user;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showCoachRegistrationForm()
+    {
+        return view('auth.register-coach');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showCountryManagerRegistrationForm()
+    {
+        return view('auth.register-country-manager');
+    }
+
+    /**
+     * This method processes a string and replaces all accented UTF-8 characters by unaccented
+     * ASCII-7 "equivalents", whitespaces are replaced by hyphens and the string is lowercase.
+     *
+     * @param   string  $string    String to process
+     *
+     * @return  string  Processed string
+     */
+    function stringURLSafe($string)
+    {
+        // Remove any '-' from the string since they will be used as concatenaters
+        $str = str_replace('-', ' ', $string);
+
+        // Trim white spaces at beginning and end of alias and make lowercase
+        $str = trim(strtolower($str));
+
+        // Remove any duplicate whitespace, and ensure all characters are alphanumeric
+        $str = preg_replace('/(\s|[^A-Za-z0-9\-])+/', '-', $str);
+
+        // Trim dashes at beginning and end of alias
+        $str = trim($str, '-');
+
+        return $str;
     }
 }

@@ -23,16 +23,18 @@
         <div class="hero-body">
             <div class="container has-text-left-desktop has-text-centered-mobile">
                 <div class="columns">
-                    <div class="column is-narrow">
-                        <img src="{{ URL::asset($user->picture_crop) }}" alt="" class="is-grayscale m-b-10" style="overflow: hidden; width: 70px; border-radius: 15px;">
-                    </div>
+                    @if($user->picture_crop)
+                        <div class="column is-narrow">
+                            <img src="{{ URL::asset($user->picture_crop) }}" alt="" class="is-grayscale m-b-10" style="overflow: hidden; width: 70px; border-radius: 15px;">
+                        </div>
+                    @endif
                     <div class="column">
                         <h1 class="title">
                             {{ $user->name }} {{ $user->surname }}
                         </h1>
                         @if(Auth::user()->hasRole('coach|country-manager'))
                             <h2 class="subtitle">
-                                {{ $user->level->name }} @if(Auth::user()->hasRole('country-manager')) & Country Manager @endif from {{ $user->country }}
+                                @if($user->level) {{ $user->level->name }} @endif @if(Auth::user()->hasRole('country-manager')) @if($user->level) & @endif Country Manager @endif from {{ $user->country }}
                             </h2>
                         @endif
                         @if(Auth::user()->hasRole('user'))
@@ -75,74 +77,86 @@
             <div class="columns">
                 <div class="column is-half">
                     <div class="columns is-multiline">
-                        <div class="column is-full">
-                            <h3 class="subtitle">Biography:</h3>
-                            {!! $user->biography !!}
-                        </div>
-                        <div class="column is-two-thirds-desktop is-half-mobile">
-                            <div class="content">
-                                <h4 class="subtitle">Certification:</h4>
-                                <ul>
-                                    @foreach($certification as $certificate)
-                                        <li>
-                                            {{ $certificate }}
-                                        </li>
-                                    @endforeach
-                                </ul>
+                        @if($user->biography)
+                            <div class="column is-full">
+                                <h3 class="subtitle">Biography:</h3>
+                                {!! $user->biography !!}
                             </div>
-                        </div>
-                        <div class="column is-one-third-desktop is-half-mobile">
-                            <div class="content">
-                                <h4 class="subtitle">Languages:</h4>
-                                <ul>
-                                    @foreach($user->languages as $language)
-                                        <li>
-                                            {{ $language->name }}
-                                        </li>
-                                    @endforeach
-                                </ul>
+                        @endif
+                        @if($user->certification)
+                            <div class="column is-two-thirds-desktop is-half-mobile">
+                                <div class="content">
+                                    <h4 class="subtitle">Certification:</h4>
+                                    <ul>
+                                        @foreach($certification as $certificate)
+                                            <li>
+                                                {{ $certificate }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+                        @endif
+                        @if(count($user->languages) > 0)
+                            <div class="column is-one-third-desktop is-half-mobile">
+                                <div class="content">
+                                    <h4 class="subtitle">Languages:</h4>
+                                    <ul>
+                                        @foreach($user->languages as $language)
+                                            <li>
+                                                {{ $language->name }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
                 @if(Auth::user()->hasRole('coach|country-manager'))
                     <div class="column is-half">
                         <div class="columns is-multiline">
-                            <div class="column is-full">
-                                <h3 class="subtitle">Countries:</h3>
-                                <div class="tags">
-                                    @foreach($user->countries as $country)
-                                        <span class="tag is-marleq is-medium">
-                                            {{ $country->name }}
-                                        </span>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <div class="column is-half">
-                                <div class="content">
-                                    <h4 class="subtitle">Specialties:</h4>
-                                    <ul>
-                                        @foreach($user->specialties as $specialty)
-                                            <li>
-                                                {{ $specialty->name }}
-                                            </li>
+                            @if(count($user->countries) > 0)
+                                <div class="column is-full">
+                                    <h3 class="subtitle">Countries:</h3>
+                                    <div class="tags">
+                                        @foreach($user->countries as $country)
+                                            <span class="tag is-marleq is-medium">
+                                                {{ $country->name }}
+                                            </span>
                                         @endforeach
-                                    </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="column is-half">
-                                <div class="content">
-                                    <h4 class="subtitle">Services:</h4>
-                                    <ul>
-                                        @foreach($user->services as $service)
-                                            <li>
-                                                {{ $service->name }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                            @endif
+                            @if(count($user->specialties) > 0)
+                                <div class="column is-half">
+                                    <div class="content">
+                                        <h4 class="subtitle">Specialties:</h4>
+                                        <ul>
+                                            @foreach($user->specialties as $specialty)
+                                                <li>
+                                                    {{ $specialty->name }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
+                            @if(count($user->services) > 0)
+                                <div class="column is-half">
+                                    <div class="content">
+                                        <h4 class="subtitle">Services:</h4>
+                                        <ul>
+                                            @foreach($user->services as $service)
+                                                <li>
+                                                    {{ $service->name }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 @endif

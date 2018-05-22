@@ -34,6 +34,12 @@ Route::group(['prefix' => '/user', 'middleware' => 'role:country-manager|coach|u
 
 Auth::routes();
 
+// Registration Routes for Job Seekers and Country Managers
+$this->get('register-coach', 'Auth\RegisterController@showCoachRegistrationForm')->name('register-coach');
+$this->post('register-coach', 'Auth\RegisterController@register');
+$this->get('register-country-manager', 'Auth\RegisterController@showCountryManagerRegistrationForm')->name('register-country-manager');
+$this->post('register-country-manager', 'Auth\RegisterController@register');
+
 Route::group(['prefix' => '/manage', 'middleware' => 'role:superadministrator|administrator'], function () {
     Route::get('/', ['as' => 'manage', 'uses' => 'ManageController@index']);
     Route::get('/dashboard', ['as' => 'manage.dashboard', 'uses' => 'ManageController@dashboard']);

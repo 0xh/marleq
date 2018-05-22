@@ -6,7 +6,8 @@
         <div class="columns is-centered">
             <div class="column is-two-thirds has-text-centered">
                 <h1 class="title m-b-50">
-                    JOB SEEKER
+                    SIMPLE AND EASY WAY TO REACH JOB SEEKERS<br/> FROM ALL OVER THE WORLD
+                    AND MENTOR THEIR CAREER SUCCESS
                 </h1>
                 <h2 class="subtitle">
                     Are you looking to expand your clients list?<br/>
@@ -110,9 +111,7 @@
                         </p>
                     </div>
 
-                    <input type="hidden" name="role" value="user">
-
-                    <input type="hidden" name="status" value="1">
+                    <input type="hidden" name="role" value="coach">
 
                     <div class="field m-t-30">
                         <p class="control">
