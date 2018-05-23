@@ -139,6 +139,8 @@ class ProfileController extends Controller
             $user->password = Hash::make($request->password);
         }
 
+        $user->profile_completion = $this->projectCompletion($request, $user->picture_crop, $user->document, $user->status);
+
         if($user->save()) {
             DB::transaction(function () use ($user, $request) {
                 if(Auth::user()->hasRole('coach|country-manager')) {
@@ -155,6 +157,32 @@ class ProfileController extends Controller
             Session::flash('danger', 'Sorry, a problem occurred while updating your Profile.');
             return redirect()->route('profile.edit', $user->alias);
         }
+    }
+
+    /**
+     * Returns Profile Completion.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string $picture_crop
+     * @param  string $document
+     * @param  integer $status
+     * @return integer
+     */
+    public function projectCompletion(Request $request, $picture_crop, $document, $status)
+    {
+        if(empty($request->biography)) return 0;
+        if(empty($request->picture_crop) and empty($picture_crop)) return 1;
+        if(empty($request->language)) return 2;
+        if(empty($request->document) and empty($document)) return 3;
+        if(Auth::user()->hasRole('coach|country-manager')) {
+            if(empty($request->specialties) or empty($request->services) or empty($request->countries) or $request->level == -1) return 4;
+        }
+        if(Auth::user()->hasRole('user')) {
+            return 4;
+        }
+        if($status == 0) return 5;
+
+        return 6;
     }
 
     /**

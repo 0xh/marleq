@@ -74,13 +74,128 @@
 
     <section class="section">
         <div class="container">
-            <div class="columns">
+            <div class="columns is-multiline">
+                @if((Auth::user()->hasRole('coach|country-manager') and $user->profile_completion < 6) or (Auth::user()->hasRole('user') and $user->profile_completion < 4))
+                    <div class="column is-full m-b-40">
+                        <ul class="steps is-narrow is-medium is-centered has-content-centered">
+                            <li class="steps-segment @if($user->profile_completion == 0) is-active has-gaps @endif">
+                                <a hef=#" class="has-text-dark">
+                                  <span class="steps-marker">
+                                    <span class="icon">
+                                      <i class="fa fa-user"></i>
+                                    </span>
+                                  </span>
+                                    <div class="steps-content">
+                                        <p class="heading">User Account</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="steps-segment @if($user->profile_completion == 1) is-active has-gaps @elseif($user->profile_completion < 1) has-gaps @endif">
+                                <a hef=#" class="has-text-dark">
+                                  <span class="steps-marker @if($user->profile_completion == 0) is-warning @endif">
+                                    <span class="icon">
+                                      <i class="fa fa-pencil-square"></i>
+                                    </span>
+                                  </span>
+                                    <div class="steps-content">
+                                        <p class="heading">Short biography</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="steps-segment @if($user->profile_completion == 2) is-active has-gaps @elseif($user->profile_completion < 2) has-gaps @endif">
+                                <a hef=#" class="has-text-dark">
+                                  <span class="steps-marker @if($user->profile_completion == 1) is-warning @endif">
+                                    <span class="icon">
+                                      <i class="fa fa-image"></i>
+                                    </span>
+                                  </span>
+                                    <div class="steps-content">
+                                        <p class="heading">Profile Picture</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="steps-segment @if($user->profile_completion == 3) is-active has-gaps @elseif($user->profile_completion < 3) has-gaps @endif">
+                                <a hef=#" class="has-text-dark">
+                                  <span class="steps-marker @if($user->profile_completion == 2) is-warning @endif">
+                                    <span class="icon">
+                                      <i class="fa fa-language"></i>
+                                    </span>
+                                  </span>
+                                    <div class="steps-content">
+                                        <p class="heading">Languages</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="steps-segment @if($user->profile_completion == 4) is-active has-gaps @elseif($user->profile_completion < 4) has-gaps @endif">
+                                <a hef=#" class="has-text-dark">
+                                  <span class="steps-marker @if($user->profile_completion == 3) is-warning @endif">
+                                    <span class="icon">
+                                      <i class="fa fa-file-text"></i>
+                                    </span>
+                                  </span>
+                                    <div class="steps-content">
+                                        <p class="heading">CV or Resume</p>
+                                    </div>
+                                </a>
+                            </li>
+                            @if(Auth::user()->hasRole('coach|country-manager'))
+                                <li class="steps-segment @if($user->profile_completion == 5) is-active has-gaps @elseif($user->profile_completion < 5) has-gaps @endif">
+                                    <a href="#" class="has-text-dark">
+                                      <span class="steps-marker @if($user->profile_completion == 4) is-warning @endif">
+                                        <span class="icon">
+                                          <i class="fa fa-user-circle-o"></i>
+                                        </span>
+                                      </span>
+                                        <div class="steps-content">
+                                            <p class="heading">Coach Information</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="steps-segment">
+                                    <span class="steps-marker is-hollow @if($user->status == 1) is-marleq @endif">
+                                      <span class="icon">
+                                        <i class="fa fa-check"></i>
+                                      </span>
+                                    </span>
+                                    <div class="steps-content">
+                                        <p class="heading">Admin Confirmation</p>
+                                    </div>
+                                </li>
+                            @endif
+                            @if(Auth::user()->hasRole('user'))
+                                <li class="steps-segment">
+                                    <span class="steps-marker is-hollow">
+                                      <span class="icon">
+                                        <i class="fa fa-check"></i>
+                                      </span>
+                                    </span>
+                                    <div class="steps-content">
+                                        <p class="heading">Completed</p>
+                                    </div>
+                                </li>
+                            @endif
+                        </ul>
+                    </div>
+                @endif
                 <div class="column is-half">
                     <div class="columns is-multiline">
                         @if($user->biography)
                             <div class="column is-full">
-                                <h3 class="subtitle">Biography:</h3>
+                                <h3 class="subtitle">Short biography:</h3>
                                 {!! $user->biography !!}
+                            </div>
+                        @endif
+                        @if($user->document)
+                            <div class="column is-full">
+                                <a href="{{ URL::asset($user->document) }}" target="_blank">
+                                    <span class="icon">
+                                        <i class="fa fa-file"></i>
+                                    </span>
+                                    <span>View CV</span>
+                                    <span class="icon">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </span>
+                                </a>
                             </div>
                         @endif
                         @if($user->certification)

@@ -206,19 +206,22 @@
                                                         </span>
                                                     </span>
                                                     <span class="file-name" v-if="document" v-text="document"></span>
-                                                    <span class="file-name" v-if="!document">
-                                                        <small>
-                                                            <a href="{{ URL::asset($user->document) }}" target="_blank">
-                                                                <span class="icon">
-                                                                    <i class="fa fa-file"></i>
-                                                                </span>
-                                                                <span>View CV</span>
-                                                                <span class="icon">
-                                                                    <i class="fa fa-angle-double-right"></i>
-                                                                </span>
-                                                            </a>
-                                                        </small>
-                                                    </span>
+                                                    @if($user->document)
+                                                        <span class="file-name" v-if="!document">
+                                                            <small>
+                                                                <a href="{{ URL::asset($user->document) }}" target="_blank">
+                                                                    <span class="icon">
+                                                                        <i class="fa fa-file"></i>
+                                                                    </span>
+                                                                    <span>View CV</span>
+                                                                    <span class="icon">
+                                                                        <i class="fa fa-angle-double-right"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </small>
+                                                        </span>
+                                                    @endif
+
                                                 </label>
                                             </div>
                                         </div>
