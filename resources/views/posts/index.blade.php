@@ -7,14 +7,11 @@
                 <div class="column is-two-thirds has-text-centered">
                     @if($posts->name == 'Inspiration')
                         <h1 class="title m-b-50">
-                            WE SHARE WITH YOU VALUABLE CAREER TIPS<br/>
+                            WE SHARE WITH YOU VALUABLE CAREER ADVICES<br/>
                             AND INSPIRING STORIES
                         </h1>
                         <h2 class="subtitle">
-                            Our purpose is to help job seekers land their dream job. We truly believe this is possible.
-                            We strive to inspire and motivate each of you by sharing outstanding career stories and advices.<br />
-                            If these people below could build impressive careers, you can too.<br/>
-                            Read carefully these articles and interviews, work hard and smart, and achieve desirable career progress.
+                            Read our career related articles and interviews, get inspired and accomplish a professional success.
                         </h2>
                     @else
                         <h1 class="title m-b-50">
@@ -22,10 +19,8 @@
                             OF OUR MISSION
                         </h1>
                         <h2 class="subtitle">
-                            We have hosted dozens of career related events and welcomed 18 speakers with more than 300 attendees in the last 6 months.
-                            We continue to invite more outstanding people to share their inspiring career stories.<br />
+                            We organize career related events and invite outstanding people to share their inspiring career stories and useful tips.
                         </h2>
-                        <h2 class="subtitle has-text-weight-bold">We are looking forward to seeing you at our events!</h2>
                     @endif
                 </div>
             </div>

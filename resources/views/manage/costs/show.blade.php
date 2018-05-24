@@ -10,6 +10,14 @@
         <!-- Right side -->
         <div class="level-right">
             <div class="level-item">
+                <a class="button is-success" href="{{route('costs.create')}}">
+                    <span class="icon">
+                        <i class="fa fa-plus-square"></i>
+                    </span>
+                    <span>New Cost</span>
+                </a>
+            </div>
+            <div class="level-item">
                 <a class="button is-marleq" href="{{route('costs.edit', $cost->id)}}">
                     <span class="icon">
                         <i class="fa fa-edit"></i>

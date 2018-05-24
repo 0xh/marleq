@@ -107,7 +107,7 @@
                             <label class="label"><small>Title:</small></label>
                             <div class="control has-icons-left has-icons-right">
                                 <input id="title" type="text" class="input{{ $errors->has('title') ? ' is-danger' : '' }}"
-                                       name="title" value="{{ old('title', $user->title) }}" placeholder="Name input" required autofocus>
+                                       name="title" value="{{ old('title', $user->title) }}" placeholder="Name input" autofocus>
                                 <span class="icon is-small is-left">
                                     <i class="fa fa-user"></i>
                                 </span>

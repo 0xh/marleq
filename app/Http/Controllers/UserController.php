@@ -48,9 +48,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->alias) {
+            $request['alias'] = $this->stringURLSafe($request->alias);
+        } else {
+            $request['alias'] = str_replace('.' , '-',substr($request['email'], 0, strpos($request['email'], '@'))) . '-' . Hash::make($request['email']);
+        }
+
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
+            'alias' => 'unique:users|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
         ]);
 
@@ -62,6 +69,8 @@ class UserController extends Controller
 
         $user = new User();
         $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->alias = $request->alias;
         $user->surname = $request->surname;
         $user->status = 0;
         $user->email = $request->email;

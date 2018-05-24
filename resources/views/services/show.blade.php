@@ -29,7 +29,7 @@
     <section class="section">
         <div class="container hero-services m-t-40 m-b-40">
             <div class="pricing-table">
-                <div class="columns is-centered">
+                <div class="columns is-centered container">
                     @foreach($costs as $cost)
                         <div class="column is-one-third">
                             <div class="pricing-plan is-marleq @if($loop->index == 1) is-active is-success @endif">

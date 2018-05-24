@@ -32,7 +32,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $users = User::whereRoleIs(['administrator'])->get();
+        $users = User::whereRoleIs(['coach'])->get();
         $userId = -1;
         $categories = Category::all();
         $tags = Tag::all();
@@ -122,7 +122,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        $users = User::whereRoleIs(['administrator'])->get();
+        $users = User::whereRoleIs(['coach'])->get();
         $categories = Category::all();
         $tags = Tag::all();
 

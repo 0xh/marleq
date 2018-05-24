@@ -44,7 +44,7 @@
                         @endif
                     </div>
                     <div class="column has-text-right-desktop has-text-centered-mobile is-narrow">
-                        <a href="{{route('profile.edit', $user->alias)}}" class="button is-blue">
+                        <a href="{{route('profile.edit', $user->alias)}}" class="button is-marleq is-inverted">
                             <span class="icon">
                                 <i class="fa fa-edit"></i>
                             </span>

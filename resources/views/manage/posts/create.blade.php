@@ -265,12 +265,7 @@
                             </b-field>
                             <div v-for="userInfo in userSearch">
                                 <b-field>
-                                    <b-radio :native-value="userInfo.id" v-model="selectedUser">@{{ userInfo.name }}</b-radio>
-                                </b-field>
-                            </div>
-                            <div v-for="userInfo in users" v-if="searchTxt == ''">
-                                <b-field>
-                                    <b-radio :native-value="userInfo.id" v-model="selectedUser">@{{ userInfo.name }}</b-radio>
+                                    <b-radio :native-value="userInfo.id" v-model="selectedUser">@{{ userInfo.name }} @{{ userInfo.surname }}</b-radio>
                                 </b-field>
                             </div>
                         </section>

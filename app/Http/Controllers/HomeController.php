@@ -33,10 +33,10 @@ class HomeController extends Controller
         $featuredServices = Service::where('featured', 1)->get();
         $services = Service::where('featured', '!=', 1)->get();
         $inspiration = Category::where('name', 'Inspiration')->with(['posts' => function($query){
-            return $query->where('status', 0)->where('featured', 1)->take(3);
+            return $query->where('status', 0)->where('featured', 1)->orderBy('id', 'desc')->take(4);
         }])->first();
         $events = Category::where('name', 'Events')->with(['posts' => function($query){
-            return $query->where('status', 0)->where('featured', '1')->orderBy('id', 'desc')->take(3);
+            return $query->where('status', 0)->where('featured', '1')->orderBy('id', 'desc')->take(4);
         }])->first();
         $testimonials = Testimonial::where('featured', 1)->get();
 
@@ -51,7 +51,8 @@ class HomeController extends Controller
     public function aboutUs()
     {
         $team = User::whereRoleIs('administrator')->where('status', 1)->get();
-        return view('about-us', compact('team'));
+        $managers = User::whereRoleIs('country-manager')->where('status', 1)->get();
+        return view('about-us', compact('team', 'managers'));
     }
 
     /**
@@ -61,7 +62,9 @@ class HomeController extends Controller
      */
     public function inspirationIndex()
     {
-        $posts = Category::where('name', 'Inspiration')->with('posts')->first();
+        $posts = Category::where('name', 'Inspiration')->with(['posts' => function($query){
+            return $query->where('status', 0)->orderBy('id', 'desc')->get();
+        }])->first();
         return view('posts.index', compact('posts'));
     }
 
@@ -83,7 +86,9 @@ class HomeController extends Controller
      */
     public function eventsIndex()
     {
-        $posts = Category::where('name', 'Events')->with('posts')->first();
+        $posts = Category::where('name', 'Events')->with(['posts' => function($query){
+            return $query->where('status', 0)->orderBy('id', 'desc')->get();
+        }])->first();
         return view('posts.index', compact('posts'));
     }
 
@@ -144,8 +149,15 @@ class HomeController extends Controller
     public function coachShow($alias)
     {
         $coach = User::whereRoleIs('coach')->where('alias', $alias)->first();
+        $costs = Cost::where('level_id', $coach->level_id)->whereIn('service_id', $coach->services->pluck('id'))->get();
+
+        if($coach->certification == '')
+            $certification = collect([]);
+        else
+            $certification = collect(explode(';', $coach->certification));
+
         if($coach->status == 1)
-            return view('coaches.show', compact('coach'));
+            return view('coaches.show', compact('coach', 'certification', 'costs'));
         else
             return redirect()->route('home');
     }

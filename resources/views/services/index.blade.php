@@ -6,11 +6,12 @@
             <div class="columns is-centered">
                 <div class="column is-two-thirds has-text-centered">
                         <h1 class="title m-b-50">
-                            SERVICES
+                            EXPLORE OUR CAREER COACHING SERVICES<br/>
+                            AND BOOST YOUR CAREER
                         </h1>
                         <h2 class="subtitle">
                             Select the best fit career coaching service in order to handle your current career challenge.<br/>
-                            Find and book the right career coach, gain new knowledge and skills, and boost your career.
+                            Find and book the right career coach, gain new knowledge and skills, and achieve a desirable career.
 
                         </h2>
                 </div>

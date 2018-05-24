@@ -11,14 +11,21 @@
                     <h1 class="title m-b-25">
                         FIND YOUR CAREER COACH AND <br />BUILD A SUCCESSFUL CAREER
                     </h1>
-                    <p class="m-t-30 m-b-30">
+                    <h2 class="subtitle m-t-20">
+                        ﻿We will help you land a dream job
+                    </h2>
+                    <p class="m-t-40 m-b-30">
                         <button class="button is-marleq is-medium is-uppercase is-inverted has-text-weight-semibold"
                                 @click="isVideoModalActive = true">
-                            <span>Watch the Video</span>
+                            <span class="icon">
+                                <i class="fa fa-video-camera"></i>
+                            </span>
+                            <span>See how it works</span>
                         </button>
                     </p>
                     <p>
-                        Are you facing a career challenge? <a class="has-text-white" href="{{ route('register')}}" style="text-decoration: underline;">Register</a>
+                        ﻿You are just one step closer to a desirable career.<br/>
+                        <a class="has-text-white" href="{{ route('register')}}" style="text-decoration: underline;">Register</a>
                     </p>
                 </div>
             </div>
@@ -34,8 +41,7 @@
                     GET YOUR CV CHECKED OUT BY OUR EXPERTS <span>FOR FREE!</span>
                 </h1>
                 <h2 class="subtitle">
-                    Upload CV and our experienced career coach will quickly review it.<br />
-                    You will receive an insightful feedback in order to improve in your CV.
+                    Upload you CV and you will receive an insightful feedback in order to improve it
                 </h2>
                 @if (Auth::user())
                     @if (Auth::user()->hasRole('administrator'))
@@ -58,8 +64,8 @@
                         <a href="{{ route('login')}}">
                             <span class="has-text-weight-bold has-text-co">Login</span>
                             <span class="icon">
-                            <i class="fa fa-angle-double-right"></i>
-                        </span>
+                                <i class="fa fa-angle-double-right"></i>
+                            </span>
                         </a>
                     </h2>
                 @endif
@@ -221,9 +227,8 @@
                     BOOKING THE RIGHT CAREER COACH<br />
                     FOR YOU WAS NEVER EASIER
                 </h1>
-                <h2 class="subtitle">
-                    Our experienced and skilled career coaches and professionals can help you to improve<br /> your job search, CV, LinkedIn, and cover letter. <br />
-                    They will prepare you for your next job interview, negotiation round, and answer all your career related questions.<br /> We are all here to help you land a dream job.
+                <h2 class="subtitle m-t-10 m-b-40">
+                    ﻿Our coaches will help you gain new skills and mentor your career success
                 </h2>
                 <button class="button is-marleq is-medium is-inverted">
                     <span class="icon">
@@ -244,7 +249,7 @@
             </div>
             <div class="columns is-narrow m-t-40">
                 @foreach($inspiration->posts as $post)
-                    <div class="column">
+                    <div class="column is-one-quarter">
                         <div class="card is-shadowless">
                             @if($post->intro_image)
                                 <div class="card-image">
