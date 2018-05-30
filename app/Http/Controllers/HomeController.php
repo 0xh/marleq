@@ -146,6 +146,11 @@ class HomeController extends Controller
         return view('coaches.index', compact('coaches'));
     }
 
+    /**
+     * Show the application Coach Show Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function coachShow($alias)
     {
         $coach = User::whereRoleIs('coach')->where('alias', $alias)->first();
