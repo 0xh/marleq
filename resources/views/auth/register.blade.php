@@ -9,9 +9,8 @@
                     JOB SEEKER
                 </h1>
                 <h2 class="subtitle">
-                    Are you looking to expand your clients list?<br/>
-                    We are team of professionals fully dedicated to bring closer job seekers to career coaches.<br/>
-                    Earn more money with a new revenue stream and have a global reach with more international clients.
+                    ﻿Are you looking for an internship, a new job opportunity or a career progress?<br/>
+                    We are team of professionals fully dedicated to help you move forward with a career you dream about.
                 </h2>
             </div>
         </div>

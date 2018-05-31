@@ -9,9 +9,9 @@
                     COUNTRY MANAGER
                 </h1>
                 <h2 class="subtitle">
-                    Are you looking to expand your clients list?<br/>
-                    We are team of professionals fully dedicated to bring closer job seekers to career coaches.<br/>
-                    Earn more money with a new revenue stream and have a global reach with more international clients.
+                    ﻿Do you like what we do, share the same values and have ideas on how to grow our impact?<br/>
+                    If yes, let us know.<br/>
+                    Join our fast growing team and become a Country Manager.
                 </h2>
             </div>
         </div>
