@@ -41,7 +41,7 @@
                     GET YOUR CV CHECKED OUT BY OUR EXPERTS <span>FOR FREE!</span>
                 </h1>
                 <h2 class="subtitle">
-                    Upload you CV and you will receive an insightful feedback in order to improve it
+                    Upload your CV and you will receive an insightful feedback in order to improve it
                 </h2>
                 @if (Auth::user())
                     @if (Auth::user()->hasRole('administrator'))
