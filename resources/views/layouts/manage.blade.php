@@ -23,6 +23,7 @@
                         @include('_includes.navigation.manage')
                     </div>
                     <div class="column">
+                        @include('_includes.notifications.manage')
                         @yield('content')
                     </div>
                 </div>
