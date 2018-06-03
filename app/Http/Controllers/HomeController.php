@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Cost;
 use App\Post;
+use App\Resume;
 use App\Service;
 use App\Testimonial;
 use App\User;
 use App\Category;
 use Illuminate\Http\Request;
+use Auth;
+use Session;
+use Storage;
 
 class HomeController extends Controller
 {
@@ -19,7 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        $this->middleware('role:user')->only('freeCV', 'freeCVStore');
     }
 
     /**
@@ -165,5 +169,54 @@ class HomeController extends Controller
             return view('coaches.show', compact('coach', 'certification', 'costs'));
         else
             return redirect()->route('home');
+    }
+
+    /**
+     * Show the application Services Index Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function freeCV()
+    {
+        if(!Auth::user()) {
+            return redirect()->route('home');
+        } else {
+            $resume = Resume::where('user_id', Auth::user()->id)->first();
+            $services = Service::find([1, 2, 4, 12]);
+            return view('free-cv', compact('resume', 'services'));
+        }
+    }
+
+    /**
+     * Store a newly created CV in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function freeCVStore(Request $request)
+    {
+        $this->validate($request, [
+            'document' => 'required'
+        ]);
+
+        $resume = new Resume();
+        $resume->user_id = Auth::user()->id;
+
+        if(!empty($request->document)) {
+            $file = $request->file('document')->store('public/freecvs');
+            $resume->document = Storage::url($file);
+        }
+
+        if($resume->save()) {
+            $user = User::findOrFail(Auth::user()->id);
+            $user->free_cv = 1;
+            $user->save();
+
+            Session::flash('success', 'Your CV has been successfully uploaded!');
+            return redirect()->route('free-cv.index');
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while sending your CV.');
+            return redirect()->route('free-cv.index');
+        }
     }
 }

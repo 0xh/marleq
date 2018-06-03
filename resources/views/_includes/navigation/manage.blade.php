@@ -151,5 +151,32 @@
                 </a>
             </li>
         </ul>
+
+        <p class="menu-label">
+            Free CV
+        </p>
+        <ul class="menu-list">
+            <li><a href="{{route('resumes.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-address-card"></i>
+                    </span>
+                    <span>Manage Requests</span>
+                </a>
+            </li>
+            <li><a href="{{route('tips.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-quote-right"></i>
+                    </span>
+                    <span>Tips</span>
+                </a>
+            </li>
+            <li><a href="{{route('tip-types.index')}}">
+                    <span class="icon">
+                        <i class="fa fa-tags"></i>
+                    </span>
+                    <span>Types</span>
+                </a>
+            </li>
+        </ul>
     </aside>
 </div>

@@ -26,6 +26,8 @@ Route::get('/services', ['as' => 'services', 'uses' => 'HomeController@servicesI
 Route::get('/services/{alias}', ['as' => 'service-show', 'uses' => 'HomeController@serviceShow']);
 Route::get('/find-a-coach', ['as' => 'find-a-coach', 'uses' => 'HomeController@findACoach']);
 Route::get('/coaches/{alias}', ['as' => 'coach-show', 'uses' => 'HomeController@coachShow']);
+Route::get('/free-cv', ['as' => 'free-cv.index', 'uses' => 'HomeController@freeCV']);
+Route::post('/free-cv', ['as' => 'free-cv.store', 'uses' => 'HomeController@freeCVStore']);
 
 Route::group(['prefix' => '/user', 'middleware' => 'role:country-manager|coach|user'], function () {
     Route::get('/', ['as' => 'user', 'uses' => 'ProfileController@index']);
@@ -64,4 +66,9 @@ Route::group(['prefix' => '/manage', 'middleware' => 'role:superadministrator|ad
     Route::resource('/questions', 'QuestionController');
     Route::resource('/answers', 'AnswerController');
     Route::resource('/results', 'ResultController');
+
+    Route::resource('/tip-types', 'TipTypeController');
+    Route::resource('/tips', 'TipController');
+    Route::resource('/resumes', 'ResumeController');
+
 });

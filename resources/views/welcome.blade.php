@@ -38,17 +38,22 @@
         <div class="hero-body">
             <div class="container has-text-centered p-t-50 p-b-50">
                 <h1 class="title m-b-50">
-                    GET YOUR CV CHECKED OUT BY OUR EXPERTS <span>FOR FREE!</span>
+                    GET YOUR CV CHECKED BY OUR CAREER EXPERTS <span>FOR FREE!</span>
                 </h1>
                 <h2 class="subtitle">
                     Upload your CV and you will receive an insightful feedback in order to improve it
                 </h2>
                 @if (Auth::user())
-                    @if (Auth::user()->hasRole('administrator'))
+                    @if(Auth::user()->free_cv == 1)
                         <p class="m-t-35">
-                            <a class="button is-marleq is-medium is-inverted is-rounded" href="#">
+                            <a class="button is-marleq is-medium is-inverted is-rounded" href="{{ route('free-cv.index')}}">
+                                <span>View Results</span>
+                            </a>
+                        </p>
+                    @else
+                        <p class="m-t-35">
+                            <a class="button is-marleq is-medium is-inverted is-rounded" href="{{ route('free-cv.index')}}">
                                 <span>Let's Start!</span>
-
                             </a>
                         </p>
                     @endif
