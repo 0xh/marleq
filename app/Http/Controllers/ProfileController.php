@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Country;
 use App\Language;
 use App\Level;
+use App\Notifications\UserRegistered;
 use App\Service;
 use App\Specialty;
 use Illuminate\Http\Request;
@@ -146,10 +147,14 @@ class ProfileController extends Controller
                 if(Auth::user()->hasRole('coach|country-manager')) {
                     if ($request->specialties) $user->specialties()->sync(explode(',', $request->specialties));
                     if ($request->services) $user->services()->sync(explode(',', $request->services));
-                    if ($request->countries) $user->countries()->sync(explode(',', $request->countries));
                 }
+                if ($request->countries) $user->countries()->sync(explode(',', $request->countries));
                 if($request->language) $user->languages()->sync(explode(',', $request->language));
             }, 5);
+
+            if(Auth::user()->hasRole('coach|country-manager')) {
+                if ($user->profile_completion >= 5) $user->notify(new UserRegistered($user));
+            }
 
             Session::flash('success', 'Your Profile has been successfully edited');
             return redirect()->route('profile.index');

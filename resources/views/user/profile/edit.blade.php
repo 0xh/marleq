@@ -271,7 +271,7 @@
 
                                         <input type="hidden" name="certification" :value="certification">
 
-                                        @if(Auth::user()->hasRole('coach|country-manager'))
+
                                             <div class="field">
                                                 <h1 class="subtitle m-t-20 m-b-10">Countries:</h1>
                                                 <b-field>
@@ -298,7 +298,7 @@
 
                                             <input type="hidden" name="countries" :value="countries">
 
-
+                                        @if(Auth::user()->hasRole('coach|country-manager'))
                                             <div class="field">
                                                 <h1 class="subtitle m-t-20 m-b-10">Services:</h1>
                                                 <ul class="specialty-col">

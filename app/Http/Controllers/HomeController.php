@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cost;
+use App\Notifications\FreeCVRequest;
 use App\Post;
 use App\Resume;
 use App\Service;
@@ -211,6 +212,8 @@ class HomeController extends Controller
             $user = User::findOrFail(Auth::user()->id);
             $user->free_cv = 1;
             $user->save();
+
+            $user->notify(new FreeCVRequest($user));
 
             Session::flash('success', 'Your CV has been successfully uploaded!');
             return redirect()->route('free-cv.index');

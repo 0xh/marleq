@@ -229,21 +229,21 @@
                     </div>
                 </div>
 
-                @if(Auth::user()->hasRole('coach|country-manager'))
-                    <div class="column is-half">
-                        <div class="columns is-multiline">
-                            @if(count($user->countries) > 0)
-                                <div class="column is-full">
-                                    <h3 class="subtitle">Countries:</h3>
-                                    <div class="tags">
-                                        @foreach($user->countries as $country)
-                                            <span class="tag is-marleq is-medium">
-                                                {{ $country->name }}
-                                            </span>
-                                        @endforeach
-                                    </div>
+                <div class="column is-half">
+                    <div class="columns is-multiline">
+                        @if(count($user->countries) > 0)
+                            <div class="column is-full">
+                                <h3 class="subtitle">Countries:</h3>
+                                <div class="tags">
+                                    @foreach($user->countries as $country)
+                                        <span class="tag is-marleq is-medium">
+                                            {{ $country->name }}
+                                        </span>
+                                    @endforeach
                                 </div>
-                            @endif
+                            </div>
+                        @endif
+                        @if(Auth::user()->hasRole('coach|country-manager'))
                             @if(count($user->specialties) > 0)
                                 <div class="column is-half">
                                     <div class="content">
@@ -272,9 +272,9 @@
                                     </div>
                                 </div>
                             @endif
-                        </div>
+                        @endif
                     </div>
-                @endif
+                </div>
             </div>
         </div>
     </section>
