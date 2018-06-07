@@ -51,11 +51,17 @@
                             </a>
                         </p>
                     @else
-                        <p class="m-t-35">
-                            <a class="button is-marleq is-medium is-inverted is-rounded" href="{{ route('free-cv.index')}}">
-                                <span>Let's Start!</span>
-                            </a>
-                        </p>
+                        @if(Auth::user()->profile_completion < 4)
+                            <b-tooltip label="Please complete your Profile information" type="is-danger" always>
+                                <button class="button">Let's Start!</button>
+                            </b-tooltip>
+                        @else
+                            <p class="m-t-35">
+                                <a class="button is-marleq is-medium is-inverted is-rounded" href="{{ route('free-cv.index')}}">
+                                    <span>Let's Start!</span>
+                                </a>
+                            </p>
+                        @endif
                     @endif
                 @else
                     <h2 class="subtitle">

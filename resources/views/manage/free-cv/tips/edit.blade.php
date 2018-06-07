@@ -38,7 +38,7 @@
                         <div class="select is-fullwidth">
                             <select name="type" required autofocus>
                                 @foreach($types as $type)
-                                    <option value="{{ $type->id }}" {{ $tip->type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
+                                    <option value="{{ $type->id }}" {{ $tip->tip_type_id == $type->id ? 'selected' : '' }}>{{ $type->name }}</option>
                                 @endforeach
                             </select>
                         </div>

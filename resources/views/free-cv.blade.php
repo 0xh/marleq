@@ -33,19 +33,19 @@
                                 <div class="m-t-10 has-text-weight-bold">
                                     @switch($resume->rating)
                                     @case(1)
-                                    You need to improve your CV
+                                    You have no professional experience. Consider doing an internship or a volunteering activity.
                                     @break
                                     @case(2)
-                                    Second case...
+                                    You need to improve your CV significantly.
                                     @break
                                     @case(3)
-                                    Third case...
+                                    Your CV is moderate. However, it does not stand out.
                                     @break
                                     @case(4)
-                                    Fourth case...
+                                    You need to improve your CV slightly.
                                     @break
                                     @case(5)
-                                    Congratulations, your CV is Great!
+                                    Congratulations, your CV is great!
                                     @break
                                     @default
                                     No Rating yet...
@@ -139,12 +139,13 @@
                             @endif
 
                             @foreach($resume->tips as $tip)
-                                    <h3><span class="has-text-marleq has-text-weight-bold">Tip #{{ $loop->index + 1 }}:</span> {{ $tip->content }}</h3>
-                                <div class="notification">
-                                    <small>
-                                        <strong>{{ $tip->tipType->name }}:</strong> {{ $tip->tipType->description }}
-                                    </small>
-                                </div>
+                                <h3><strong>{{ $tip->tipType->name }}:</strong> {{ $tip->content }}</h3>
+                                <p class="notification is-light">
+                                    <span class="has-text-marleq has-text-weight-bold">Tip #{{ $loop->index + 1 }}:</span>
+                                    <span class="has-text-weight-light">
+                                        {{ $tip->tipType->description }}
+                                    </span>
+                                </p>
                             @endforeach
 
                         </div>
