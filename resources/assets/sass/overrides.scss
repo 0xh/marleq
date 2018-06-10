@@ -48,10 +48,13 @@ $family-primary: $family-serif;
 // 4. Setup your Custom Colors
 $marleq: #00a7e1;
 $marleq-invert: findColorInvert($marleq);
+$marleq-dark: #4a4d56;
+$marleq-dark-invert: findColorInvert($marleq-dark);
 
 // Add new color variables to the color map.
 @import "node_modules/bulma/sass/utilities/derived-variables";
 $addColors: (
-        "marleq":($marleq, $marleq-invert)
+        "marleq":($marleq, $marleq-invert),
+        "marleq-dark":($marleq-dark, $marleq-dark-invert)
 );
 $colors: map-merge($colors, $addColors);

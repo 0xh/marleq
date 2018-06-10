@@ -34,17 +34,23 @@
                 <div class="field is-grouped">
                     @if (Auth::guest())
                         <p class="control">
-                            <a class="button is-marleq" href="{{ route('register-coach')}}">
+                            <a class="button is-marleq-dark" href="{{ route('register-coach')}}">
                                 <span class="icon">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-address-card"></i>
                                 </span>
                                 <span>Become a Coach</span>
                             </a>
-                            <a class="button is-success" href="{{ route('login')}}">
+                            <a class="button is-marleq" href="{{ route('register')}}">
+                                <span class="icon">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                <span>Sign up</span>
+                            </a>
+                            <a class="button is-light" href="{{ route('login')}}">
                                 <span class="icon">
                                     <i class="fa fa-sign-in"></i>
                                 </span>
-                                <span>Sign in</span>
+                                <span>Login</span>
                             </a>
                         </p>
                     @endif
