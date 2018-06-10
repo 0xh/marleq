@@ -94,6 +94,10 @@ class ResumeController extends Controller
             }
 
             $user = User::findOrFail($resume->user_id);
+
+            $user->free_cv = 2;
+            $user->save();
+
             $user->notify(new FreeCVResults($user));
 
             Session::flash('success', 'Resume has been successfully edited');

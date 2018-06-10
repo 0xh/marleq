@@ -23,6 +23,7 @@
                                 <div class="columns is-multiline">
                                     <div class="column is-half">
                                         <div class="field">
+                                            <label class="label">Profile picture:</label>
                                             <figure class="media-left">
                                                 <p class="image" style="overflow: hidden; width: 193.7px;">
                                                     <img src="{{ URL::asset($user->picture_crop) }}" alt="" style="image-rendering: crisp-edges;">
@@ -48,8 +49,8 @@
 
                                         <input type="hidden" name="picture_crop" :value="cropped" v-if="isCropped">
 
-                                        <div class="field">
-                                            <label class="label"><small>First name:</small></label>
+                                        <div class="field m-t-30">
+                                            <label class="label"><span class="has-text-marleq">*</span>First name:</label>
                                             <div class="control has-icons-left has-icons-right">
                                                 <input id="name" type="text" class="input{{ $errors->has('name') ? ' is-danger' : '' }}"
                                                        name="name" value="{{ old('name', $user->name) }}" placeholder="First name input" required autofocus>
@@ -69,8 +70,8 @@
                                             @endif
                                         </div>
 
-                                        <div class="field">
-                                            <label class="label"><small>Last name:</small></label>
+                                        <div class="field m-t-20">
+                                            <label class="label"><span class="has-text-marleq">*</span>Last name:</label>
                                             <div class="control has-icons-left has-icons-right">
                                                 <input id="surname" type="text" class="input{{ $errors->has('surname') ? ' is-danger' : '' }}"
                                                        name="surname" value="{{ old('surname', $user->surname) }}" placeholder="Last name input" required autofocus>
@@ -90,29 +91,8 @@
                                             @endif
                                         </div>
 
-                                        <div class="field">
-                                            <label class="label"><small>Alias:</small></label>
-                                            <div class="control has-icons-left has-icons-right">
-                                                <input id="alias" type="text" class="input{{ $errors->has('alias') ? ' is-danger' : '' }}"
-                                                       name="alias" value="{{ old('alias', $user->alias) }}" placeholder="Name input" required autofocus>
-                                                <span class="icon is-small is-left">
-                                                    <i class="fa fa-user"></i>
-                                                </span>
-                                                @if ($errors->has('alias'))
-                                                    <span class="icon is-small is-right">
-                                                        <i class="fa fa-exclamation-triangle"></i>
-                                                    </span>
-                                                @endif
-                                            </div>
-                                            @if ($errors->has('alias'))
-                                                <p class="help is-danger">
-                                                    <strong>{{ $errors->first('alias') }}</strong>
-                                                </p>
-                                            @endif
-                                        </div>
-
-                                        <div class="field">
-                                            <label class="label"><small>Email:</small></label>
+                                        <div class="field m-t-20">
+                                            <label class="label"><span class="has-text-marleq">*</span>Email:</label>
                                             <div class="control has-icons-left has-icons-right">
                                                 <input id="email" type="email" class="input{{ $errors->has('email') ? ' is-danger' : '' }}"
                                                        name="email" value="{{ $user->email }}" placeholder="Email input" required autofocus>
@@ -132,8 +112,32 @@
                                             @endif
                                         </div>
 
-                                        <div class="field">
-                                            <label class="label"><small>Country:</small></label>
+                                        <div class="field m-t-20">
+                                            <label class="label">URL:</label>
+                                            <div class="control has-icons-left has-icons-right">
+                                                <input id="alias" type="text" class="input{{ $errors->has('alias') ? ' is-danger' : '' }}"
+                                                       name="alias" value="{{ old('alias', $user->alias) }}" placeholder="Name input" autofocus>
+                                                <span class="icon is-small is-left">
+                                                    <i class="fa fa-user"></i>
+                                                </span>
+                                                @if ($errors->has('alias'))
+                                                    <span class="icon is-small is-right">
+                                                        <i class="fa fa-exclamation-triangle"></i>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                            @if ($errors->has('alias'))
+                                                <p class="help is-danger">
+                                                    <strong>{{ $errors->first('alias') }}</strong>
+                                                </p>
+                                            @endif
+                                            <p class="help is-italic">
+                                                Your custom URL must contain 5-30 letters or numbers. Please do not use spaces, symbols, or special characters.
+                                            </p>
+                                        </div>
+
+                                        <div class="field m-t-20">
+                                            <label class="label"><span class="has-text-marleq">*</span>Country:</label>
                                             <div class="control has-icons-left">
                                                 <div class="select">
                                                     <select name="country" required autofocus>
@@ -151,10 +155,13 @@
                                                     <strong>{{ $errors->first('country') }}</strong>
                                                 </p>
                                             @endif
+                                            <p class="help is-italic">
+                                                The country in which you live and work
+                                            </p>
                                         </div>
                                         @if(Auth::user()->hasRole('coach|country-manager'))
-                                            <div class="field">
-                                                <label class="label"><small>Level:</small></label>
+                                            <div class="field m-t-20">
+                                                <label class="label"><span class="has-text-marleq">*</span>Level:</label>
                                                 <div class="control has-icons-left">
                                                     <div class="select">
                                                         <select name="level" required autofocus>
@@ -176,8 +183,8 @@
                                             </div>
                                         @endif
 
-                                        <div class="field">
-                                            <label class="label"><small>Short biography:</small></label>
+                                        <div class="field m-t-20">
+                                            <label class="label">Short biography:</label>
                                             <div class="control has-icons-left has-icons-right">
                                                 <textarea name="biography" class="form-control my-editor{{ $errors->has('biography') ? ' is-danger' : '' }}">{!! old('biography', $user->biography) !!}</textarea>
                                                 @if ($errors->has('biography'))
@@ -193,8 +200,9 @@
                                             @endif
                                         </div>
 
-                                        <div class="field">
-                                            <div class="file has-name m-t-30 m-b-30">
+                                        <div class="field m-t-30">
+                                            <h1 class="subtitle m-t-40 m-b-10">Your CV:</h1>
+                                            <div class="file has-name">
                                                 <label class="file-label">
                                                     <input class="file-input" type="file" ref="doc" name="document" @change="onDocumentChange">
                                                     <span class="file-cta">
@@ -221,13 +229,15 @@
                                                             </small>
                                                         </span>
                                                     @endif
-
                                                 </label>
                                             </div>
+                                            <p class="help is-italic">
+                                                Max size of your CV should be 2MB
+                                            </p>
                                         </div>
 
                                         <div class="field">
-                                            <h1 class="subtitle m-t-20 m-b-10">Languages:</h1>
+                                            <h1 class="subtitle m-t-40 m-b-10"><span class="has-text-marleq">*</span>Languages:</h1>
                                             <b-field>
                                                 <b-taginput
                                                         v-model="langtags"
@@ -273,7 +283,7 @@
 
 
                                             <div class="field">
-                                                <h1 class="subtitle m-t-20 m-b-10">Countries:</h1>
+                                                <h1 class="subtitle m-t-20 m-b-10"><span class="has-text-marleq">*</span>Countries:</h1>
                                                 <b-field>
                                                     <b-taginput
                                                             v-model="tags"
@@ -294,13 +304,16 @@
                                                         <strong>{{ $errors->first('countries') }}</strong>
                                                     </p>
                                                 @endif
+                                                <p class="help is-italic">
+                                                    Countries in which you would like to work
+                                                </p>
                                             </div>
 
                                             <input type="hidden" name="countries" :value="countries">
 
                                         @if(Auth::user()->hasRole('coach|country-manager'))
                                             <div class="field">
-                                                <h1 class="subtitle m-t-20 m-b-10">Services:</h1>
+                                                <h1 class="subtitle m-t-20 m-b-10"><span class="has-text-marleq">*</span>Services:</h1>
                                                 <ul class="specialty-col">
                                                     @foreach($services as $service)
                                                         <li><b-checkbox class="m-r-10" native-value="{{ $service->id }}" v-model="services">{{ $service->name }}</b-checkbox></li>
@@ -311,7 +324,7 @@
                                             <input type="hidden" name="services" :value="services">
 
                                             <div class="field">
-                                                <h1 class="subtitle m-t-20 m-b-10">Specialties:</h1>
+                                                <h1 class="subtitle m-t-20 m-b-10"><span class="has-text-marleq">*</span>Specialties:</h1>
                                                 <ul class="specialty-col">
                                                     @foreach($specialties as $specialty)
                                                         <li><b-checkbox class="m-r-10" native-value="{{ $specialty->id }}" v-model="specialties">{{ $specialty->name }}</b-checkbox></li>
@@ -349,10 +362,7 @@
                                         <b-radio name="passwordOptions" type="is-marleq" native-value="keep" v-model="passwordOptions">Do Not Change Password</b-radio>
                                     </div>
                                     <div class="field">
-                                        <b-radio name="passwordOptions" type="is-marleq" native-value="auto" v-model="passwordOptions">Auto-Generate Password</b-radio>
-                                    </div>
-                                    <div class="field">
-                                        <b-radio name="passwordOptions" type="is-marleq" native-value="manual" v-model="passwordOptions">Manually Set New Password</b-radio>
+                                        <b-radio name="passwordOptions" type="is-marleq" native-value="manual" v-model="passwordOptions">Set New Password</b-radio>
                                     </div>
                                 </div>
 

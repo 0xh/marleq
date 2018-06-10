@@ -182,9 +182,21 @@ class HomeController extends Controller
         if(!Auth::user()) {
             return redirect()->route('home');
         } else {
-            $resume = Resume::where('user_id', Auth::user()->id)->first();
-            $services = Service::find([1, 2, 4, 12]);
-            return view('free-cv', compact('resume', 'services'));
+            $user = Auth::user();
+
+            if($user->profile_completion >= 4) {
+                $resume = Resume::where('user_id', Auth::user()->id)->first();
+                $services = Service::find([1, 2, 4, 12]);
+
+                if($user->free_cv == 2) {
+                    $user->free_cv = 3;
+                    $user->save();
+                }
+
+                return view('free-cv', compact('resume', 'services'));
+            } else {
+                return redirect()->route('home');
+            }
         }
     }
 

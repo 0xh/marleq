@@ -57,15 +57,11 @@
 
         <!-- Hero footer: will stick at the bottom -->
         <div class="hero-foot">
-            <nav class="tabs is-boxed is-fullwidth">
+            <nav class="tabs is-boxed">
                 <div class="container">
                     <ul>
                         <li class="is-active"><a href="{{ route('user') }}">Overview</a></li>
-                        <li><a>Reservations</a></li>
-                        <li><a>Reviews</a></li>
                         <li><a>Testimonials</a></li>
-                        <li><a>Billing</a></li>
-                        <li><a>Settings</a></li>
                     </ul>
                 </div>
             </nav>

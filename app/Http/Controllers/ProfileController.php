@@ -77,7 +77,9 @@ class ProfileController extends Controller
         if($request->alias) {
             $request['alias'] = $this->stringURLSafe($request->alias);
         } else {
-            $request['alias'] = $this->stringURLSafe(str_replace('.' , '-',substr($request['email'], 0, strpos($request['email'], '@'))) . '-' . Hash::make($request['email']));
+            $request['alias'] = $this->stringURLSafe(
+                str_replace('.' , '-',substr($request['email'], 0, strpos($request['email'], '@'))) . '-' . str_random(20)
+            );
         }
 
         $this->validate($request, [
@@ -140,7 +142,7 @@ class ProfileController extends Controller
             $user->password = Hash::make($request->password);
         }
 
-        $user->profile_completion = $this->projectCompletion($request, $user->picture_crop, $user->document, $user->status);
+        $user->profile_completion = $this->profileCompletion($request, $user->picture_crop, $user->document, $user->status);
 
         if($user->save()) {
             DB::transaction(function () use ($user, $request) {
@@ -173,18 +175,29 @@ class ProfileController extends Controller
      * @param  integer $status
      * @return integer
      */
-    public function projectCompletion(Request $request, $picture_crop, $document, $status)
+    public function profileCompletion(Request $request, $picture_crop, $document, $status)
     {
-        if(empty($request->biography)) return 0;
-        if(empty($request->picture_crop) and empty($picture_crop)) return 1;
+        $user = Auth::user();
+
+        if(!$user->hasRole('user')) {
+            if(empty($request->biography)) return 0;
+            if(empty($request->picture_crop) and empty($picture_crop)) return 1;
+        }
+
         if(empty($request->language)) return 2;
-        if(empty($request->document) and empty($document)) return 3;
-        if(Auth::user()->hasRole('coach|country-manager')) {
+
+        if(!$user->hasRole('user')) {
+            if (empty($request->document) and empty($document)) return 3;
+        }
+
+        if($user->hasRole('coach|country-manager')) {
             if(empty($request->specialties) or empty($request->services) or empty($request->countries) or $request->level == -1) return 4;
         }
-        if(Auth::user()->hasRole('user')) {
+
+        if($user->hasRole('user')) {
             return 4;
         }
+
         if($status == 0) return 5;
 
         return 6;

@@ -44,12 +44,20 @@
                     Upload your CV and you will receive an insightful feedback in order to improve it
                 </h2>
                 @if (Auth::user())
-                    @if(Auth::user()->free_cv == 1)
-                        <p class="m-t-35">
-                            <a class="button is-marleq is-medium is-inverted is-rounded" href="{{ route('free-cv.index')}}">
-                                <span>View Results</span>
-                            </a>
-                        </p>
+                    @if(Auth::user()->free_cv >= 1)
+                        @if(Auth::user()->free_cv == 1)
+                            <p class="m-t-35">
+                                <a class="button is-marleq is-medium is-inverted is-rounded" href="{{ route('free-cv.index')}}">
+                                    <span>Your CV is being reviewed</span>
+                                </a>
+                            </p>
+                        @else
+                            <p class="m-t-35">
+                                <a class="button is-marleq is-medium is-inverted is-rounded" href="{{ route('free-cv.index')}}">
+                                    <span>View Results</span>
+                                </a>
+                            </p>
+                        @endif
                     @else
                         @if(Auth::user()->profile_completion < 4)
                             <b-tooltip label="Please complete your Profile information" type="is-danger" always>

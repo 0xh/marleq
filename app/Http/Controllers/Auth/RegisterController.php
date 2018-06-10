@@ -65,7 +65,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $alias = $this->stringURLSafe(substr($data['email'], 0, strpos($data['email'], '@')) . '-' . Hash::make($data['email']));
+        $alias = $this->stringURLSafe(
+            str_replace('.' , '-',substr($data['email'], 0, strpos($data['email'], '@'))) . '-' . str_random(20)
+        );
 
         if(!empty($data['status']))
             $status = $data['status'];

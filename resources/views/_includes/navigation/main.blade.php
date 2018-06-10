@@ -56,11 +56,28 @@
                     @endif
                     @if (Auth::user())
                         <div class="navbar-item has-dropdown is-hoverable">
-                            <a class="navbar-link" href="#">
-                                {{ Auth::user()->name }} {{ Auth::user()->surname }}
-                            </a>
+                            @if(Auth::user()->free_cv == 2)
+                                <b-tooltip label="Your CV review is ready!" type="is-success" position="is-left" always>
+                                    <a class="navbar-link">
+                                        {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                                    </a>
+                                </b-tooltip>
+                            @else
+                                <a class="navbar-link">
+                                    {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                                </a>
+                            @endif
+
                             <div class="navbar-dropdown is-right">
-                                @if (Auth::user()->hasRole('user|coach|country-manager'))
+                                @if(Auth::user()->hasRole('user|coach|country-manager'))
+                                    @if(Auth::user()->free_cv == 2)
+                                        <a class="navbar-item" href="{{ route('free-cv.index') }}">
+                                            <span class="icon">
+                                                <i class="fa fa-clipboard"></i>
+                                            </span>
+                                            <span>CV Review</span>
+                                        </a>
+                                    @endif
                                     <a class="navbar-item" href="{{ route('user') }}">
                                         <span class="icon">
                                             <i class="fa fa-user-circle"></i>
@@ -68,7 +85,7 @@
                                         <span>Profile</span>
                                     </a>
                                 @endif
-                                @if (Auth::user()->hasRole('superadministrator|administrator'))
+                                @if(Auth::user()->hasRole('superadministrator|administrator'))
                                     <a class="navbar-item" href="{{ route('users.show', Auth::user()->id) }}">
                                         <span class="icon">
                                             <i class="fa fa-user-circle"></i>

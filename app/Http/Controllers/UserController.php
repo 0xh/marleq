@@ -134,7 +134,9 @@ class UserController extends Controller
         if($request->alias) {
             $request['alias'] = $this->stringURLSafe($request->alias);
         } else {
-            $request['alias'] = str_replace('.' , '-',substr($request['email'], 0, strpos($request['email'], '@'))) . '-' . Hash::make($request['email']);
+            $request['alias'] = $this->stringURLSafe(
+                str_replace('.' , '-',substr($request['email'], 0, strpos($request['email'], '@'))) . '-' . str_random(20)
+            );
         }
 
         $this->validate($request, [
