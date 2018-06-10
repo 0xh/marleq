@@ -134,7 +134,7 @@
                                     </h3>
                                     <p><strong>Thanks for trusting us with your CV!</strong>
                                     </p>
-                                    <p>You’ll soon be receiving feedback on layout, language and how well your resume communicates your skills and expertise.</p>
+                                    <p>You’ll soon be receiving feedback on layout, language and how well <br/> your resume communicates your skills and expertise.</p>
                                 </div>
                             @endif
 
@@ -154,6 +154,69 @@
             </div>
         </div>
     </section>
+
+    <section class="hero hero-has-background is-marleq is-narrow">
+        <!-- Hero head: will stick at the top -->
+        <div class="hero-head">
+            <div class="container">
+                <nav class="level m-t-10">
+                    <!-- Left side -->
+                    <div class="level-left">
+
+                    </div>
+                    <!-- Right side -->
+                    <div class="level-right">
+
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+        @if(!empty($coach))
+            <!-- Hero content: will be in the middle -->
+            <div class="hero-body">
+                <div class="container has-text-left-desktop has-text-centered-mobile">
+                    <div class="columns is-centered">
+                        <div class="column is-full-mobile is-half-tablet is-two-thirds-desktop">
+                            <div class="columns">
+                                @if($coach->picture_crop)
+                                    <div class="column is-narrow">
+                                        <img src="{{ URL::asset($coach->picture_crop) }}" alt="" class="is-grayscale m-b-10" style="overflow: hidden; width: 120px; border-radius: 15px;">
+                                    </div>
+                                @endif
+                                <div class="column">
+                                    <h1 class="title">
+                                        <a class="has-text-white" href="{{route('coach-show', $coach->alias)}}">
+                                            {{ $coach->name }} {{ $coach->surname }}
+                                        </a>
+                                    </h1>
+                                    @if($coach->hasRole('coach|country-manager'))
+                                        <h2 class="subtitle">
+                                            @if($coach->level) {{ $coach->level->name }} @endif
+                                            @if($coach->hasRole('country-manager')) @if($coach->level) & @endif Country Manager @endif from {{ $coach->country }}
+                                        </h2>
+                                    @endif
+                                    <div class="tags m-t-20">
+                                        @foreach($coach->countries as $country)
+                                            <span class="tag is-small is-white has-text-blue">{{ $country->name }}</span>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="column has-text-right-desktop has-text-centered-mobile is-narrow">
+                                    <a href="{{route('coach-show', $coach->alias)}}" class="button is-medium is-marleq is-inverted m-t-35">
+                                        <span class="icon">
+                                            <i class="fa fa-calendar-check-o"></i>
+                                        </span>
+                                        <span>Book Now</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 
     <section class="hero hero-services is-narrow is-light">
         <div class="hero-body">

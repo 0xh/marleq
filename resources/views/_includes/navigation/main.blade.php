@@ -70,7 +70,7 @@
 
                             <div class="navbar-dropdown is-right">
                                 @if(Auth::user()->hasRole('user|coach|country-manager'))
-                                    @if(Auth::user()->free_cv == 2)
+                                    @if(Auth::user()->free_cv >= 2)
                                         <a class="navbar-item" href="{{ route('free-cv.index') }}">
                                             <span class="icon">
                                                 <i class="fa fa-clipboard"></i>

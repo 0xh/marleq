@@ -192,8 +192,9 @@ class HomeController extends Controller
                     $user->free_cv = 3;
                     $user->save();
                 }
+                if(!empty($resume->coach_id)) $coach = User::findOrFail($resume->coach_id);
 
-                return view('free-cv', compact('resume', 'services'));
+                return view('free-cv', compact('resume', 'services', 'coach'));
             } else {
                 return redirect()->route('home');
             }
