@@ -10,6 +10,10 @@
                             <h1 class="title m-b-20">
                                 Your CV Review
                             </h1>
+                        @else
+                            <h1 class="title m-b-50">
+                                FREE CV REVIEW
+                            </h1>
                         @endif
                     @else
                         <h1 class="title m-b-50">
@@ -33,25 +37,30 @@
                                 <div class="m-t-10 has-text-weight-bold">
                                     @switch($resume->rating)
                                     @case(1)
-                                    You have no professional experience. Consider doing an internship or a volunteering activity.
-                                    @break
+                                        You have no professional experience. Consider doing an internship or a volunteering activity.
+                                        @break
                                     @case(2)
-                                    You need to improve your CV significantly.
-                                    @break
+                                        You need to improve your CV significantly.
+                                        @break
                                     @case(3)
-                                    Your CV is moderate. However, it does not stand out.
-                                    @break
+                                        Your CV is moderate. However, it does not stand out.
+                                        @break
                                     @case(4)
-                                    You need to improve your CV slightly.
-                                    @break
+                                        You need to improve your CV slightly.
+                                        @break
                                     @case(5)
-                                    Congratulations, your CV is great!
-                                    @break
+                                        Congratulations, your CV is great!
+                                        @break
                                     @default
-                                    No Rating yet...
+                                        No Rating yet...
                                     @endswitch
                                 </div>
                             </div>
+                        @else
+                            <h2 class="subtitle">
+                                Are you looking for an internship, a new job opportunity or a career progress?<br/>
+                                Our experienced career coaches will help your CV stands out.
+                            </h2>
                         @endif
                     @else
                         <h2 class="subtitle">
@@ -128,7 +137,7 @@
                     @if($resume)
                         <div class="content">
                             @if($resume->status == 0)
-                                <div class="box has-text-centered">
+                                <div class=" has-text-centered">
                                     <h3 class="title has-text-marleq is-uppercase m-b-10" style="font-weight: 900;">
                                          Your CV is being<br/>reviewed
                                     </h3>
@@ -155,24 +164,24 @@
         </div>
     </section>
 
-    <section class="hero hero-has-background is-marleq is-narrow">
-        <!-- Hero head: will stick at the top -->
-        <div class="hero-head">
-            <div class="container">
-                <nav class="level m-t-10">
-                    <!-- Left side -->
-                    <div class="level-left">
+    @if(!empty($coach))
+        <section class="hero hero-has-background is-marleq is-narrow">
+            <!-- Hero head: will stick at the top -->
+            <div class="hero-head">
+                <div class="container">
+                    <nav class="level m-t-10">
+                        <!-- Left side -->
+                        <div class="level-left">
 
-                    </div>
-                    <!-- Right side -->
-                    <div class="level-right">
+                        </div>
+                        <!-- Right side -->
+                        <div class="level-right">
 
-                    </div>
-                </nav>
+                        </div>
+                    </nav>
+                </div>
             </div>
-        </div>
 
-        @if(!empty($coach))
             <!-- Hero content: will be in the middle -->
             <div class="hero-body">
                 <div class="container has-text-left-desktop has-text-centered-mobile">
