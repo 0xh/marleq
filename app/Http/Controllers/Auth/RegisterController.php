@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Notifications\UserWelcome;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -83,6 +84,8 @@ class RegisterController extends Controller
         if($data['role'] == 'user') $user->attachRole('user');
         if($data['role'] == 'coach') $user->attachRole('coach');
         if($data['role'] == 'country-manager') $user->attachRole('country-manager');
+
+        $user->notify(new UserWelcome($user));
 
         return $user;
     }

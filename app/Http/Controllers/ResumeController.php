@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\FreeCVResults;
 use App\Resume;
 use App\TipType;
+use App\User;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
@@ -90,6 +92,10 @@ class ResumeController extends Controller
                     $resume->tips()->sync(explode(',', $request->tips));
                 }, 5);
             }
+
+            $user = User::findOrFail($resume->user_id);
+            $user->notify(new FreeCVResults($user));
+
             Session::flash('success', 'Resume has been successfully edited');
             return redirect()->route('resumes.show', $resume->id);
         } else {

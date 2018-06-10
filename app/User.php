@@ -79,4 +79,15 @@ class User extends Authenticatable
             return 'https://hooks.slack.com/services/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';
         }
     }
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @param  \Illuminate\Notifications\Notification  $notification
+     * @return string
+     */
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
 }

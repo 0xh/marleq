@@ -53,7 +53,9 @@
                     @else
                         @if(Auth::user()->profile_completion < 4)
                             <b-tooltip label="Please complete your Profile information" type="is-danger" always>
-                                <button class="button">Let's Start!</button>
+                                <a class="button is-marleq is-medium is-inverted is-rounded" disabled>
+                                    <span>Let's Start!</span>
+                                </a>
                             </b-tooltip>
                         @else
                             <p class="m-t-35">
@@ -385,13 +387,13 @@
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Countries</p>
-                            <p class="title">20+</p>
+                            <p class="title">30+</p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Events attendants</p>
-                            <p class="title">1,000+</p>
+                            <p class="title">1,500+</p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">
@@ -471,7 +473,7 @@
                                 </a>
                             </div>
                             <div class="column">
-                                <a href="https://vimeo.com/marleq">
+                                <a href="https://vimeo.com/marleq" target="_blank">
                                     <span class="icon is-large">
                                         <i class="fa fa-vimeo fa-3x has-text-white"></i>
                                     </span>
