@@ -77,7 +77,6 @@
                         @csrf
 
                         <div class="field">
-                            <label class="label"><small>Testimonial:</small></label>
                             <div class="control has-icons-left has-icons-right">
                                 <textarea name="testimonial_content" class="form-control my-editor{{ $errors->has('testimonial_content') ? ' is-danger' : '' }}">{!! old('testimonial_content') !!}</textarea>
                                 @if ($errors->has('testimonial_content'))
