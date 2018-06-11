@@ -61,7 +61,7 @@
                 <div class="container">
                     <ul>
                         <li class="is-active"><a href="{{ route('user') }}">Overview</a></li>
-                        <li><a>Testimonials</a></li>
+                        <li><a href="{{ route('testimonial.index') }}">Testimonials</a></li>
                     </ul>
                 </div>
             </nav>

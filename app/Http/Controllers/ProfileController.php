@@ -8,6 +8,7 @@ use App\Level;
 use App\Notifications\UserRegistered;
 use App\Service;
 use App\Specialty;
+use App\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\User;
@@ -33,6 +34,47 @@ class ProfileController extends Controller
         $certification = collect(explode(';', $user->certification));
 
         return view('user.profile.index', compact('user', 'certification'));
+    }
+
+    /**
+     * Show the User Testimonials Index Page with Form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function testimonials()
+    {
+        $user = Auth::user();
+
+        $testimonials = Testimonial::where('user_id', $user->id)->get();
+
+        return view('user.profile.testimonials', compact('user', 'testimonials'));
+    }
+
+    /**
+     * Store a newly created Testimonial in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function testimonialStore(Request $request)
+    {
+        $this->validate($request, [
+            'testimonial_content' => 'required|string'
+        ]);
+
+        $testimonial = new Testimonial();
+        $testimonial->content = $request->testimonial_content;
+        $testimonial->featured = 0;
+        $testimonial->user_id = Auth::user()->id;
+        $testimonial->reviewed = 0;
+
+        if($testimonial->save()) {
+            Session::flash('success', 'Your testimonial has been successfully created');
+            return redirect()->route('testimonial.index', $testimonial->id);
+        } else {
+            Session::flash('danger', 'Sorry, a problem occurred while creating this testimonial.');
+            return redirect()->route('testimonial.index');
+        }
     }
 
     /**

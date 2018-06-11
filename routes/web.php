@@ -31,7 +31,9 @@ Route::post('/free-cv', ['as' => 'free-cv.store', 'uses' => 'HomeController@free
 
 Route::group(['prefix' => '/user', 'middleware' => 'role:country-manager|coach|user'], function () {
     Route::get('/', ['as' => 'user', 'uses' => 'ProfileController@index']);
-    Route::resource('/profile', 'ProfileController')->only(['index', 'edit', 'update']);;
+    Route::resource('/profile', 'ProfileController')->only(['index', 'edit', 'update']);
+    Route::get('/testimonials', ['as' => 'testimonial.index', 'uses' => 'ProfileController@testimonials']);
+    Route::post('/testimonials', ['as' => 'testimonial.store', 'uses' => 'ProfileController@testimonialStore']);
 });
 
 Auth::routes();
