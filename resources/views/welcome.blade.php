@@ -129,7 +129,7 @@
                 <div class="has-text-centered">
                     <h1 class="homepage-mod-h1">Our Services</h1>
                 </div>
-                <div class="columns is-multiline is-variable bd-klmn-columns is-7 is-narrow has-text-centered m-b-30">
+                <div class="columns is-multiline is-variable bd-klmn-columns is-narrow has-text-centered m-b-30">
                     @foreach($featuredServices as $service)
                         <div class="column is-one-quarter">
                             <div>
@@ -310,7 +310,7 @@
                 <div class="has-text-centered">
                     <h1 class="homepage-mod-h1 m-b-50 has-text-white">Our Approach</h1>
                 </div>
-                <div class="columns is-centered m-b-10 has-text-centered bd-klmn-columns is-variable is-8">
+                <div class="columns is-centered m-b-10 has-text-centered bd-klmn-columns is-variable">
                     <div class="column">
                         <img src="{{ url('/../images/marleq-our-approach-professional.svg') }}" alt="" style="width:100px;">
                         <h2 class="homepage-mod-h2 has-text-white is-3 p-b-10">Professional</h2>
@@ -458,7 +458,7 @@
                 </div>
                 <div class="columns is-centered is-mobile m-b-10">
                     <div class="column is-centered is-full-mobile is-half-tablet is-one-third-desktop">
-                        <div class="columns has-text-centered is-mobile">
+                        <div class="columns has-text-centered is-multiline">
                             <div class="column">
                                 <a href="https://www.facebook.com/MARLEQcoach/" target="_blank">
                                     <span class="icon is-large">

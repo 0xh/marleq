@@ -23,7 +23,7 @@
         <section class="hero hero-footer is-narrow is-blue">
             <div class="hero-body">
                 <div class="container p-t-10">
-                    <div class="columns is-centered is-multiline is-variable bd-klmn-columns is-8">
+                    <div class="columns is-centered is-multiline is-variable bd-klmn-columns">
                         <div class="column is-4">
                             <img src="{{ url('/../images/marleq-logo-white.svg') }}" alt="">
                             <p class="p-l-5 p-t-10">Copyright 2018. MARLEQ Montenegro</p>

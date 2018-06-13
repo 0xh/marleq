@@ -104,7 +104,7 @@
             <div class="has-text-centered">
                 <h1 class="homepage-mod-h1">Services</h1>
             </div>
-            <div class="columns is-multiline is-variable bd-klmn-columns is-7 is-narrow has-text-centered m-b-30">
+            <div class="columns is-multiline is-variable bd-klmn-columns is-narrow has-text-centered m-b-30">
                 @foreach($featuredServices as $service)
                     <div class="column is-one-quarter">
                         <div>
