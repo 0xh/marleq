@@ -62,6 +62,9 @@
                     <ul>
                         <li class="is-active"><a href="{{ route('user') }}">Overview</a></li>
                         <li><a href="{{ route('testimonial.index') }}">Testimonials</a></li>
+                        @if(Auth::user()->hasRole('coach|country-manager'))
+                            <li><a href="{{ route('cv-requests.index') }}">Free CV Requests</a></li>
+                        @endif
                     </ul>
                 </div>
             </nav>
@@ -102,11 +105,11 @@
                                 <a hef=#" class="has-text-dark">
                                   <span class="steps-marker @if($user->profile_completion == 1) is-warning @endif">
                                     <span class="icon">
-                                      <i class="fa fa-image"></i>
+                                      <i class="fa fa-globe"></i>
                                     </span>
                                   </span>
                                     <div class="steps-content">
-                                        <p class="heading">Profile Picture</p>
+                                        <p class="heading">Countries</p>
                                     </div>
                                 </a>
                             </li>

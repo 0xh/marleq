@@ -61,7 +61,7 @@
                     @else
                         @if(Auth::user()->profile_completion < 4)
                             <b-tooltip label="Please complete your Profile information" type="is-danger" always>
-                                <a class="button is-marleq is-medium is-inverted is-rounded" disabled>
+                                <a class="button is-marleq is-medium is-inverted is-rounded" href="{{ route('free-cv.index')}}">
                                     <span>Let's Start!</span>
                                 </a>
                             </b-tooltip>
@@ -74,21 +74,11 @@
                         @endif
                     @endif
                 @else
-                    <h2 class="subtitle">
-                        <a href="{{ route('register')}}">
-                        <span class="icon">
-                            <i class="fa fa-user"></i>
-                        </span>
-                            <span class="has-text-weight-bold has-text-co">Sign Up Now</span>
+                    <p class="m-t-35">
+                        <a class="button is-marleq is-medium is-inverted is-rounded" href="{{ route('free-cv.index')}}">
+                            <span>Let's Start!</span>
                         </a>
-                        <span> or</span>
-                        <a href="{{ route('login')}}">
-                            <span class="has-text-weight-bold has-text-co">Login</span>
-                            <span class="icon">
-                                <i class="fa fa-angle-double-right"></i>
-                            </span>
-                        </a>
-                    </h2>
+                    </p>
                 @endif
             </div>
         </div>

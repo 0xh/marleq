@@ -6,9 +6,12 @@ use App\Country;
 use App\Language;
 use App\Level;
 use App\Notifications\UserRegistered;
+use App\Notifications\FreeCVResults;
+use App\Resume;
 use App\Service;
 use App\Specialty;
 use App\Testimonial;
+use App\TipType;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\User;
@@ -74,6 +77,70 @@ class ProfileController extends Controller
         } else {
             Session::flash('danger', 'Sorry, a problem occurred while creating this testimonial.');
             return redirect()->route('testimonial.index');
+        }
+    }
+
+    /**
+     * Show Users Free CV Requests Index Page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function freeCVRequests()
+    {
+        $user = Auth::user();
+        $resumes = Resume::where('status', 0)->orWhere('coach_id', $user->id)->get();
+
+        return view('user.profile.cv-requests', compact('user', 'resumes'));
+    }
+
+    /**
+     * Show the form for editing the Free CV Request.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function freeCVEdit($id)
+    {
+        $user = Auth::user();
+        $resume = Resume::findOrFail($id);
+        $tipTypes = TipType::all();
+
+        return view('user.profile.cv-request-edit', compact('user', 'resume', 'tipTypes'));
+    }
+
+    /**
+     * Update the specified Free CV Request in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function freeCVUpdate(Request $request, $id)
+    {
+        $resume = Resume::findOrFail($id);
+
+        $resume->coach_id = Auth::user()->id;
+        $resume->status = 1;
+        $resume->rating = $request->rating;
+
+        if($resume->save()){
+            if($request->tips) {
+                DB::transaction(function () use ($resume, $request) {
+                    $resume->tips()->sync(explode(',', $request->tips));
+                }, 5);
+            }
+
+            $user = User::findOrFail($resume->user_id);
+
+            $user->free_cv = 2;
+            $user->save();
+
+            $user->notify(new FreeCVResults($user));
+
+            Session::flash('success', 'Resume has been successfully edited');
+            return redirect()->route('cv-requests.index');
+        } else {
+            return redirect()->route('cv-requests.edit', $resume->id);
         }
     }
 
@@ -192,8 +259,15 @@ class ProfileController extends Controller
                     if ($request->specialties) $user->specialties()->sync(explode(',', $request->specialties));
                     if ($request->services) $user->services()->sync(explode(',', $request->services));
                 }
-                if ($request->countries) $user->countries()->sync(explode(',', $request->countries));
-                if($request->language) $user->languages()->sync(explode(',', $request->language));
+                if($request->countries)
+                    $user->countries()->sync(explode(',', $request->countries));
+                else
+                    $user->countries()->detach();
+
+                if($request->language)
+                    $user->languages()->sync(explode(',', $request->language));
+                else
+                    $user->languages()->detach();
             }, 5);
 
             if(Auth::user()->hasRole('coach|country-manager')) {
@@ -226,7 +300,11 @@ class ProfileController extends Controller
             if(empty($request->picture_crop) and empty($picture_crop)) return 1;
         }
 
-        if(empty($request->language)) return 2;
+        if($user->hasRole('user')) {
+            if(empty($request->countries)) return 1;
+        }
+
+        if(empty($request->language) or empty($request->countries)) return 2;
 
         if(!$user->hasRole('user')) {
             if (empty($request->document) and empty($document)) return 3;

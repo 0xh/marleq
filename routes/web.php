@@ -34,6 +34,9 @@ Route::group(['prefix' => '/user', 'middleware' => 'role:country-manager|coach|u
     Route::resource('/profile', 'ProfileController')->only(['index', 'edit', 'update']);
     Route::get('/testimonials', ['as' => 'testimonial.index', 'uses' => 'ProfileController@testimonials']);
     Route::post('/testimonials', ['as' => 'testimonial.store', 'uses' => 'ProfileController@testimonialStore']);
+    Route::get('/cv-requests', ['as' => 'cv-requests.index', 'uses' => 'ProfileController@freeCVRequests']);
+    Route::get('/cv-requests/{id}/edit', ['as' => 'cv-requests.edit', 'uses' => 'ProfileController@freeCVEdit']);
+    Route::put('/cv-requests/{id}', ['as' => 'cv-requests.update', 'uses' => 'ProfileController@freeCVUpdate']);
 });
 
 Auth::routes();

@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('role:user')->only('freeCV', 'freeCVStore');
+        $this->middleware('role:user')->only('freeCVStore');
     }
 
     /**
@@ -179,24 +179,32 @@ class HomeController extends Controller
      */
     public function freeCV()
     {
+        $services = Service::find([1, 2, 4, 12]);
+
         if(!Auth::user()) {
-            return redirect()->route('home');
+            $isAuth = false;
+            return view('free-cv', compact('isAuth', 'services'));
         } else {
             $user = Auth::user();
+            $isAuth = true;
 
             if($user->profile_completion >= 4) {
                 $resume = Resume::where('user_id', Auth::user()->id)->first();
-                $services = Service::find([1, 2, 4, 12]);
 
                 if($user->free_cv == 2) {
                     $user->free_cv = 3;
                     $user->save();
                 }
+
                 if(!empty($resume->coach_id)) $coach = User::findOrFail($resume->coach_id);
 
-                return view('free-cv', compact('resume', 'services', 'coach'));
+                return view('free-cv', compact('resume', 'services', 'coach', 'isAuth'));
             } else {
-                return redirect()->route('home');
+                $isAuth = true;
+                $isComplete = false;
+                $resume = false;
+
+                return view('free-cv', compact('isAuth', 'isComplete', 'services', 'resume'));
             }
         }
     }
