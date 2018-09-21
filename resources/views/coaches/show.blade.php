@@ -1,5 +1,9 @@
 @extends('layouts/app')
 
+@section('og-title', $coach->name . ' ' . $coach->surname)
+@section('og-image', URL::asset($coach->picture_crop))
+@section('og-description', strip_tags($coach->biography))
+
 @section('content')
     <section class="hero hero-has-background is-marleq is-narrow">
         <!-- Hero head: will stick at the top -->

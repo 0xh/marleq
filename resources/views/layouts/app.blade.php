@@ -4,7 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:image" content="{{ url('/images/ogimage.jpg') }}">
+
+    <meta property="og:title" content="@yield('og-title', 'MARLEQ')" />
+    <meta property="og:image" content="@yield('og-image', url('/images/ogimage.jpg'))" />
+    <meta property="og:description" content="@yield('og-description', 'Find your career coach and build a successful career')" />
+    <meta property="og:type" content="article" />
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
