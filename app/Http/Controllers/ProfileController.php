@@ -88,6 +88,8 @@ class ProfileController extends Controller
     public function freeCVRequests()
     {
         $user = Auth::user();
+        if($user->status == 0) return redirect()->route('profile.index', $user->alias);
+
         $resumes = Resume::where('status', 0)->orWhere('coach_id', $user->id)->get();
 
         return view('user.profile.cv-requests', compact('user', 'resumes'));
@@ -102,6 +104,8 @@ class ProfileController extends Controller
     public function freeCVEdit($id)
     {
         $user = Auth::user();
+        if($user->status == 0) return redirect()->route('profile.index', $user->alias);
+
         $resume = Resume::findOrFail($id);
         $tipTypes = TipType::all();
 
