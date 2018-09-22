@@ -188,7 +188,7 @@ class HomeController extends Controller
             $user = Auth::user();
             $isAuth = true;
 
-            if($user->profile_completion >= 4) {
+            if($user->profile_completion >= -1) {
                 $resume = Resume::where('user_id', Auth::user()->id)->first();
 
                 if($user->free_cv == 2) {
