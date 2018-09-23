@@ -103,7 +103,6 @@
                                                 {{ $cost->service->name }}
                                             </p>
                                             <a class="card-header-icon">
-                                                <span class="has-text-dark p-r-20">{{ $cost->price }} €</span>
                                                 <span class="icon">
                                                     <i class="fa" :class="props.open ? 'fa-caret-up' : 'fa-caret-down'"></i>
                                                 </span>
