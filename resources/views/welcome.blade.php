@@ -24,7 +24,7 @@
                         </button>
                     </p>
                     <p>
-                        ﻿You are just one step closer to a desirable career.<br/>
+                        ﻿Give yourself an unfair advantage over the competition.<br/>
                         <a class="has-text-white" href="{{ route('register')}}" style="text-decoration: underline;">Register</a>
                     </p>
                 </div>

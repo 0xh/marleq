@@ -35,7 +35,7 @@
                         </div>
                         <div class="column is-3">
                             {{--<h2 class="homepage-mod-h2 p-b-10" style="color: #ffffff;">About us</h2>--}}
-                            <a href="{{ url('/about-us') }}">Out Team</a><br />
+                            <a href="{{ url('/about-us') }}">Our Team</a><br />
                             <a href="{{ url('/events') }}">Events</a><br />
                             <a href="{{ url('/inspiration') }}">Inspiration</a><br />
                             <a href="{{ url('/find-a-coach') }}">Browse Career Coaches</a><br />
@@ -51,7 +51,6 @@
                         <div class="column is-2">
                             <p>
                                 Montenegro, Podgorica Office<br />
-                                +382 67 453 507<br />
                                 info@marleq.com<br />
                                 81000 Podgorica
                             </p>
