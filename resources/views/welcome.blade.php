@@ -9,7 +9,7 @@
             <div class="columns is-centered">
                 <div class="column is-three-quarters has-text-centered">
                     <h1 class="title m-b-25">
-                        FIND YOUR CAREER COACH AND <br />BUILD A SUCCESSFUL CAREER
+                        ﻿Find And Book Your Career Coach <br/> Take Charge Of Your Own Success
                     </h1>
                     <h2 class="subtitle m-t-20">
                         ﻿We will help you land a dream job
