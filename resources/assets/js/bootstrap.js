@@ -8,11 +8,11 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-try {
-    window.$ = window.jQuery = require('jquery');
-
-    // require('bootstrap');
-} catch (e) {}
+// try {
+//     window.$ = window.jQuery = require('jquery');
+//
+//     require('bootstrap');
+// } catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -46,7 +46,7 @@ if (token) {
 
 // import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
+window.Pusher = require('pusher-js');
 
 // window.Echo = new Echo({
 //     broadcaster: 'pusher',

@@ -51,11 +51,11 @@
                         </div>
                     </div>
                     <div class="column has-text-right-desktop has-text-centered-mobile is-narrow">
-                        <a href="#" class="button is-medium is-marleq is-inverted">
+                        <a href="{{ route('chat', $coach->alias) }}" class="button is-medium is-marleq is-inverted">
                             <span class="icon">
-                                <i class="fa fa-calendar-check-o"></i>
+                                <i class="fa fa-envelope"></i>
                             </span>
-                            <span>Book Now</span>
+                            <span>Send a Message</span>
                         </a>
                     </div>
                 </div>

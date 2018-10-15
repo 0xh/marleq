@@ -672,6 +672,11 @@ img {
   padding-bottom: 10px;
 }
 
+#chat-window {
+  height: 400px;
+  overflow-y: scroll;
+}
+
 /*! bulma.io v0.6.2 | MIT License | github.com/jgthms/bulma */
 
 @keyframes spinAround {
@@ -4207,7 +4212,7 @@ a.box:active {
 }
 
 .input[disabled],
-.taginput [disabled].taginput-container.is-focusable,
+.taginput .taginput-container.is-focusable[disabled],
 .textarea[disabled] {
   cursor: not-allowed;
 }
@@ -4263,7 +4268,7 @@ a.box:active {
 }
 
 .input[disabled],
-.taginput [disabled].taginput-container.is-focusable,
+.taginput .taginput-container.is-focusable[disabled],
 .textarea[disabled] {
   background-color: whitesmoke;
   border-color: whitesmoke;
@@ -4273,31 +4278,31 @@ a.box:active {
 }
 
 .input[disabled]::-moz-placeholder,
-.taginput [disabled].taginput-container.is-focusable::-moz-placeholder,
+.taginput .taginput-container.is-focusable[disabled]::-moz-placeholder,
 .textarea[disabled]::-moz-placeholder {
   color: rgba(122, 122, 122, 0.3);
 }
 
 .input[disabled]::-webkit-input-placeholder,
-.taginput [disabled].taginput-container.is-focusable::-webkit-input-placeholder,
+.taginput .taginput-container.is-focusable[disabled]::-webkit-input-placeholder,
 .textarea[disabled]::-webkit-input-placeholder {
   color: rgba(122, 122, 122, 0.3);
 }
 
 .input[disabled]:-moz-placeholder,
-.taginput [disabled].taginput-container.is-focusable:-moz-placeholder,
+.taginput .taginput-container.is-focusable[disabled]:-moz-placeholder,
 .textarea[disabled]:-moz-placeholder {
   color: rgba(122, 122, 122, 0.3);
 }
 
 .input[disabled]:-ms-input-placeholder,
-.taginput [disabled].taginput-container.is-focusable:-ms-input-placeholder,
+.taginput .taginput-container.is-focusable[disabled]:-ms-input-placeholder,
 .textarea[disabled]:-ms-input-placeholder {
   color: rgba(122, 122, 122, 0.3);
 }
 
 .input[readonly],
-.taginput [readonly].taginput-container.is-focusable,
+.taginput .taginput-container.is-focusable[readonly],
 .textarea[readonly] {
   -webkit-box-shadow: none;
           box-shadow: none;
@@ -5927,8 +5932,7 @@ a.box:active {
 .field.has-addons .control:not(:first-child):not(:last-child) .button,
 .field.has-addons .control:not(:first-child):not(:last-child) .input,
 .field.has-addons .control:not(:first-child):not(:last-child) .taginput .taginput-container.is-focusable,
-.taginput
-.field.has-addons .control:not(:first-child):not(:last-child) .taginput-container.is-focusable,
+.taginput .field.has-addons .control:not(:first-child):not(:last-child) .taginput-container.is-focusable,
 .field.has-addons .control:not(:first-child):not(:last-child) .select select {
   border-radius: 0;
 }
@@ -5936,8 +5940,7 @@ a.box:active {
 .field.has-addons .control:first-child .button,
 .field.has-addons .control:first-child .input,
 .field.has-addons .control:first-child .taginput .taginput-container.is-focusable,
-.taginput
-.field.has-addons .control:first-child .taginput-container.is-focusable,
+.taginput .field.has-addons .control:first-child .taginput-container.is-focusable,
 .field.has-addons .control:first-child .select select {
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
@@ -5946,8 +5949,7 @@ a.box:active {
 .field.has-addons .control:last-child .button,
 .field.has-addons .control:last-child .input,
 .field.has-addons .control:last-child .taginput .taginput-container.is-focusable,
-.taginput
-.field.has-addons .control:last-child .taginput-container.is-focusable,
+.taginput .field.has-addons .control:last-child .taginput-container.is-focusable,
 .field.has-addons .control:last-child .select select {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
@@ -5957,12 +5959,10 @@ a.box:active {
 .field.has-addons .control .button.is-hovered,
 .field.has-addons .control .input:hover,
 .field.has-addons .control .taginput .taginput-container.is-focusable:hover,
-.taginput
-.field.has-addons .control .taginput-container.is-focusable:hover,
+.taginput .field.has-addons .control .taginput-container.is-focusable:hover,
 .field.has-addons .control .input.is-hovered,
 .field.has-addons .control .taginput .is-hovered.taginput-container.is-focusable,
-.taginput
-.field.has-addons .control .is-hovered.taginput-container.is-focusable,
+.taginput .field.has-addons .control .is-hovered.taginput-container.is-focusable,
 .field.has-addons .control .select select:hover,
 .field.has-addons .control .select select.is-hovered {
   z-index: 2;
@@ -5974,20 +5974,16 @@ a.box:active {
 .field.has-addons .control .button.is-active,
 .field.has-addons .control .input:focus,
 .field.has-addons .control .taginput .taginput-container.is-focusable:focus,
-.taginput
-.field.has-addons .control .taginput-container.is-focusable:focus,
+.taginput .field.has-addons .control .taginput-container.is-focusable:focus,
 .field.has-addons .control .input.is-focused,
 .field.has-addons .control .taginput .is-focused.taginput-container.is-focusable,
-.taginput
-.field.has-addons .control .is-focused.taginput-container.is-focusable,
+.taginput .field.has-addons .control .is-focused.taginput-container.is-focusable,
 .field.has-addons .control .input:active,
 .field.has-addons .control .taginput .taginput-container.is-focusable:active,
-.taginput
-.field.has-addons .control .taginput-container.is-focusable:active,
+.taginput .field.has-addons .control .taginput-container.is-focusable:active,
 .field.has-addons .control .input.is-active,
 .field.has-addons .control .taginput .is-active.taginput-container.is-focusable,
-.taginput
-.field.has-addons .control .is-active.taginput-container.is-focusable,
+.taginput .field.has-addons .control .is-active.taginput-container.is-focusable,
 .field.has-addons .control .select select:focus,
 .field.has-addons .control .select select.is-focused,
 .field.has-addons .control .select select:active,
@@ -6001,20 +5997,16 @@ a.box:active {
 .field.has-addons .control .button.is-active:hover,
 .field.has-addons .control .input:focus:hover,
 .field.has-addons .control .taginput .taginput-container.is-focusable:focus:hover,
-.taginput
-.field.has-addons .control .taginput-container.is-focusable:focus:hover,
+.taginput .field.has-addons .control .taginput-container.is-focusable:focus:hover,
 .field.has-addons .control .input.is-focused:hover,
 .field.has-addons .control .taginput .is-focused.taginput-container.is-focusable:hover,
-.taginput
-.field.has-addons .control .is-focused.taginput-container.is-focusable:hover,
+.taginput .field.has-addons .control .is-focused.taginput-container.is-focusable:hover,
 .field.has-addons .control .input:active:hover,
 .field.has-addons .control .taginput .taginput-container.is-focusable:active:hover,
-.taginput
-.field.has-addons .control .taginput-container.is-focusable:active:hover,
+.taginput .field.has-addons .control .taginput-container.is-focusable:active:hover,
 .field.has-addons .control .input.is-active:hover,
 .field.has-addons .control .taginput .is-active.taginput-container.is-focusable:hover,
-.taginput
-.field.has-addons .control .is-active.taginput-container.is-focusable:hover,
+.taginput .field.has-addons .control .is-active.taginput-container.is-focusable:hover,
 .field.has-addons .control .select select:focus:hover,
 .field.has-addons .control .select select.is-focused:hover,
 .field.has-addons .control .select select:active:hover,
@@ -12755,7 +12747,7 @@ label.panel-block:hover {
   color: #0a0a0a;
 }
 
-.hero.is-white a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-white a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-white strong {
   color: inherit;
 }
@@ -12839,7 +12831,7 @@ label.panel-block:hover {
   color: white;
 }
 
-.hero.is-black a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-black a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-black strong {
   color: inherit;
 }
@@ -12923,7 +12915,7 @@ label.panel-block:hover {
   color: #363636;
 }
 
-.hero.is-light a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-light a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-light strong {
   color: inherit;
 }
@@ -13007,7 +12999,7 @@ label.panel-block:hover {
   color: whitesmoke;
 }
 
-.hero.is-dark a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-dark a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-dark strong {
   color: inherit;
 }
@@ -13091,7 +13083,7 @@ label.panel-block:hover {
   color: white;
 }
 
-.hero.is-blue a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-blue a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-blue strong {
   color: inherit;
 }
@@ -13175,7 +13167,7 @@ label.panel-block:hover {
   color: #fff;
 }
 
-.hero.is-primary a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-primary a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-primary strong {
   color: inherit;
 }
@@ -13259,7 +13251,7 @@ label.panel-block:hover {
   color: #fff;
 }
 
-.hero.is-info a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-info a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-info strong {
   color: inherit;
 }
@@ -13343,7 +13335,7 @@ label.panel-block:hover {
   color: #fff;
 }
 
-.hero.is-success a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-success a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-success strong {
   color: inherit;
 }
@@ -13427,7 +13419,7 @@ label.panel-block:hover {
   color: rgba(0, 0, 0, 0.7);
 }
 
-.hero.is-warning a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-warning a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-warning strong {
   color: inherit;
 }
@@ -13511,7 +13503,7 @@ label.panel-block:hover {
   color: #fff;
 }
 
-.hero.is-danger a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-danger a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-danger strong {
   color: inherit;
 }
@@ -13595,7 +13587,7 @@ label.panel-block:hover {
   color: #fff;
 }
 
-.hero.is-twitter a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-twitter a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-twitter strong {
   color: inherit;
 }
@@ -13679,7 +13671,7 @@ label.panel-block:hover {
   color: #fff;
 }
 
-.hero.is-facebook a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-facebook a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-facebook strong {
   color: inherit;
 }
@@ -13763,7 +13755,7 @@ label.panel-block:hover {
   color: #fff;
 }
 
-.hero.is-google-plus a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-google-plus a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-google-plus strong {
   color: inherit;
 }
@@ -13847,7 +13839,7 @@ label.panel-block:hover {
   color: #fff;
 }
 
-.hero.is-marleq a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-marleq a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-marleq strong {
   color: inherit;
 }
@@ -13931,7 +13923,7 @@ label.panel-block:hover {
   color: #fff;
 }
 
-.hero.is-marleq-dark a:not(.button):not(.dropdown-item):not(.dropdown .dropdown-menu .has-link a):not(.tag),
+.hero.is-marleq-dark a:not(.button):not(.dropdown-item):not(.tag),
 .hero.is-marleq-dark strong {
   color: inherit;
 }
@@ -21865,8 +21857,7 @@ label.panel-block:hover {
 .dialog.is-small .modal-card,
 .dialog.is-small .input,
 .dialog.is-small .taginput .taginput-container.is-focusable,
-.taginput
-.dialog.is-small .taginput-container.is-focusable,
+.taginput .dialog.is-small .taginput-container.is-focusable,
 .dialog.is-small .button {
   border-radius: 2px;
   font-size: 0.75rem;
@@ -21875,8 +21866,7 @@ label.panel-block:hover {
 .dialog.is-medium .modal-card,
 .dialog.is-medium .input,
 .dialog.is-medium .taginput .taginput-container.is-focusable,
-.taginput
-.dialog.is-medium .taginput-container.is-focusable,
+.taginput .dialog.is-medium .taginput-container.is-focusable,
 .dialog.is-medium .button {
   font-size: 1.25rem;
 }
@@ -21884,8 +21874,7 @@ label.panel-block:hover {
 .dialog.is-large .modal-card,
 .dialog.is-large .input,
 .dialog.is-large .taginput .taginput-container.is-focusable,
-.taginput
-.dialog.is-large .taginput-container.is-focusable,
+.taginput .dialog.is-large .taginput-container.is-focusable,
 .dialog.is-large .button {
   font-size: 1.5rem;
 }
@@ -22011,8 +22000,7 @@ label.panel-block:hover {
 .field.has-addons .control:first-child .control .button,
 .field.has-addons .control:first-child .control .input,
 .field.has-addons .control:first-child .control .taginput .taginput-container.is-focusable,
-.taginput
-.field.has-addons .control:first-child .control .taginput-container.is-focusable,
+.taginput .field.has-addons .control:first-child .control .taginput-container.is-focusable,
 .field.has-addons .control:first-child .control .select select {
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
@@ -22021,8 +22009,7 @@ label.panel-block:hover {
 .field.has-addons .control:last-child .control .button,
 .field.has-addons .control:last-child .control .input,
 .field.has-addons .control:last-child .control .taginput .taginput-container.is-focusable,
-.taginput
-.field.has-addons .control:last-child .control .taginput-container.is-focusable,
+.taginput .field.has-addons .control:last-child .control .taginput-container.is-focusable,
 .field.has-addons .control:last-child .control .select select {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
@@ -22031,8 +22018,7 @@ label.panel-block:hover {
 .field.has-addons .control .control .button,
 .field.has-addons .control .control .input,
 .field.has-addons .control .control .taginput .taginput-container.is-focusable,
-.taginput
-.field.has-addons .control .control .taginput-container.is-focusable,
+.taginput .field.has-addons .control .control .taginput-container.is-focusable,
 .field.has-addons .control .control .select select {
   border-radius: 0;
 }

@@ -29,6 +29,13 @@ Route::get('/coaches/{alias}', ['as' => 'coach-show', 'uses' => 'HomeController@
 Route::get('/free-cv', ['as' => 'free-cv.index', 'uses' => 'HomeController@freeCV']);
 Route::post('/free-cv', ['as' => 'free-cv.store', 'uses' => 'HomeController@freeCVStore']);
 
+Route::group(['prefix' => '/messages', 'middleware' => 'role:superadministrator|administrator|country-manager|coach|user'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessageController@inbox']);
+    Route::get('/chat/{userId}', ['as' => 'chat', 'uses' => 'MessageController@index']);
+    Route::post('/send', 'MessageController@send');
+    Route::post('/read', 'MessageController@messageRead');
+});
+
 Route::group(['prefix' => '/user', 'middleware' => 'role:country-manager|coach|user'], function () {
     Route::get('/', ['as' => 'user', 'uses' => 'ProfileController@index']);
     Route::resource('/profile', 'ProfileController')->only(['index', 'edit', 'update']);

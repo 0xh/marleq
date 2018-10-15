@@ -25,7 +25,6 @@
         <thead>
         <tr>
             <th></th>
-            <th>Testimonial</th>
             <th>User</th>
             <th></th>
         </tr>
@@ -65,13 +64,16 @@
                         </p>
                     </div>
                 </td>
-                <td>
-                    <small><strong><a href="{{ route('testimonials.show', $testimonial->id) }}">{!! str_limit($testimonial->content, 100) !!}</a></strong></small>
-                </td>
                 <td class="is-narrow">
                     <small><strong><a href="{{ route('users.show', $testimonial->user->id) }}">{{$testimonial->user->name}}</a></strong></small>
                 </td>
                 <td class="has-text-right is-narrow">
+                    <a href="{{route('testimonials.show', $testimonial->id)}}" class="button is-marleq is-small">
+                        <span class="icon">
+                            <i class="fa fa-eye"></i>
+                        </span>
+                        <span>View</span>
+                    </a>
                     <a href="{{route('testimonials.edit', $testimonial->id)}}" class="button is-marleq is-small">
                         <span class="icon">
                             <i class="fa fa-edit"></i>

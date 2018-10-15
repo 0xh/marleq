@@ -26,6 +26,9 @@ Vue.use(VueCroppie);
  */
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('chat-message', require('./components/ChatMessageComponent.vue'));
+Vue.component('chat-log-component', require('./components/ChatLogComponent.vue'));
+Vue.component('chat-composer-component', require('./components/ChatComposerComponent.vue'));
 
 // const app = new Vue({
 //     el: '#app',

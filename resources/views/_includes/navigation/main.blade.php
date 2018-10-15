@@ -84,6 +84,12 @@
                                         </span>
                                         <span>Profile</span>
                                     </a>
+                                    <a class="navbar-item" href="{{ route('messages') }}">
+                                    <span class="icon">
+                                        <i class="fa fa-comments"></i>
+                                    </span>
+                                        <span>Messages</span>
+                                    </a>
                                 @endif
                                 @if(Auth::user()->hasRole('superadministrator|administrator'))
                                     <a class="navbar-item" href="{{ route('users.show', Auth::user()->id) }}">
