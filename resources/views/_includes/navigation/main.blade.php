@@ -91,7 +91,7 @@
                                         <span>Messages</span>
                                     </a>
                                 @endif
-                                @if(Auth::user()->hasRole('superadministrator|administrator'))
+                                @if(Auth::user()->hasRole('superadministrator'))
                                     <a class="navbar-item" href="{{ route('users.show', Auth::user()->id) }}">
                                         <span class="icon">
                                             <i class="fa fa-user-circle"></i>
