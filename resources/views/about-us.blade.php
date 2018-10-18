@@ -22,7 +22,7 @@
             <div class="has-text-centered">
                 <h1 class="homepage-mod-h1 m-b-20 m-t-20">Founding Team</h1>
             </div>
-            <div class="columns is-centered">
+            <div class="columns is-multiline is-centered">
                 @foreach($team as $member)
                     <div class="column is-full-mobile is-one-quarter-tablet is-one-quarter-desktop has-text-centered">
                         <div class="card is-shadowless">

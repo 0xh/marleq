@@ -54,7 +54,7 @@ $this->post('register-coach', 'Auth\RegisterController@register');
 $this->get('register-country-manager', 'Auth\RegisterController@showCountryManagerRegistrationForm')->name('register-country-manager');
 $this->post('register-country-manager', 'Auth\RegisterController@register');
 
-Route::group(['prefix' => '/manage', 'middleware' => 'role:superadministrator|administrator'], function () {
+Route::group(['prefix' => '/manage', 'middleware' => 'role:superadministrator'], function () {
     Route::get('/', ['as' => 'manage', 'uses' => 'ManageController@index']);
     Route::get('/dashboard', ['as' => 'manage.dashboard', 'uses' => 'ManageController@dashboard']);
 
