@@ -90,7 +90,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         if($user->status == 0) return redirect()->route('profile.index', $user->alias);
 
-        $resumes = Resume::where('status', 0)->orWhere('coach_id', $user->id)->get();
+        $resumes = Resume::where('status', 0)->orWhere('coach_id', $user->id)->orderBy('status', 'asc')->get();
 
         return view('user.profile.cv-requests', compact('user', 'resumes'));
     }
@@ -181,9 +181,10 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
+     * @throws \Throwable
      */
     public function update(Request $request, $id)
     {
@@ -206,6 +207,7 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->surname = $request->surname;
         $user->alias = $request->alias;
+        $user->social_network = $request->social_network;
         $user->email = $request->email;
         $user->biography = $request->biography;
         $user->country = $request->country;

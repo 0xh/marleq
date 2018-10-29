@@ -71,6 +71,9 @@
                         JOIN OUR FAST GROWING TEAM
                     </h1>
                     <h2 class="subtitle">
+                        We are looking for experienced HR/Recruitment/Career Coaching candidates, preferably with MBA in HR and/or Coach/HR certification.
+                    </h2>
+                    <h2 class="subtitle">
                         If you like what we do, share same values, and have ideas on how to grow our impact, let us know by sending a message to info@marleq.com.
                         We have several cooperation opportunities.
                     </h2>

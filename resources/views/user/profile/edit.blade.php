@@ -135,6 +135,31 @@
                                                 Your custom URL must contain 5-30 letters or numbers. Please do not use spaces, symbols, or special characters.
                                             </p>
                                         </div>
+                                        @if(Auth::user()->hasRole('coach|country-manager'))
+                                            <div class="field m-t-20">
+                                                <label class="label">Social Network URL:</label>
+                                                <div class="control has-icons-left has-icons-right">
+                                                    <input id="social_network" type="text" class="input{{ $errors->has('social_network') ? ' is-danger' : '' }}"
+                                                           name="social_network" value="{{ old('social_network', $user->social_network) }}" placeholder="Social network input" autofocus>
+                                                    <span class="icon is-small is-left">
+                                                        <i class="fa fa-user"></i>
+                                                    </span>
+                                                    @if ($errors->has('social_network'))
+                                                        <span class="icon is-small is-right">
+                                                            <i class="fa fa-exclamation-triangle"></i>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                                @if ($errors->has('social_network'))
+                                                    <p class="help is-danger">
+                                                        <strong>{{ $errors->first('social_network') }}</strong>
+                                                    </p>
+                                                @endif
+                                                <p class="help is-italic">
+                                                    Please fill in this field, it will help us verify your account.
+                                                </p>
+                                            </div>
+                                        @endif
 
                                         <div class="field m-t-20">
                                             <label class="label"><span class="has-text-marleq">*</span>Country:</label>
@@ -288,7 +313,7 @@
                                                     <b-taginput
                                                             v-model="tags"
                                                             :data="filteredTags"
-                                                            maxtags="10"
+                                                            maxtags="5"
                                                             autocomplete
                                                             :allow-new="allownew"
                                                             field="name"

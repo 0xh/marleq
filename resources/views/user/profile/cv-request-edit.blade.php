@@ -123,23 +123,23 @@
                             <div class="block">
                                 <b-radio v-model="rating"
                                          native-value="1">
-                                    1
+                                    1 - Poor
                                 </b-radio>
                                 <b-radio v-model="rating"
                                          native-value="2">
-                                    2
+                                    2 - Fair
                                 </b-radio>
                                 <b-radio v-model="rating"
                                          native-value="3">
-                                    3
+                                    3 - Good
                                 </b-radio>
                                 <b-radio v-model="rating"
                                          native-value="4">
-                                    4
+                                    4 - Very Good
                                 </b-radio>
                                 <b-radio v-model="rating"
                                          native-value="5">
-                                    5
+                                    5 - Excellent
                                 </b-radio>
                             </div>
                         </div>

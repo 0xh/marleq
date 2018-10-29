@@ -178,12 +178,23 @@
                 @endif
                 <div class="column is-half">
                     <div class="columns is-multiline">
+                        @if(Auth::user()->hasRole('coach|country-manager'))
+                            @if(!$user->social_network)
+                                <article class="column is-full message is-warning">
+                                    <div class="message-body">
+                                        Please fill in your social network field, it will help us verify your account.
+                                    </div>
+                                </article>
+                            @endif
+                        @endif
+
                         @if($user->biography)
                             <div class="column is-full">
                                 <h3 class="subtitle">Short biography:</h3>
                                 {!! $user->biography !!}
                             </div>
                         @endif
+
                         @if($user->document)
                             <div class="column is-full">
                                 <a href="{{ URL::asset($user->document) }}" target="_blank">

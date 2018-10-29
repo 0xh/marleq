@@ -385,19 +385,19 @@
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading">Countries</p>
-                            <p class="title">30+</p>
+                            <p class="title">60+</p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">
                         <div>
-                            <p class="heading">Events attendants</p>
-                            <p class="title">1,500+</p>
+                            <p class="heading">CVs Reviewed</p>
+                            <p class="title">1,000+</p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">
                         <div>
-                            <p class="heading">Post views</p>
-                            <p class="title">600,000+</p>
+                            <p class="heading">Coaches</p>
+                            <p class="title">100+</p>
                         </div>
                     </div>
                 </nav>

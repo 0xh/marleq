@@ -107,6 +107,59 @@
                                 @csrf
 
                                 <div class="field">
+                                    <label class="label"><span class="has-text-marleq">*</span>Countries:</label>
+                                    <b-field>
+                                        <b-taginput
+                                                v-model="tags"
+                                                :data="filteredTags"
+                                                maxtags="5"
+                                                autocomplete
+                                                :allow-new="allownew"
+                                                field="name"
+                                                type="is-marleq"
+                                                placeholder="Add a country"
+                                                @typing="getFilteredTags"
+                                                @add="addTagId"
+                                                @remove="removeTagId">
+                                        </b-taginput>
+                                    </b-field>
+                                    @if ($errors->has('countries'))
+                                        <p class="help is-danger">
+                                            <strong>{{ $errors->first('countries') }}</strong>
+                                        </p>
+                                    @endif
+                                    <p class="help is-italic">
+                                        Countries in which you would like to work
+                                    </p>
+                                </div>
+
+                                <div class="field m-t-30  m-b-50">
+                                    <label class="label"><span class="has-text-marleq">*</span>Country:</label>
+                                    <div class="control has-icons-left">
+                                        <div class="select">
+                                            <select name="country" required autofocus>
+                                                @foreach($countries as $country)
+                                                    <option value="{{ $country->name }}" {{ auth()->user()->country == $country->name ? 'selected' : '' }}>{{ $country->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <span class="icon is-left">
+                                                    <i class="fa fa-bars"></i>
+                                                </span>
+                                    </div>
+                                    @if ($errors->has('country'))
+                                        <p class="help is-danger">
+                                            <strong>{{ $errors->first('country') }}</strong>
+                                        </p>
+                                    @endif
+                                    <p class="help is-italic">
+                                        The country in which you live and work
+                                    </p>
+                                </div>
+
+                                <input type="hidden" name="countries" :value="countries">
+
+                                <div class="field">
                                     <div class="file is-boxed is-medium has-name is-marleq is-centered">
                                         <label class="file-label">
                                             <input class="file-input" type="file" ref="document" name="document" @change="onDocumentChange">
@@ -289,23 +342,45 @@
 @endsection
 
 @section('scripts')
-    <script>
-        let app = new Vue({
-            el: '#app',
-            data: {
-                document: ''
-            },
-            methods: {
-                onDocumentChange(file) {
-                    if (!file.target.files[0].name.match(/.(pdf|doc|docx)$/i)) {
-                        console.warn('not a valid document');
-                        file.target.value = null;
-                        this.$emit('documentChanged', null);
-                        return;
+    @if($isAuth)
+        <script>
+            const data = {!! $countries !!};
+            let app = new Vue({
+                el: '#app',
+                data: {
+                    filteredTags: data,
+                    allownew: false,
+                    document: '',
+                    countries: {!! auth()->user()->countries->pluck('id') !!},
+                    tags: {!! auth()->user()->countries !!},
+                },
+                methods: {
+                    getFilteredTags(text) {
+                        this.filteredTags = data.filter((option) => {
+                            return option.name
+                                .toString()
+                                .toLowerCase()
+                                .indexOf(text.toLowerCase()) >= 0
+                        })
+                    },
+                    addTagId(option) {
+                        this.countries.push(option.id);
+                    },
+                    removeTagId(option) {
+                        let index = this.countries.indexOf(option.id);
+                        this.countries.splice(index, 1);
+                    },
+                    onDocumentChange(file) {
+                        if (!file.target.files[0].name.match(/.(pdf|doc|docx)$/i)) {
+                            console.warn('not a valid document');
+                            file.target.value = null;
+                            this.$emit('documentChanged', null);
+                            return;
+                        }
+                        this.document = this.$refs.document.files[0].name;
                     }
-                    this.document = this.$refs.document.files[0].name;
                 }
-            }
-        })
-    </script>
+            })
+        </script>
+    @endif
 @endsection

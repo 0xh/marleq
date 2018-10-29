@@ -11,8 +11,10 @@
                 </h1>
                 <h2 class="subtitle">
                     Are you looking to expand your clients list?<br/>
-                    We are team of professionals fully dedicated to bring closer job seekers to career coaches.<br/>
                     Earn more money with a new revenue stream and have a global reach with more international clients.
+                </h2>
+                <h2 class="subtitle">
+                    We are looking for experienced HR/Recruitment/Career Coaching candidates, preferably with MBA in HR and/or Coach/HR certification.
                 </h2>
             </div>
         </div>

@@ -74,6 +74,7 @@ class UserController extends Controller
         $user->surname = $request->surname;
         $user->status = 0;
         $user->email = $request->email;
+        $user->social_network = $request->social_network;
         $user->password = Hash::make($password);
 
         if($user->save()) {
@@ -153,6 +154,7 @@ class UserController extends Controller
         $user->title = $request->title;
         $user->alias = $request->alias;
         $user->email = $request->email;
+        $user->social_network = $request->social_network;
         $user->biography = $request->biography;
         $user->featured = $request->featured;
         $user->country = $request->country;

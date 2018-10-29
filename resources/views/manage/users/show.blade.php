@@ -50,6 +50,9 @@
                     <p>
                         <small>{{ $user->title }} from {{ $user->country }}</small>
                     </p>
+                    <p>
+                        <small>Social network URL: {{ $user->social_network }}</small>
+                    </p>
                     @if($user->document)
                         <p>
                             <small>

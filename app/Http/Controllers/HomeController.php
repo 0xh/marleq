@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Cost;
+use App\Country;
 use App\Notifications\FreeCVRequest;
 use App\Post;
 use App\Resume;
@@ -14,6 +15,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use Storage;
+use DB;
 
 class HomeController extends Controller
 {
@@ -185,7 +187,7 @@ class HomeController extends Controller
             $isAuth = false;
             return view('free-cv', compact('isAuth', 'services'));
         } else {
-            $user = Auth::user();
+            $user = User::findOrFail(Auth::user()->id);
             $isAuth = true;
 
             if($user->profile_completion >= -1) {
@@ -196,9 +198,11 @@ class HomeController extends Controller
                     $user->save();
                 }
 
+                $countries = Country::select('id', 'name')->get();
+
                 if(!empty($resume->coach_id)) $coach = User::findOrFail($resume->coach_id);
 
-                return view('free-cv', compact('resume', 'services', 'coach', 'isAuth'));
+                return view('free-cv', compact('resume', 'services', 'coach', 'isAuth', 'countries'));
             } else {
                 $isAuth = true;
                 $isComplete = false;
@@ -212,13 +216,16 @@ class HomeController extends Controller
     /**
      * Store a newly created CV in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Validation\ValidationException
+     * @throws \Throwable
      */
     public function freeCVStore(Request $request)
     {
         $this->validate($request, [
-            'document' => 'required'
+            'document' => 'required',
+            'country' => 'required',
         ]);
 
         $resume = new Resume();
@@ -230,10 +237,16 @@ class HomeController extends Controller
         }
 
         if($resume->save()) {
-            $user = User::findOrFail(Auth::user()->id);
+            $user = Auth::user();
             $user->free_cv = 1;
-            $user->save();
+            $user->country = $request->country;
 
+            DB::transaction(function () use ($user, $request) {
+                if ($request->countries)
+                    $user->countries()->sync(explode(',', $request->countries));
+                $user->save();
+            }, 5);
+            
             $user->notify(new FreeCVRequest($user));
 
             Session::flash('success', 'Your CV has been successfully uploaded!');

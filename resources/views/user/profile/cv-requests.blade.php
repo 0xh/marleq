@@ -79,7 +79,6 @@
                         <thead>
                         <tr>
                             <th></th>
-                            <th></th>
                             <th>User</th>
                             <th>Countries</th>
                             <th>Languages</th>
@@ -105,16 +104,6 @@
                                             </a>
                                         </p>
                                     </div>
-                                </td>
-                                <td class="is-narrow">
-                                    <small>
-                                        <a href="{{ URL::asset($resume->document) }}" target="_blank">
-                                            <span class="icon">
-                                                <i class="fa fa-file"></i>
-                                            </span>
-                                            <span>View CV</span>
-                                        </a>
-                                    </small>
                                 </td>
                                 <td class="is-narrow"><small><strong>{{ $resume->user->name }} {{$resume->user->surname}}</strong> from <strong>{{ $resume->user->country }}</strong></small></td>
                                 <td>
