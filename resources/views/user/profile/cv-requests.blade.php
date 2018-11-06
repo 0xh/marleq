@@ -82,6 +82,7 @@
                             <th>User</th>
                             <th>Countries</th>
                             <th>Languages</th>
+                            <th>Submitted</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -92,11 +93,7 @@
                                     <div class="field has-addons">
                                         <p class="control">
                                             <a class="is-small">
-                                                @if($resume->status == 0)
-                                                    <span class="icon is-small has-text-grey">
-                                                        <i class="fa fa-times"></i>
-                                                    </span>
-                                                @else
+                                                @if($resume->status == 1)
                                                     <span class="icon is-small has-text-success">
                                                         <i class="fa fa-check"></i>
                                                     </span>
@@ -115,6 +112,9 @@
                                     @foreach($resume->user->languages as $language)
                                         <small>{{ $loop->first ? '' : ', ' }}{{ $language->name }}</small>
                                     @endforeach
+                                </td>
+                                <td>
+                                    {{$resume->created_at->diffForHumans()}}
                                 </td>
                                 <td class="has-text-right">
                                     <a href="{{route('cv-requests.edit', $resume->id)}}" class="button is-marleq is-small">

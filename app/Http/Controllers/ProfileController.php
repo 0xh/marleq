@@ -90,7 +90,7 @@ class ProfileController extends Controller
         $user = Auth::user();
         if($user->status == 0) return redirect()->route('profile.index', $user->alias);
 
-        $resumes = Resume::where('status', 0)->orWhere('coach_id', $user->id)->orderBy('status', 'asc')->get();
+        $resumes = Resume::where('status', 0)->orWhere('coach_id', $user->id)->orderBy('status', 'asc')->orderBy('created_at', 'asc')->get();
 
         return view('user.profile.cv-requests', compact('user', 'resumes'));
     }
