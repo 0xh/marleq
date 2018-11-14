@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\NewMessageNotification;
 use App\Inbox;
 use App\Message;
+use App\Notifications\NewInboxMessage;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -37,6 +38,7 @@ class MessageController extends Controller
         } else {
             Inbox::create(['user_from_id' => $userId, 'user_to_id' => $userToId]);
             Inbox::create(['user_from_id' => $userToId, 'user_to_id' => $userId]);
+            $userTo->notify(new NewInboxMessage($user, $userTo));
         }
 
         $messages = Message::where('user_from_id', '=', $userId)

@@ -114,7 +114,7 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    {{$resume->created_at->diffForHumans()}}
+                                    <small>{{$resume->created_at->diffForHumans()}}</small>
                                 </td>
                                 <td class="has-text-right">
                                     <a href="{{route('cv-requests.edit', $resume->id)}}" class="button is-marleq is-small">
