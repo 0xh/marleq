@@ -17,6 +17,7 @@ use Illuminate\Validation\Rule;
 use App\User;
 use App\Role;
 use Hash;
+use Intervention\Image\Facades\Image;
 use Session;
 use Illuminate\Support\Facades\Storage;
 use DB;
@@ -37,6 +38,122 @@ class ProfileController extends Controller
         $certification = collect(explode(';', $user->certification));
 
         return view('user.profile.index', compact('user', 'certification'));
+    }
+
+    /**
+     * Show the form for creating a new business card.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function createBusinessCard()
+    {
+        $user = Auth::user();
+
+        if ($user->level) {
+            $title = $user->level->name;
+            if ($user->hasRole('country-manager')) $countryManager = 'Country Manager';
+            if ($user->country) $countryManager .= ' from ' . $user->country;
+        }
+
+        return view('user.profile.business-card', compact('user', 'title', 'countryManager'));
+    }
+
+    /**
+     * Store a newly created business card in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeBusinessCard(Request $request)
+    {
+        $image = Image::make('images/marleq-business-card-background.jpg');
+        $logo = Image::make('images/marleq-logo-color.png');
+
+        if (strlen($request->name) < 10) {
+            $name = '';
+            $surname = $request->name;
+        } else {
+            $nameArr = explode(' ', $request->name);
+
+            if (isset($nameArr[0]) && isset($nameArr[1])) {
+                $name = $nameArr[0];
+                $surname = $nameArr[1];
+            } else {
+                $name = '';
+                $surname = '';
+            }
+        }
+
+        $countryManager = (isset($request->countrymanager)) ? $request->countrymanager : '';
+
+        $image->insert($logo, 'top-left', 97, 121);
+
+        $image->text(strtoupper($name), 95, 210, function($font) {
+            $font->file('fonts/verb-extra-bold.ttf');
+            $font->size(60);
+            $font->color('#00a7e1');
+            $font->align('left');
+            $font->valign('top');
+        });
+
+        $image->text(strtoupper($surname), 95, 270, function($font) {
+            $font->file('fonts/verb-extra-bold.ttf');
+            $font->size(60);
+            $font->color('#00a7e1');
+            $font->align('left');
+            $font->valign('top');
+        });
+
+        $image->text($request->title, 95, 340, function($font) {
+            $font->file('fonts/verb-light.ttf');
+            $font->size(28);
+            $font->color('#474946');
+            $font->align('left');
+            $font->valign('top');
+        });
+
+        $image->text($countryManager, 95, 380, function($font) {
+            $font->file('fonts/verb-light.ttf');
+            $font->size(28);
+            $font->color('#474946');
+            $font->align('left');
+            $font->valign('top');
+        });
+
+        $image->text($request->phone, 95, 472, function($font) {
+            $font->file('fonts/verb-light.ttf');
+            $font->size(28);
+            $font->color('#474946');
+            $font->align('left');
+            $font->valign('top');
+        });
+
+        $image->text($request->email, 95, 510, function($font) {
+            $font->file('fonts/verb-light.ttf');
+            $font->size(28);
+            $font->color('#474946');
+            $font->align('left');
+            $font->valign('top');
+        });
+
+        $image->text('www.marleq.com', 95, 550, function($font) {
+            $font->file('fonts/verb-light.ttf');
+            $font->size(28);
+            $font->color('#474946');
+            $font->align('left');
+            $font->valign('top');
+        });
+
+        $name = 'business-card.jpg';
+        $headers = [
+            'Content-Type' => 'image/jpeg',
+            'Content-Disposition' => 'attachment; filename='. $name,
+        ];
+
+//        return $image->response('jpg');
+        return response()->stream(function() use ($image) {
+            echo $image->encode('jpg');
+        }, 200, $headers);
     }
 
     /**
@@ -115,9 +232,10 @@ class ProfileController extends Controller
     /**
      * Update the specified Free CV Request in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
+     * @throws \Throwable
      */
     public function freeCVUpdate(Request $request, $id)
     {

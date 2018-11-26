@@ -61,10 +61,10 @@
                 <div class="container">
                     <ul>
                         <li><a href="{{ route('user') }}">Overview</a></li>
-                        <li class="is-active"><a href="{{ route('testimonial.index') }}">Testimonials</a></li>
+                        <li><a href="{{ route('testimonial.index') }}">Testimonials</a></li>
                         @if(Auth::user()->hasRole('coach|country-manager') and Auth::user()->status == 1)
                             <li><a href="{{ route('cv-requests.index') }}">Free CV Requests</a></li>
-                            <li><a href="{{ route('card.index') }}">Business Card</a></li>
+                            <li class="is-active"><a href="{{ route('card.index') }}">Business Card</a></li>
                         @endif
                     </ul>
                 </div>
@@ -76,51 +76,87 @@
         <div class="container">
             <div class="columns is-multiline">
                 <div class="column is-half">
-                    <form action="{{route('testimonial.store')}}" method="post">
+                    <form action="{{route('card.store')}}" method="post">
 
                         @csrf
 
                         <div class="field">
+                            <label class="label"><span class="has-text-marleq">*</span>Name:</label>
                             <div class="control has-icons-left has-icons-right">
-                                <textarea name="testimonial_content" class="form-control my-editor{{ $errors->has('testimonial_content') ? ' is-danger' : '' }}">{!! old('testimonial_content') !!}</textarea>
-                                @if ($errors->has('testimonial_content'))
-                                    <span class="icon is-small is-right">
-                                    <i class="fa fa-exclamation-triangle"></i>
+                                <input id="name" type="text" class="input{{ $errors->has('name') ? ' is-danger' : '' }}"
+                                       name="name" value="{{ old('surname', $user->name . ' ' . $user->surname) }}" placeholder="Your name" required autofocus>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-user"></i>
                                 </span>
+                                @if ($errors->has('name'))
+                                    <span class="icon is-small is-right">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
                                 @endif
                             </div>
-                            @if ($errors->has('testimonial_content'))
+                            @if ($errors->has('name'))
                                 <p class="help is-danger">
-                                    <strong>{{ $errors->first('testimonial_content') }}</strong>
+                                    <strong>{{ $errors->first('name') }}</strong>
                                 </p>
                             @endif
                         </div>
 
-                        <div class="field">
+                        <div class="field m-t-30">
+                            <label class="label"><span class="has-text-marleq">*</span>Phone number:</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="phone" type="text" class="input{{ $errors->has('phone') ? ' is-danger' : '' }}"
+                                       name="phone" value="{{ old('phone') }}" placeholder="e.g. +382 69 123 456" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-mobile-phone"></i>
+                                </span>
+                                @if ($errors->has('phone'))
+                                    <span class="icon is-small is-right">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
+                                @endif
+                            </div>
+                            @if ($errors->has('phone'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('phone') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="field m-t-30">
+                            <label class="label"><span class="has-text-marleq">*</span>Email:</label>
+                            <div class="control has-icons-left has-icons-right">
+                                <input id="email" type="email" class="input{{ $errors->has('email') ? ' is-danger' : '' }}"
+                                       name="email" value="{{ old('surname', $user->email) }}" placeholder="e.g. your.name@marleq.com" required>
+                                <span class="icon is-small is-left">
+                                    <i class="fa fa-envelope"></i>
+                                </span>
+                                @if ($errors->has('email'))
+                                    <span class="icon is-small is-right">
+                                        <i class="fa fa-exclamation-triangle"></i>
+                                    </span>
+                                @endif
+                            </div>
+                            @if ($errors->has('email'))
+                                <p class="help is-danger">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </p>
+                            @endif
+                        </div>
+
+                        <input type="hidden" name="title" value="{{ $title }}">
+                        <input type="hidden" name="countrymanager" value="{{ $countryManager }}">
+
+                        <div class="field m-t-30">
                             <p class="control">
                                 <button type="submit" class="button is-marleq">
                                     <span class="icon">
-                                        <i class="fa fa-comment"></i>
+                                        <i class="fa fa-id-card"></i>
                                     </span>
-                                    <span>Send Testimonial</span>
+                                    <span>Create Business Card</span>
                                 </button>
                             </p>
                         </div>
                     </form>
-                </div>
-                <div class="column is-half">
-                    @if($testimonials)
-                        <div class="content">
-                            <h4 class="subtitle">Testimonials:</h4>
-                            <ul>
-                                @foreach($testimonials as $testimonial)
-                                    <li>
-                                        {!! $testimonial->content !!}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
@@ -128,60 +164,5 @@
 @endsection
 
 @section('scripts')
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-    <script>
-        let app = new Vue({
-            el: '#app',
-            data: {},
-            mounted: function () {
-                @if (session('success'))
-                    this.$toast.open({
-                        duration: 5000,
-                        message: '{!! Session::get('success') !!}',
-                        type: 'is-success'
-                    });
-                @endif
-            }
-        })
-    </script>
-
-    <script>
-        let editor_config = {
-            path_absolute : "/",
-            selector: "textarea.my-editor",
-            @if(Auth::user()->hasRole('administrator'))
-            plugins: [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern"
-            ],
-            @endif
-            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link @if(Auth::user()->hasRole('administrator')) image media @endif",
-            relative_urls: false,
-            file_browser_callback : function(field_name, url, type, win) {
-                let x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-                let y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
-
-                let cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
-                if (type === 'image') {
-                    cmsURL = cmsURL + "&type=Images";
-                } else {
-                    cmsURL = cmsURL + "&type=Files";
-                }
-
-                tinyMCE.activeEditor.windowManager.open({
-                    file : cmsURL,
-                    title : 'Filemanager',
-                    width : x * 0.8,
-                    height : y * 0.8,
-                    resizable : "yes",
-                    close_previous : "no"
-                });
-            }
-        };
-
-        tinymce.init(editor_config);
-    </script>
 @endsection

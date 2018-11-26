@@ -64,6 +64,7 @@
                         <li><a href="{{ route('testimonial.index') }}">Testimonials</a></li>
                         @if(Auth::user()->hasRole('coach|country-manager') and Auth::user()->status == 1)
                             <li><a href="{{ route('cv-requests.index') }}">Free CV Requests</a></li>
+                            <li><a href="{{ route('card.index') }}">Business Card</a></li>
                         @endif
                     </ul>
                 </div>
