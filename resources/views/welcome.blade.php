@@ -414,7 +414,7 @@
                 @foreach($testimonials as $testimonial)
                     <div class="column has-text-centered is-one-quarter">
                         <div class="card is-shadowless">
-                            @if($testimonial->picture_crop)
+                            @if($testimonial->user->picture_crop)
                                 <div class="card-image">
                                     <figure class="image is-square">
                                         <img class="is-grayscale" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 15px; width:100px;">
