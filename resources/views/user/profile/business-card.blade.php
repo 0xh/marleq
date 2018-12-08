@@ -154,6 +154,14 @@
                                     </span>
                                     <span>Create Business Card</span>
                                 </button>
+                                <a class="button is-text"
+                                   href="{{ URL::asset('images/marleq-business-card-back.jpg') }}"
+                                   download>
+                                    <span class="icon">
+                                        <i class="fa fa-id-card"></i>
+                                    </span>
+                                    <span>Download the back of the business card</span>
+                                </a>
                             </p>
                         </div>
                     </form>

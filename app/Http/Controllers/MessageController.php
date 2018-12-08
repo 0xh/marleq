@@ -44,6 +44,7 @@ class MessageController extends Controller
         $messages = Message::where('user_from_id', '=', $userId)
             ->where('user_to_id', '=', $userToId)
             ->orWhere('user_from_id', '=', $userToId)->where('user_to_id', '=', $userId)
+            ->orderBy('created_at', 'asc')
             ->get();
 
         return view('chat.broadcast', compact('userChannelId', 'user', 'userTo', 'messages'));
