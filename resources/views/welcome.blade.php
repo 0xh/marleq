@@ -416,9 +416,7 @@
                         <div class="card is-shadowless">
                             @if($testimonial->user->picture_crop)
                                 <div class="card-image">
-                                    <figure class="image is-square">
-                                        <img class="is-grayscale" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 15px; width:100px;">
-                                    </figure>
+                                    <img class="is-grayscale" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 15px; width:100px;">
                                 </div>
                             @endif
                             <div class="card-content card-coach p-l-0 p-r-0">
