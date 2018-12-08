@@ -207,9 +207,28 @@ class ProfileController extends Controller
         $user = Auth::user();
         if($user->status == 0) return redirect()->route('profile.index', $user->alias);
 
+        $allResumes = Resume::all();
+
         $resumes = Resume::where('status', 0)->orWhere('coach_id', $user->id)->orderBy('status', 'asc')->orderBy('created_at', 'asc')->get();
 
-        return view('user.profile.cv-requests', compact('user', 'resumes'));
+        $total = $allResumes->count();
+        $reviewed = $allResumes->sum(function ($resume) {
+            return $resume['status'] == 1;
+        });
+        $notReviewed = $allResumes->sum(function ($resume) {
+            return $resume['status'] == 0;
+        });
+
+        $reviewedByCoaches = $allResumes->where('status', 1)->groupBy(function ($resume) {
+            return $resume->coach->name . ' ' . $resume->coach->surname;
+        })->transform(function ($item, $key) {
+            return count($item);
+        })->sort()->reverse();
+
+        $coachesNumber = count($reviewedByCoaches);
+
+        return view('user.profile.cv-requests',
+            compact('user', 'resumes', 'total', 'reviewed', 'notReviewed', 'reviewedByCoaches', 'coachesNumber'));
     }
 
     /**

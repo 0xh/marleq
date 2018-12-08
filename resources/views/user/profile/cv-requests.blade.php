@@ -73,6 +73,46 @@
     </section>
 
     <section class="section">
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Total</p>
+                    <p class="title">{{ $total }}</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Reviewed</p>
+                    <p class="title">{{ $reviewed }}</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Not Reviewed</p>
+                    <p class="title">{{ $notReviewed }}</p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered">
+                <div>
+                    <p class="heading">Coaches</p>
+                    <p class="title">{{ $coachesNumber }}</p>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <section class="section">
+        <div class="container" style="column-count: 5;">
+            @foreach($reviewedByCoaches as $name => $value)
+                <div class="tags">
+                    <span class="tag is-marleq">{{ $value }}</span>
+                    <span class="tag">{{ $name }}</span>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="section">
         <div class="container">
             <div class="columns is-multiline">
                 <div class="column">
