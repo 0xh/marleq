@@ -170,32 +170,30 @@
             <div class="has-text-centered">
                 <h1 class="homepage-mod-h1">Our Coaches</h1>
             </div>
-            <div class='carousel is-4 carousel-animated carousel-animate-slide' data-autoplay="true" data-delay="5000">
-                <div class='carousel-container'>
-                    @foreach($coaches as $coach)
-                        <div class='carousel-item @if($loop->first) is-active @endif'>
+            <div class="columns is-narrow m-t-40">
+                @foreach($coaches as $coach)
+                    <div class="column has-text-centered is-one-quarter">
+                        <div class="card is-shadowless">
                             @if($coach->picture_crop)
-                                <figure class="image is-square"><img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 15px;"></figure>
+                                <div class="card-image">
+                                    <figure class="image is-square">
+                                        <img class="is-grayscale" src="{{ URL::asset($coach->picture_crop) }}" style="border-radius: 15px;">
+                                    </figure>
+                                </div>
                             @endif
-                            <div class="has-text-centered m-t-20">
-                                <a href="{{ route('coach-show', $coach->alias) }}">
-                                    <h3 class="homepage-mod-h3">{{ $coach->name }} {{ $coach->surname }}</h3>
-                                </a>
-                                <div class="has-text-weight-light has-text-centered">
-                                    {!! $coach->biography !!}
+                            <div class="card-content card-coach p-l-0 p-r-0">
+                                <div>
+                                    <a href="{{ route('coach-show', $coach->alias) }}">
+                                        <h3 class="homepage-mod-h3">{{ $coach->name }} {{ $coach->surname }}</h3>
+                                    </a>
+                                    <div class="m-b-15">
+                                        {!! $coach->biography !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-                <div class="carousel-navigation is-centered">
-                    <div class="carousel-nav-left">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
                     </div>
-                    <div class="carousel-nav-right">
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="has-text-centered">
                 <h1 class="homepage-mod-h1 m-t-50 m-b-50 p-t-20 p-b-20">Our Career Coaches have worked at</h1>
@@ -412,28 +410,28 @@
             <div class="has-text-centered">
                 <h1 class="homepage-mod-h1 m-b-30">Testimonials</h1>
             </div>
-            <div class='carousel is-3 carousel-animated carousel-animate-slide' data-autoplay="false" data-delay="5000">
-                <div class='carousel-container'>
-                    @foreach($testimonials as $testimonial)
-                        <div class='carousel-item @if($loop->first) is-active @endif has-text-centered'>
-                            <div class="has-text-centered m-t-20">
-                                @if($testimonial->user->picture_crop)
-                                    <img class="is-grayscale" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 15px; width:100px;">
-                                @endif
-                                <h3 class="homepage-mod-h3">{{ $testimonial->user->name }}</h3>
-                                <div>{!! str_limit($testimonial->content, 350) !!}</div>
+            <div class="columns is-narrow m-t-40">
+                @foreach($testimonials as $testimonial)
+                    <div class="column has-text-centered is-one-quarter">
+                        <div class="card is-shadowless">
+                            @if($testimonial->picture_crop)
+                                <div class="card-image">
+                                    <figure class="image is-square">
+                                        <img class="is-grayscale" src="{{ URL::asset($testimonial->user->picture_crop) }}" style="border-radius: 15px; width:100px;">
+                                    </figure>
+                                </div>
+                            @endif
+                            <div class="card-content card-coach p-l-0 p-r-0">
+                                <div>
+                                    <h3 class="homepage-mod-h3">{{ $testimonial->user->name }}</h3>
+                                    <div class="m-b-15">
+                                        {!! str_limit($testimonial->content, 350) !!}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-                <div class="carousel-navigation is-centered">
-                    <div class="carousel-nav-left">
-                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
                     </div>
-                    <div class="carousel-nav-right">
-                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
