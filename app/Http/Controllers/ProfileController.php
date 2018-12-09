@@ -48,11 +48,14 @@ class ProfileController extends Controller
     public function createBusinessCard()
     {
         $user = Auth::user();
+        $countryManager = '';
 
         if ($user->level) {
             $title = $user->level->name;
-            if ($user->hasRole('country-manager')) $countryManager = 'Country Manager';
-            if ($user->country) $countryManager .= ' from ' . $user->country;
+            if ($user->hasRole('country-manager')) {
+                $countryManager = 'Country Manager';
+                if ($user->country) $countryManager .= ' from ' . $user->country;
+            }
         }
 
         return view('user.profile.business-card', compact('user', 'title', 'countryManager'));
