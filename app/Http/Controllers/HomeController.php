@@ -161,6 +161,11 @@ class HomeController extends Controller
     public function coachShow($alias)
     {
         $coach = User::whereRoleIs('coach')->where('alias', $alias)->first();
+
+        if (!isset($coach->name)) {
+            return redirect()->route('find-a-coach');
+        }
+
         $costs = Cost::where('level_id', $coach->level_id)->whereIn('service_id', $coach->services->pluck('id'))->get();
 
         if($coach->certification == '')
